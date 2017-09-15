@@ -2,8 +2,22 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
 
+// axios
+import Vueaxios from 'vue-axios'
+import axios from '@/api'
+Vue.use(axios, Vueaxios)
+
+// routers
+import router from '@/router'
+
+// store 
+import store from '@/store'
+
+// element-ui
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
@@ -11,6 +25,9 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
-  components: { App }
-})
+  store,
+  render: h => h(App)
+  // template: '<App/>',
+  // components: {
+  // }
+}).$mount('#app')

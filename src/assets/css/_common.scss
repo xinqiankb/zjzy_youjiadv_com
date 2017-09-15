@@ -1,0 +1,12 @@
+// top position fixed
+@mixin Topfixed($top, $left) {
+	position: fixed;
+	left: $left;
+	top: $top;
+}
+// bottom position fixed
+@mixin Topfixed($top, $left) {
+	position: fixed;
+	left: $left;
+	top: $top;
+}

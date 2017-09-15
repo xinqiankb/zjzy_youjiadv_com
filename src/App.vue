@@ -1,13 +1,24 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <HbHeader></HbHeader>
+      <transition name='home' mode="">
+        <router-view style="padding-bottom:120px;padding-top:250px"></router-view>
+      </transition>
+    <HbFooter></HbFooter>
   </div>
 </template>
 
 <script>
+import HbHeader from '@/components/header'
+import HbFooter from '@/components/footer'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {HbHeader, HbFooter},
+  data() {
+    return{
+
+    }
+  }
 }
 </script>
 
@@ -18,6 +29,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.home-enter-active, .home-leave-active {
+    transition: opacity .3s
+}
+.home-enter, .home-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+    opacity: 0
 }
 </style>
