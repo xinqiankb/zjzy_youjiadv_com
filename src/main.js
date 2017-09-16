@@ -3,6 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 
+// config
+import config from '@/config'
+Object.defineProperty(Vue.prototype, '$config', {value: config})
+
 // axios
 import Vueaxios from 'vue-axios'
 import axios from '@/api'
@@ -15,9 +19,11 @@ import router from '@/router'
 import store from '@/store'
 
 // element-ui
-import ElementUI from 'element-ui'
+import { 
+Pagination
+} from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-Vue.use(ElementUI)
+Vue.use(Pagination)
 
 Vue.config.productionTip = false
 
