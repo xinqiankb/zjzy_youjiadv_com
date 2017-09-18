@@ -3,7 +3,7 @@
     <div v-show="this.$route.name !== '404'">
       <HbHeader></HbHeader>
         <transition name='home' mode="">
-          <router-view style="padding-bottom:220px;max-width:1200px;width:1200px;overflow-x: auto;margin: 0 auto;"></router-view>
+          <router-view style="padding-bottom:220px;overflow-x: auto;margin: 0 auto;"></router-view>
         </transition>
       <HbFooter></HbFooter>
     </div>    
