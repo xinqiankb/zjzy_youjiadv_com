@@ -24,9 +24,9 @@
 
 <style lang="scss">
 #hb-list {
-	width:1000px;
+	// width:1000px;
 	.list {
-		width: 1000px;
+		// width: 1000px;
 		.content {
 			list-style: none;
 			overflow: hidden;
