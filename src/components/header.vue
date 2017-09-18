@@ -21,14 +21,6 @@
 		  	<router-link v-for="(item,index) in menu" :to="{path: item.path, params:{id:''}}" class="navlist" :style="activeIndex === index?'background-color:#1b4195;color: #fff':''" :key="index" @click.native="doActiveNav(index)">{{item.name}}</router-link>
 		  </div>
 		</div>
-
-		<div class="swipe">
-			<div class="swipe-item">
-				<div class="img">
-					<img style="width:100%" src="./../assets/image/home/images/001_02.jpg" alt="">
-				</div>
-			</div>
-		</div>
 	</div>
 </template>
 
@@ -82,9 +74,6 @@
     			text-align: center;
     		}
     	}
-    }
-    .swipe{
-    	min-width: 1200px;
     }
 	}
 </style>
