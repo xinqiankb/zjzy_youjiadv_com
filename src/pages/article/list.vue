@@ -117,7 +117,7 @@ export default {
 				.text-content {
 					margin-top: 24px;
 					font-size: 13px;
-					line-height: 1.6rem;
+					line-height: 1.2rem;
 					height: 80px;
 					overflow: hidden;
 					.open-all {
