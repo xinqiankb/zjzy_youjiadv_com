@@ -1,5 +1,6 @@
 <template>
 	<div class="hb-address" id="hb-address">
+    <div><img src="../../assets/image/small.png" alt=""></div>
 	  <div class="minBox">	
 		<div class="leftNavigation">leftNavigation</div>
 		<div class="content">
@@ -33,11 +34,11 @@
 	}
 	#hb-address {
 		width: 1200px;
-        margin-top: 1rem;
 	}
 	.minBox {
 		display: flex;
     justify-content: center;
+    margin-top: 2rem;
 	}
 	.leftNavigation {
            width: 10rem;
@@ -53,6 +54,8 @@
 		    font-size: 16px;
 		    width: 100%;
 		    height: 2.5rem;
+        display: flex;
+        align-items: center;
 	       }
 		  .contentBox {
               height: 52.5rem;
