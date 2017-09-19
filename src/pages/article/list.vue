@@ -1,5 +1,6 @@
 <template>
 	<div class="hb-list" id="hb-list">
+		<div class="banner"></div>
 		<ul class="list">
 			<li class="content" v-for="(item, index) in list" :key="index">
 				<div class="thumb"></div>
@@ -14,11 +15,11 @@
 					</div>
 				</div>
 			</li>
-		</ul>
-		<div class="block">
+			<li class="block">
 			<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="list.length">
 			</el-pagination>
-		</div>
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -43,7 +44,7 @@ export default {
 			currentPage: 1
 		}
 	},
-	mounted() {},
+	mounted() { },
 	computed: {
 		limit() {
 			return this.$config.limit
@@ -54,7 +55,7 @@ export default {
 			this.currentPage = val
 			console.log(this.currentPage)
 		},
-		to (){
+		to() {
 			this.$router.push('/detail/1')
 		}
 	}
@@ -63,9 +64,18 @@ export default {
 
 <style lang="scss">
 #hb-list {
-	width:1200px;
+	width: 100%;
+	.banner {
+		width: 100%;
+		height: 200px;
+		background-image: url('../../assets/image/list.jpg');
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		margin-bottom: 25px;
+	}
 	.list {
-		// width: 1000px;
+		width: 1200px;
 		.content {
 			list-style: none;
 			overflow: hidden;
@@ -104,7 +114,7 @@ export default {
 					overflow: hidden;
 					.open-all {
 						color: #F39595;
-						cursor:pointer;
+						cursor: pointer;
 					}
 				}
 			}

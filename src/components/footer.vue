@@ -96,7 +96,7 @@ export default {
 					background-size: cover;
 					background-repeat: no-repeat;
 					position: absolute;
-					top: 4px
+					top: 8px
 				}
 			}
 		}
