@@ -230,6 +230,124 @@
 				  	</div>
 			  	</div>
 		  </div>
+
+		  <!-- 专家栏 -->
+		  <div class="block-line">
+			  <div class="expertList">
+					<div class="blocktitle">
+					  <span class="titleline"></span>专家栏<span></span>
+					</div>
+					<p class="blockdesc">
+					  EXPERT COLUMN
+					</p> 
+			  	<div class="main">
+			  		<div class="page">
+			  			<button class="pagebtn pre" :style="regularlistIndex === 0 ? 'background-color:#e7e7e7;':'background-color:#0c53ab'"><</button>
+			  			<button class="pagebtn next">></button>
+			  			<button class="pagebtn more">···</button>
+			  		</div>
+
+			  		<div class="list">
+				  		<div class="list-group" style="width:100%;overflow-x:hidden">
+				  			<div class="group-item" style="width:1708px">
+					  			<div class="expert-item">
+					  				<div class="img">
+					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
+					  				</div>
+					  				<div class="info">
+					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
+					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
+					  				</div>
+					  			</div>					  			<div class="expert-item">
+					  				<div class="img">
+					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
+					  				</div>
+					  				<div class="info">
+					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
+					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
+					  				</div>
+					  			</div>					  			<div class="expert-item">
+					  				<div class="img">
+					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
+					  				</div>
+					  				<div class="info">
+					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
+					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
+					  				</div>
+					  			</div>			  			<div class="expert-item">
+					  				<div class="img">
+					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
+					  				</div>
+					  				<div class="info">
+					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
+					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
+					  				</div>
+					  			</div>			  			<div class="expert-item">
+					  				<div class="img">
+					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
+					  				</div>
+					  				<div class="info">
+					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
+					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
+					  				</div>
+					  			</div>			  			<div class="expert-item">
+					  				<div class="img">
+					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
+					  				</div>
+					  				<div class="info">
+					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
+					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
+					  				</div>
+					  			</div>			  			<div class="expert-item">
+					  				<div class="img">
+					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
+					  				</div>
+					  				<div class="info">
+					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
+					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
+					  				</div>
+				  			</div>
+				  		</div>
+			  			</div>
+			  		</div>
+			  	</div>
+			  </div>
+		  </div>
+
+		  <!-- 友情链接 -->
+		  <div class="block-line">
+				<div class="blocktitle">
+				  <span class="titleline"></span>友情链接<span></span>
+				</div>
+				<p class="blockdesc">
+				  FRIENDSHIP LINK
+				</p>  
+		  	<div class="friendLink">
+			  	<div class="main">
+			  		<div class="page">
+			  			<button class="pagebtn pre" :style="friendlistIndex === 0 ? 'background-color:#e7e7e7;':'background-color:#0c53ab'"><</button>
+			  			<button class="pagebtn next">></button>
+			  		</div>
+
+			  		<div class="list">
+			  		  <div class="list-group" style="width:100%;overflow-x:hidden">
+			  		    <div class="group-item" style="width: 1955.8px">
+					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+				  			</div>
+				  		</div>
+			  		</div>
+			  	</div>		  		
+		  	</div>
+		  </div>
 		</div>
 	</div>
 </template>
@@ -247,7 +365,7 @@
 				.block-line{
 				  padding-top: 30px;
 					padding-bottom: 39px;
-					border-bottom: 1px solid #0c53ab;
+					border-bottom: 2px solid #0c53ab;
 				}
 		   .zy-news{
 		   	 position: relative;
@@ -525,6 +643,103 @@
 		  		}
 		  	}
 		  }
+
+		  .expertList{
+		  	.main{
+			  	.page{
+			  		text-align: right;
+			  		margin-bottom: 18px;
+		        .pagebtn{
+		        	width: 32px;
+		        	height: 32px;
+		        	line-height: 32px;
+		        	text-align: center;
+		        	background-color: #0c53ab;
+		        	color: #fff;
+		        	font-size: 18px;
+		        	margin-left: 10px;
+		        	border-radius: 5px;
+		        	cursor: pointer;
+		        }
+			  	}
+			  	.list{
+			  		font-size: 14px;
+			  		width: 100%;
+			  		.knowmore{
+			  			font-size: 14px;
+			  			color: #0c53ab;
+			  			float: right;
+			  			display: inline-block;
+			  		}
+			  		.expert-item{
+			  			display: inline-block;
+			  			margin: 0 20px;
+			  			margin-bottom: 20px;
+			  			width: 204px;
+			  			box-shadow: 0px 0px 5px 5px #eee;
+			  			cursor: pointer;
+			  			.info{
+			  				padding: 5px 8px;
+			  				.ranks{
+			  					margin-top: 5px;
+			  				}
+			  			}
+			  			.img{
+			  				width: 100%;
+			  				& img{
+			  					width: 100%;
+			  				}
+			  			}
+			  		}
+			  		.expert-item:first-child{
+			  			margin-left: 0;
+			  		}			  		
+			  		.expert-item:last-child{
+			  			margin-right: 0;
+			  		}
+			  	}
+		  	}
+		  }
+
+		  .friendLink{
+		  	.main{
+			  	.page{
+			  		text-align: right;
+			  		margin-bottom: 18px;
+		        .pagebtn{
+		        	width: 32px;
+		        	height: 32px;
+		        	line-height: 32px;
+		        	text-align: center;
+		        	background-color: #0c53ab;
+		        	color: #fff;
+		        	font-size: 18px;
+		        	margin-left: 10px;
+		        	border-radius: 5px;
+		        	cursor: pointer;
+		        }
+			  	}
+		      .list{
+		       .item-list{
+		        display: inline-block;
+		        width: 180.98px;
+		        margin: 0 8px;
+		        .img{
+		        	width: 100%;
+		        	& img{
+		        		width: 100%;
+		        	}
+		        }
+		      }
+		      .item-list:first-child{
+		       margin-left: 0;
+		      }
+		      .item-list:last-child{
+		       margin-right: 0;
+		      }
+		     }
+		  	}
+		  }
 		}
    //readmore
    .readmore{
@@ -584,6 +799,8 @@ export default{
 			img2: img2,
 			img3: img3,
 			img4: img4,
+      regularlistIndex: 0, // 专家栏当前页数
+      friendlistIndex: 0, // 友情链接当前页数
 		}
 	}
 }

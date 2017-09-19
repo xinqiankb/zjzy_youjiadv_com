@@ -1,6 +1,6 @@
 // 全局请求url
 const config = {
-	url: '', // request url
+	url: 'http://zx.youjiadv.com/frontend/web/index.php?r=index', // request url
 	imgUrl: '' // pic path autocomplete
 }
 
