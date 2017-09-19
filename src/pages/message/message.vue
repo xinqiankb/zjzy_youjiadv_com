@@ -2,9 +2,9 @@
 	<div class="hb-address" id="hb-address">
     <div><img src="../../assets/image/small.png" alt=""></div>
 	  <div class="minBox">	
-		<div class="leftNavigation">leftNavigation</div>
+		<slideBar></slideBar>
 		<div class="content">
-			<div class="titel"><p>当前位置：联系我们 > 意见留言</p></div>
+			<headertips></headertips>
 			<div class="contentBox">
 				<div class="contentHearBox"><p>发表留言</p></div>
 				<div class="contentBox-box">
@@ -202,6 +202,8 @@
 	
 </style>
 <script>
+import slideBar from '@/components/slideBar'
+import headertips from '@/components/headertips'
 export default{
 	name:'address',
 	data() {
@@ -217,6 +219,10 @@ export default{
       textare: ''
 		}
 	},
+  components: {
+    slideBar,
+    headertips
+  },
 	methods: {
 		nameFun () {
       console.log(this.name)
