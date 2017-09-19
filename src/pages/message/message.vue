@@ -22,7 +22,7 @@
 						<label class="textTiele">联系电话：</label>
 						<input v-model="phone" class="inputCont" type="text">
             <span>*</span>
-            <span class="prompt" :bing="phonePrompt"></span>{{phonePrompt}}
+            <span class="prompt" :bing="phonePrompt">{{phonePrompt}}</span>
 					</div>
 					<div class="inputBox">
 						<label class="textTiele">Email：</label>
@@ -74,11 +74,12 @@
     font-size: 16px;
   }
 	#hb-address {
-		width: 1000px;
-        margin-top: 1rem;
+		width: 1200px;
+    margin-top: 1rem;
 	}
 	.minBox {
 		display: flex;
+    justify-content: center;
 	}
 	.leftNavigation {
            width: 10rem;
@@ -96,7 +97,7 @@
 		    height: 2.5rem;
 	       }
 		  .contentBox {
-              height: 52.5rem;
+              height: 43rem;
 		      width: 100%;
               background: #F6F6F8;
 			  .contentHearBox {
@@ -134,6 +135,12 @@
 				  }
 				  .inputBox {
 					  margin-top: 1.5rem;
+              .inputCont {
+					       border: 1px solid #E8E8E9;
+						   width: 15rem;
+						   height: 1.75rem;
+						   font-size: 16px;
+				         }
 					    .textTiele {
                 display: inline-block;
                 text-align: right;
@@ -141,17 +148,26 @@
 					       color: black;
                  width: 80px;
 				         }
+              .prompt {
+               font-size: 16px;
+               color: black;
+             }   
               .pH {
                 -webkit-margin-before: 0em;
                 -webkit-margin-after: 0em;
-                margin-top: -5.5rem; 
-                margin-left: 25rem;
+                // margin-top: -6rem; 
+                margin-left: 29rem;
                 font-size: 14px;
                 color: #C1C1C1;
                  }
               .spanH {
+                // display: table-cell;
                 height: 13rem;
-                line-height: 13rem;   
+                // line-height: 13rem;
+                margin-top: -13rem;
+                margin-left: 36.9rem;
+                display: flex;
+                align-items: center;   
                }  
               .textTielBig {
                 display: inline-block;
@@ -168,7 +184,7 @@
 						   height: 1.75rem;
 				         }
 						 .inputContBig {
-							 width: 31rem;
+							 width: 32.25rem;
 							 height: 13rem;
 							 border: 1px solid #E8E8E9;
 							 font-size: 16px;
@@ -215,7 +231,7 @@ export default{
        }
        let addressVal =  /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/
        if(!addressVal.test(this.address) || this.address.length > 20) {
-         this.addressPrompt = "请输入正确地址，不能超过20个字"
+         this.addressPrompt = "地址不能超过20个字"
        } else {
          this.addressPrompt = "地址正确！"
        }
