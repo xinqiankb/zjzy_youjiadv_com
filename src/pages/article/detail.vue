@@ -1,5 +1,6 @@
 <template>
 	<div class="hb-detaile" id="hb-detaile">
+		<div class="banner"></div>
 		<div class="detail">
 			<div class="banner"></div>
 			<div class="release">
@@ -16,8 +17,18 @@
 <style lang="scss">
 	#hb-detaile{
 		text-align: left;
+		width: 100%;
+		.banner {
+			width: 100%;
+				height: 200px;
+				background-image: url('../../assets/image/detail.jpg');
+				background-position: center;
+				background-size: cover;
+				background-repeat: no-repeat;
+				margin-bottom: 25px;
+		}
 		.detail {
-			max-width:1100px;
+			width:1200px;
 			background: #F7F7F9;
 			.banner {
 				width: 100%;

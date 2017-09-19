@@ -3,15 +3,15 @@
 		<div class="footer">
 			<div class="logo"></div>
 			<div class="fl">
-				<p>主办：浙江省整形美容行业协会</p>
-				<p>维护：中国整形美容协会信息部</p>
-				<p class="police">浙ICP备14047909号-1
-					<i></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;京公网安倍110102000889</p>
+				<p>主办：{{ dataList.host }}</p>
+				<p>维护：{{ dataList.maintenance }}</p>
+				<p class="police">{{ dataList.recode1 }}
+					<i></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ dataList.recode2 }}</p>
 			</div>
 			<div class="ct">
-				<p>邮编：100029 传真：010-84280990</p>
-				<p>邮箱：zjzxxh@capa.org.cn</p>
-				<p>地址：浙江省宁波市海曙区翠柏路117号</p>
+				<p>邮编：{{ dataList.post }} 传真：{{ dataList.phone }}</p>
+				<p>邮箱：{{ dataList.email }}</p>
+				<p>地址：{{ dataList.wealth_add }}</p>
 			</div>
 			<div class="fr">
 				<div class="sina">
@@ -26,6 +26,26 @@
 		</div>
 	</div>
 </template>
+
+<script>
+export default {
+	name: 'hb-footer',
+	data() {
+		return {
+			dataList: []
+		}
+	},
+	mounted() {
+		this.axios.get('footer')
+			.then((res) => {
+				this.dataList = res.data.data
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}
+}
+</script>
 
 <style lang="scss">
 @import './../assets/css/_common.scss';
@@ -76,7 +96,7 @@
 					background-size: cover;
 					background-repeat: no-repeat;
 					position: absolute;
-					top: 4px
+					top: 8px
 				}
 			}
 		}
@@ -125,13 +145,3 @@
 	}
 }
 </style>
-<script>
-export default {
-	name: 'hb-footer',
-	data() {
-		return {
-
-		}
-	}
-}
-</script>

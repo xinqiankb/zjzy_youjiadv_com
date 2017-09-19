@@ -11,6 +11,7 @@ Object.defineProperty(Vue.prototype, '$config', {value: config})
 import Vueaxios from 'vue-axios'
 import axios from '@/api'
 Vue.use(axios, Vueaxios)
+Vue.prototype.axios = axios
 
 // routers
 import router from '@/router'

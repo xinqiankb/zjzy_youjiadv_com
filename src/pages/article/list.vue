@@ -1,5 +1,6 @@
 <template>
 	<div class="hb-list" id="hb-list">
+		<div class="banner"></div>
 		<ul class="list">
 			<li class="content" v-for="(item, index) in list" :key="index">
 				<div class="thumb"></div>
@@ -10,23 +11,71 @@
 					</div>
 					<div class="text-content">
 						<span> {{ item.msg.slice(0,122) + ' ...' }} </span>
-						<span class="open-all">【阅读全文】</span>
+						<span class="open-all" @click="to">【阅读全文】</span>
 					</div>
 				</div>
 			</li>
-		</ul>
-		<div class="block">
+			<li class="block">
 			<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="list.length">
 			</el-pagination>
-		</div>
+			</li>
+		</ul>
 	</div>
 </template>
 
+<script>
+export default {
+	name: 'list',
+	data() {
+		return {
+			list: [{
+				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
+			}, {
+				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
+			}, {
+				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
+			}, {
+				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
+			}, {
+				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
+			}, {
+				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
+			}],
+			currentPage: 1
+		}
+	},
+	mounted() { },
+	computed: {
+		limit() {
+			return this.$config.limit
+		}
+	},
+	methods: {
+		handleCurrentChange(val) {
+			this.currentPage = val
+			console.log(this.currentPage)
+		},
+		to() {
+			this.$router.push('/detail/1')
+		}
+	}
+}
+</script>
+
 <style lang="scss">
 #hb-list {
-	// width:1000px;
+	width: 100%;
+	.banner {
+		width: 100%;
+		height: 200px;
+		background-image: url('../../assets/image/list.jpg');
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		margin-bottom: 25px;
+	}
 	.list {
-		// width: 1000px;
+		width: 1200px;
 		.content {
 			list-style: none;
 			overflow: hidden;
@@ -65,6 +114,7 @@
 					overflow: hidden;
 					.open-all {
 						color: #F39595;
+						cursor: pointer;
 					}
 				}
 			}
@@ -82,38 +132,3 @@
 	}
 }
 </style>
-<script>
-export default {
-	name: 'list',
-	data() {
-		return {
-			list: [{
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}, {
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}, {
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}, {
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}, {
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}, {
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}],
-			currentPage: 1
-		}
-	},
-	mounted() {},
-	computed: {
-		limit() {
-			return this.$config.limit
-		}
-	},
-	methods: {
-		handleCurrentChange(val) {
-			this.currentPage = val
-			console.log(this.currentPage)
-		}
-	}
-}
-</script>
