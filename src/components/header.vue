@@ -129,7 +129,7 @@ export default{
     	// 导航激活状态
     	activeIndex: state => state.activeIndex,
     	// 一级导航栏
-    	menu: state => state.memuList
+    	menu: state => state.menuList
     })
   },
 	methods: {
