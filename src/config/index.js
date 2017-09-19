@@ -10,4 +10,7 @@ const page = {
 	page: 1
 }
 
-export default {config, page}
+// 每页显示条数
+const limit = 1
+
+export default {config, page, limit}

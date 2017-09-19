@@ -1,23 +1,33 @@
 <template>
   <div id="app">
-    <HbHeader></HbHeader>
-      <transition name='home' mode="">
-        <router-view style="padding-bottom:120px;padding-top:250px"></router-view>
-      </transition>
-    <HbFooter></HbFooter>
+    <div v-show="this.$route.name !== '404'">
+      <HbHeader></HbHeader>
+        <transition name='home' mode="">
+          <router-view style="padding-bottom:220px;overflow-x: auto;margin: 0 auto;"></router-view>
+        </transition>
+      <HbFooter></HbFooter>
+    </div>    
+
+    <div v-show="this.$route.name === '404'">
+      <Notfound></Notfound>
+    </div>
   </div>
 </template>
 
 <script>
 import HbHeader from '@/components/header'
 import HbFooter from '@/components/footer'
+import Notfound from '@/components/notfound'
 export default {
   name: 'app',
-  components: {HbHeader, HbFooter},
+  components: {HbHeader, HbFooter, Notfound},
   data() {
     return{
 
     }
+  },
+  mounted() {
+    console.log(this.$route)
   }
 }
 </script>

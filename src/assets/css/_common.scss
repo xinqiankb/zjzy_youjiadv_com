@@ -5,8 +5,15 @@
 	top: $top;
 }
 // bottom position fixed
-@mixin Topfixed($top, $left) {
-	position: fixed;
+@mixin Bottompoab($bottom, $left) {
+	position: absolute;
 	left: $left;
-	top: $top;
+	bottom: $bottom;
+}
+
+@mixin autoWidth($width) {
+	width: calc(100% - $width);
+	width: -webkit-calc(100% - $width);
+	width: -moz-calc(100% - $width);
+	width: -o-calc(100% - $width);
 }
