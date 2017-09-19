@@ -8,29 +8,38 @@
 				<div class="contentHearBox"><p>发表留言</p></div>
 				<div class="contentBox-box">
 				    <div class="inputBoxHear">
-						<span class="textTiele">姓名：</span>
-						<input :model="name" class="inputCont" type="text">
+						<label class="textTiele">姓名：</label>
+						<input v-model="name" class="inputCont" type="text">
 						<span>*</span>
-						<span :bind="namePrompt">{{namePrompt}}</span>
+						<span class="prompt" :bind="namePrompt">{{namePrompt}}</span>
 					</div>
 					<div class="inputBox">
-						<span class="textTiele">所在地区：</span>
-						<input class="inputCont" type="text">
+						<label class="textTiele">所在地区：</label>
+						<input v-model="address" class="inputCont" type="text">
+            <span class="prompt" :bind="addressPrompt">{{addressPrompt}}</span>
 					</div>
 					<div class="inputBox">
-						<span class="textTiele">联系电话：</span>
-						<input class="inputCont" type="text">
+						<label class="textTiele">联系电话：</label>
+						<input v-model="phone" class="inputCont" type="text">
+            <span>*</span>
+            <span class="prompt" :bing="phonePrompt"></span>{{phonePrompt}}
 					</div>
 					<div class="inputBox">
-						<span class="textTiele">Email：</span>
-						<input class="inputCont" type="text">
-						<span>*</span>
+						<label class="textTiele">Email：</label>
+						<input v-model="email" class="inputCont" type="text">
+            <span class="prompt" :bind="emailPrompt">{{emailPrompt}}</span>
 					</div>
 					<div class="inputBox">
-                        <span class="textTiele">留言：</span>
-						<input class="inputContBig" type="text">
+            <label class="textTielBig">留言：</label>
+						<textarea v-model="textare" class="inputContBig" cols="30" rows="10"></textarea>
+               <span class="spanH">*</span>
+               <p class="pH">（注：标*号为必填栏目）</p>
 					</div>
-					<button class="btn" :click="nameFun(name)">sssss</button>
+          <div class="btnBox">
+               <button class="btn" @click="nameFun">发表</button>
+               <div class="wH"></div>
+               <button class="btnT">取消</button>
+          </div>
 				</div>	
 			</div>
 		</div>
@@ -43,12 +52,27 @@
 		margin: 0;
 		padding: 0;
 	}
+  .wH {
+    width: 90px;
+  }
+  .btnBox {
+    display: flex;
+    justify-content: center; 
+    margin-top: 3.5rem;
+  }
 	.btn {
-		width: 100px;
-		height: 50px;
-		border: 1px solid red;
-		
+		width: 90px;
+		height: 40px;
+		background: #0C53AB;
+    font-size: 16px;
+    color: white;
 	}
+  .btnT {
+    width: 90px;
+    height: 40px;
+    background: #E4E4E4;
+    font-size: 16px;
+  }
 	#hb-address {
 		width: 1000px;
         margin-top: 1rem;
@@ -91,9 +115,16 @@
 				  .inputBoxHear {
 					  margin-top: 1.8rem;
 					     .textTiele {
+                 display: inline-block;
+                 width: 80px;
+                 text-align: right;
 					       font-size: 16px;
 					       color: black;
 				         }
+             .prompt {
+               font-size: 16px;
+               color: black;
+             }   
 						 .inputCont {
 					       border: 1px solid #E8E8E9;
 						   width: 15rem;
@@ -104,21 +135,44 @@
 				  .inputBox {
 					  margin-top: 1.5rem;
 					    .textTiele {
-						   flex-direction: row-reverse;
+                display: inline-block;
+                text-align: right;
 					       font-size: 16px;
 					       color: black;
-						   text-align: justify;
+                 width: 80px;
 				         }
+              .pH {
+                -webkit-margin-before: 0em;
+                -webkit-margin-after: 0em;
+                margin-top: -5.5rem; 
+                margin-left: 25rem;
+                font-size: 14px;
+                color: #C1C1C1;
+                 }
+              .spanH {
+                height: 13rem;
+                line-height: 13rem;   
+               }  
+              .textTielBig {
+                display: inline-block;
+                text-align: right;
+					       font-size: 16px;
+					       color: black;
+                 width: 80px;
+                 height: 100px;
+                 vertical-align: top;
+              }
 						 .inputCont {
 					       border: 1px solid #E8E8E9;
 						   width: 15rem;
 						   height: 1.75rem;
 				         }
 						 .inputContBig {
-							 width: 32.95rem;
+							 width: 31rem;
 							 height: 13rem;
 							 border: 1px solid #E8E8E9;
 							 font-size: 16px;
+               resize: none;
 						 }
 				  }
 			  }
@@ -133,18 +187,49 @@ export default{
 	data() {
 		return {
 			namePrompt: '',
-			name: ''
+			name: '',
+      phone: '',
+      phonePrompt: '',
+      address: '',
+      addressPrompt: '',
+      email: '',
+      emailPrompt: '',
+      textare: ''
 		}
 	},
 	methods: {
-		nameFun (val) {
-		   let res=  /^[\u4E00-\u9FA5]{2,6}$/
-		   if(!res.test(val)) {
-			   console.log("dasd")
+		nameFun () {
+      console.log(this.name)
+		   let res=  /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/
+		   if(!res.test(this.name) || this.name.length > 7) {
+			   console.log(this.name)
 			   this.namePrompt = "请输入2-6个汉字"
 		   } else {
-			   this.namePrompt = "符合标准！"
+			   this.namePrompt = "姓名正确！"
 		   }
+       let phoneVal = /^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/
+       if(!phoneVal.test(this.phone)) {
+         this.phonePrompt = "请输入正确手机号"
+       } else {
+         this.phonePrompt = "手机号正确！"
+       }
+       let addressVal =  /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/
+       if(!addressVal.test(this.address) || this.address.length > 20) {
+         this.addressPrompt = "请输入正确地址，不能超过20个字"
+       } else {
+         this.addressPrompt = "地址正确！"
+       }
+       let emailVal = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
+       if(!emailVal.test(this.email)) {
+         this.emailPrompt = "邮箱格式不正确！"
+       } else {
+         this.emailPrompt = "邮箱正确！"
+       }
+
+       let exp = /草|操|sb|SB/g
+       if(exp.test(this.textare)) {
+         alert("儿子 骂谁呢！ 操你妈 给老子滚！")
+       }
 		}
 	}	
 }
