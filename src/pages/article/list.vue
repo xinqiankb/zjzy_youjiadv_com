@@ -1,29 +1,35 @@
 <template>
 	<div class="hb-list" id="hb-list">
 		<div class="banner"></div>
-		<ul class="list">
-			<li class="content" v-for="(item, index) in list" :key="index">
-				<div class="thumb"></div>
-				<div class="text">
-					<div class="top">
-						<span class="title">浙江省首届整形美容护理学术交流会在杭州顺利召开</span>
-						<span class="date">[2017-09-13]</span>
+		<div style="width:1200px;margin: 0 auto">
+			<slideBar></slideBar>
+			<ul class="list">
+			  <headertips></headertips>
+				<li class="content" v-for="(item, index) in list" :key="index">
+					<div class="thumb"></div>
+					<div class="text">
+						<div class="top">
+							<span class="title">浙江省首届整形美容护理学术交流会在杭州顺利召开</span>
+							<span class="date">[2017-09-13]</span>
+						</div>
+						<div class="text-content">
+							<span> {{ item.msg.slice(0,122) + ' ...' }} </span>
+							<span class="open-all" @click="to">【阅读全文】</span>
+						</div>
 					</div>
-					<div class="text-content">
-						<span> {{ item.msg.slice(0,122) + ' ...' }} </span>
-						<span class="open-all" @click="to">【阅读全文】</span>
-					</div>
-				</div>
-			</li>
-			<li class="block">
-			<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="list.length">
-			</el-pagination>
-			</li>
-		</ul>
+				</li>
+				<li class="block">
+				<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="list.length">
+				</el-pagination>
+				</li>
+			</ul>
+		</div>
 	</div>
 </template>
 
 <script>
+import slideBar from '@/components/slideBar'
+import headertips from '@/components/headertips'
 export default {
 	name: 'list',
 	data() {
@@ -58,7 +64,8 @@ export default {
 		to() {
 			this.$router.push('/detail/1')
 		}
-	}
+	},
+	components: {slideBar, headertips}
 }
 </script>
 
@@ -75,7 +82,8 @@ export default {
 		margin-bottom: 25px;
 	}
 	.list {
-		width: 1200px;
+		width: 900px;
+		display: inline-block;
 		.content {
 			list-style: none;
 			overflow: hidden;
@@ -121,6 +129,9 @@ export default {
 		}
 		.content:hover {
 			box-shadow: 0 0 20px #ccc;
+		}
+		.content:nth-of-type(1){
+			margin-top: 0;
 		}
 	}
 	.block {

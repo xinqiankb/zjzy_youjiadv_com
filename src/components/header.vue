@@ -85,34 +85,34 @@ export default{
 		return {
 			nowtime: '',
 			weekday: '',
-			tempweeknd: ['日','一','二','三','四','五','六'],
-			menu: [
-        {
-        	name: '首页',
-        	path: '/'
-        }, {
-        	name: '协会信息',
-        	path: '/list/1'
-        }, {
-        	name: '工作动态',
-        	path: '/home'
-        }, {
-        	name: '学术活动',
-        	path: '/home'
-        }, {
-        	name: '行业论坛',
-        	path: '/list/4'
-        }, {
-        	name: '二级机构',
-        	path: '/home'
-        }, {
-        	name: '会员服务',
-        	path: '/home'
-        }, {
-        	name: '会员介绍',
-        	path: '/home'
-        }
-			]
+			tempweeknd: ['日','一','二','三','四','五','六']
+			// menu: [
+   //      {
+   //      	name: '首页',
+   //      	path: '/'
+   //      }, {
+   //      	name: '协会信息',
+   //      	path: '/list/1'
+   //      }, {
+   //      	name: '工作动态',
+   //      	path: '/home'
+   //      }, {
+   //      	name: '学术活动',
+   //      	path: '/home'
+   //      }, {
+   //      	name: '行业论坛',
+   //      	path: '/list/4'
+   //      }, {
+   //      	name: '二级机构',
+   //      	path: '/home'
+   //      }, {
+   //      	name: '会员服务',
+   //      	path: '/home'
+   //      }, {
+   //      	name: '会员介绍',
+   //      	path: '/home'
+   //      }
+			// ]
 		}
 	},
 	mounted() {
@@ -122,11 +122,14 @@ export default{
     let weekend = time.getDay()
     that.weekday = that.tempweeknd[weekend]
     this.getNowTime()
+    this.$store.dispatch('get_menulist')
 	},
   computed: {
     ...mapState({
     	// 导航激活状态
-    	activeIndex: state => state.activeIndex
+    	activeIndex: state => state.activeIndex,
+    	// 一级导航栏
+    	menu: state => state.memuList
     })
   },
 	methods: {
