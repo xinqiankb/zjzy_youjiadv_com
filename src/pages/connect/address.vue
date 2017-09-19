@@ -32,11 +32,12 @@
 		padding: 0;
 	}
 	#hb-address {
-		width: 1000px;
+		width: 1200px;
         margin-top: 1rem;
 	}
 	.minBox {
 		display: flex;
+    justify-content: center;
 	}
 	.leftNavigation {
            width: 10rem;
