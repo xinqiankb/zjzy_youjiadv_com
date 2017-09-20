@@ -1,10 +1,9 @@
 <template>
 	<div class="hb-sliderbar" id="hb-sliderbar">
 		<div class="slidebox">
-		  <div class="fatherPath"><span>协会信息</span></div>
+		  <div class="fatherPath"><span>{{parentsName}}</span></div>
 			<ul>
-				<li class="list-item" :style="menuActivited === 1 ? 'background-color: #0c53ab;color:#fff': ''">sdfsdf</li>
-				<li class="list-item">dddddsdfsdf</li>
+				<router-link v-for="(item,index) in childrenList" :key="index" :to="{path: item.path, params:{id: ''}}"><li  class="list-item" :style="menuActivited === index ? 'background-color: #0c53ab;color:#fff': ''" @click="childrenMenuChange(index,item.id)">{{item.name}}</li></router-link>
 			</ul>
 		</div>
 	</div>
@@ -41,18 +40,37 @@
         height: 40px;
         color: #333;
         font-size: 14px;
+        cursor: pointer;
   		}
   	}
   }
 }
 </style>
 <script>
+import { mapState} from 'vuex'
 export default{
 	name: 'hb-sliderbar',
 	data() {
 		return {
-      menuActivited: 1
+      menuActivited: 0
 		}
-	}
+	},
+  computed: {
+    ...mapState({
+      // 侧边栏一级导航名称
+      parentsName: state => state.parentsname,
+      // 二级导航列表
+      childrenList: state => state.childrenList
+    })
+  },
+  mounted() {
+  },
+  methods: {
+    // 二级导航切换
+    childrenMenuChange(index,id) {
+      let that = this
+      that.menuActivited = index
+    }
+  }
 }
 </script>

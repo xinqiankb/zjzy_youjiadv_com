@@ -1,5 +1,9 @@
 export default {
-	memuList:sessionStorage.getItem('memuList') === null ? [] : JSON.parse(sessionStorage.getItem('memuList')),
+	menuList:[],
+	childrenList:sessionStorage.getItem('childrenList') === null ? [] : JSON.parse(sessionStorage.getItem('childrenList')),
 	// 导航激活状态
-	activeIndex: sessionStorage.getItem('activeIndex') === null ? 0 : Number(sessionStorage.getItem('activeIndex'))
+	activeIndex: sessionStorage.getItem('activeIndex') === null ? 0 : Number(sessionStorage.getItem('activeIndex')),
+	// 一级导航ID
+	parentsId: sessionStorage.getItem('parentsId') === null ? 0 : Number(sessionStorage.getItem('parentsId')),
+	parentsname: sessionStorage.getItem('parentsname') === null ? '' : sessionStorage.getItem('parentsname'),
 }
