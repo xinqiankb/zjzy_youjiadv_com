@@ -3,7 +3,7 @@
 		<div class="slidebox">
 		  <div class="fatherPath"><span>{{parentsName}}</span></div>
 			<ul>
-				<router-link v-for="(item,index) in childrenList" :key="index" :to="{path: item.path, params:{id: ''}}"><li  class="list-item" :style="menuActivited === index ? 'background-color: #0c53ab;color:#fff': ''" @click="childrenMenuChange(index,item.id)">{{item.name}}</li></router-link>
+				<router-link v-for="(item,index) in childrenList" :key="index" :to="{path: item.path, params:{id: ''}}"><li  class="list-item" :style="menuActivited === index ? 'background-color: #0c53ab;color:#fff': ''" @click="childrenMenuChange(index,item.id,item.name)">{{item.name}}</li></router-link>
 			</ul>
 		</div>
 	</div>
@@ -67,8 +67,10 @@ export default{
   },
   methods: {
     // 二级导航切换
-    childrenMenuChange(index,id) {
+    childrenMenuChange(index,id,name) {
       let that = this
+      this.$store.state.nowplacesecond = name
+      sessionStorage.setItem('nowplacesecond', name)
       that.menuActivited = index
     }
   }

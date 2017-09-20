@@ -163,8 +163,12 @@ export default{
 		  this.$store.state.activeIndex = index
 		  this.$store.state.parentsId = id
 		  this.$store.state.parentsname = name
+		  this.$store.state.nowplacefirst = name
+		  this.$store.state.nowplacesecond = ''
 			sessionStorage.setItem('activeIndex', index)
 			sessionStorage.setItem('parentsname', name)
+			sessionStorage.setItem('nowplacefirst', name)
+			sessionStorage.setItem('nowplacesecond', '')
 			if(id > 0){
 				this.$store.dispatch('get_childrenMenu', id)
 			}

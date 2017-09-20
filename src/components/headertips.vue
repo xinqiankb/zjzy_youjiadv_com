@@ -1,6 +1,6 @@
 <template>
 	<div class="hb-headrtips" id="hb-headrtips">
-     <div class="nowplace">当前位置：<span class="placedetail">ceshi>ceshi>ceshi</span></div>
+     <div class="nowplace">当前位置：<span class="placedetail">{{nowplacefirst}} <span v-show="nowplacesecond !== ''">&nbsp;></span>&nbsp;{{nowplacesecond}}</span></div>
 	</div>
 </template>
 <style lang="scss">
@@ -17,11 +17,19 @@
 }
 </style>
 <script>
+import { mapState } from 'vuex'
 export default{
 	name: 'hb-headrtips',
 	data() {
 		return {
 		}
-	}
+	},
+  computed: {
+    ...mapState({
+      // 当前位置
+      nowplacefirst: state => state.nowplacefirst,
+      nowplacesecond: state => state.nowplacesecond
+    })
+  }
 }
 </script>

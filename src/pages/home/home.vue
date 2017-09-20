@@ -52,9 +52,9 @@
 		  	</div>
 		  	<div class="hot-news">
 		  		<div class="blocktitle">
-		  			<span class="titleline"></span>新闻发布<span></span>
+		  			<span class="titleline"></span>{{NewsInfo.name}}<span></span>
 		  		</div>
-		  		<p class="blockdesc">新闻发布</p>
+		  		<p class="blockdesc">{{NewsInfo.remark}}</p>
 		  		<div class="recommandpic" :style="'background:url(' + img4 + ') no-repeat center center;background-size:cover'">
 		  		  <div class="tips">
 		  		  	01
@@ -64,7 +64,7 @@
 		  			</p>
 		  		</div>
 		  		<div class="newslist">
-		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>
+		  			<router-link v-for="(item,index) in NewsList" :key="index" :to="{path: '/detail/' + item.id}"><p ><span class="id">{{item.id}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p></router-link>
 		  		</div>
 		  	</div>
 		  </div>
@@ -801,6 +801,28 @@ export default{
 			img4: img4,
       regularlistIndex: 0, // 专家栏当前页数
       friendlistIndex: 0, // 友情链接当前页数
+      // 新闻咨询
+      NewsInfo: '',
+      recommandNews: {},
+      NewsList: []
+		}
+	},
+	mounted() {
+    this.getIndexNews()
+	},
+	methods: {
+		getIndexNews() {
+			let that = this
+			this.axios.get('/indexnews')
+			.then(res => {
+				let tempdata = res.data.data
+        that.NewsInfo = res.data.info
+        that.NewsList = tempdata.shift()
+        console.log(tempdata)
+        that.recommandNews = res.data.data[0]
+			}).catch(res => {
+        console.log(res)
+			})
 		}
 	}
 }
