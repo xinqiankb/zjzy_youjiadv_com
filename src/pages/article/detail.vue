@@ -73,9 +73,22 @@ import headertips from '@/components/headertips'
 export default {
 	name: 'detaile',
 	data() {
-		return {
-
+		return {}
+	},
+	mounted() {
+		const para = {
+			id: 1
 		}
+		console.log(para)
+		this.axios.get('newslist', {
+			params: para
+		})
+			.then(res => {
+				console.log(res)
+			})
+			.catch(err => {
+				console.log(err)
+			})
 	},
 	components: { slideBar, headertips }
 }

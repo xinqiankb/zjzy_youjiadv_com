@@ -4,7 +4,7 @@
 		<div style="width:1200px;margin: 0 auto">
 			<slideBar></slideBar>
 			<ul class="list">
-			  <headertips></headertips>
+				<headertips></headertips>
 				<li class="content" v-for="(item, index) in list" :key="index">
 					<div class="thumb"></div>
 					<div class="text">
@@ -19,8 +19,8 @@
 					</div>
 				</li>
 				<li class="block">
-				<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="list.length">
-				</el-pagination>
+					<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="list.length">
+					</el-pagination>
 				</li>
 			</ul>
 		</div>
@@ -50,22 +50,41 @@ export default {
 			currentPage: 1
 		}
 	},
-	mounted() { },
+	mounted() {
+		this.getDataList()
+	},
 	computed: {
 		limit() {
 			return this.$config.limit
 		}
 	},
 	methods: {
+		getDataList() {
+			const para = {
+				id: 1,
+				page: this.currentPage,
+				limit: this.limit
+			}
+			console.log(para)
+			this.axios.get('newslist', {
+				params: para
+			})
+			.then(res => {
+					console.log(res)
+			})
+			.catch(err => {
+					console.log(err)
+			})
+		},
 		handleCurrentChange(val) {
 			this.currentPage = val
-			console.log(this.currentPage)
+			this.getDataList()
 		},
 		to() {
 			this.$router.push('/detail/1')
 		}
 	},
-	components: {slideBar, headertips}
+	components: { slideBar, headertips }
 }
 </script>
 
@@ -130,7 +149,7 @@ export default {
 		.content:hover {
 			box-shadow: 0 0 20px #ccc;
 		}
-		.content:nth-of-type(1){
+		.content:nth-of-type(1) {
 			margin-top: 0;
 		}
 	}
