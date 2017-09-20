@@ -1,17 +1,17 @@
 <template>
 	<div class="hb-detaile" id="hb-detaile">
-		<div class="banner"></div>
+		<div class="banner" :style="'background-image: url('  + imgUrl + dataList.thumb + ')'"></div>
 		<div style="width:1200px;margin: 0 auto">
 			<slideBar></slideBar>
 			<div class="detail">
 				<headertips></headertips>
 				<div class="banner"></div>
 				<div class="release">
-					<span class="publisher">发布人：admin</span>
-					<span>发布时间：2017-09-13 15:59:08</span>
+					<span class="publisher">发布人：{{ dataList.source }}</span>
+					<span>发布时间：{{ dataList.create_at }}</span>
 				</div>
 				<div class="content">
-					<div>浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开</div>
+					<div v-html="dataList.content"></div>
 				</div>
 			</div>
 		</div>
@@ -38,7 +38,6 @@
 		.banner {
 			width: 100%;
 			height: 300px;
-			background-image: url('../../assets/image/banner.png');
 			background-position: center;
 			background-size: cover;
 			background-repeat: no-repeat;
@@ -73,18 +72,26 @@ import headertips from '@/components/headertips'
 export default {
 	name: 'detaile',
 	data() {
-		return {}
+		return {
+			dataList: []
+		}
+	},
+	computed: {
+		imgUrl() {
+			return this.$config.config.imgUrl
+		}
 	},
 	mounted() {
 		const para = {
-			id: 1
+			id: this.$route.params.id
 		}
 		console.log(para)
-		this.axios.get('newslist', {
+		this.axios.get('/newsdetail', {
 			params: para
 		})
 			.then(res => {
-				console.log(res)
+				console.log(res.data.data)
+				this.dataList = res.data.data
 			})
 			.catch(err => {
 				console.log(err)
