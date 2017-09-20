@@ -18,7 +18,7 @@
 		  <!-- 导航 -->
 		<div class="nav">
 		  <div class="box">
-		  	<router-link v-for="(item,index) in menu" :to="{path: item.path, params:{id:''}}" class="navlist" :style="activeIndex === index?'background-color:#1b4195;color: #fff':''" :key="index" @click.native="doActiveNav(index)">{{item.name}}</router-link>
+		  	<router-link  class="navlist" :to="{path: '/',params: {id: ''}}" :style="activeIndex === 0?'background-color:#1b4195;color: #fff':''" @click.native="doActiveNav(0,0)">首页</router-link>		  	<router-link v-for="(item,index) in menu" :to="{path: item.path, params:{id:''}}" class="navlist" :style="activeIndex === (index + 1)?'background-color:#1b4195;color: #fff':''" :key="index" @click.native="doActiveNav(index+1,item.id,item.name)">{{item.name}}</router-link>
 		  </div>
 		</div>
 	</div>
@@ -159,9 +159,16 @@ export default{
 			}, 1000)
 		},
 		// 激活导航
-		doActiveNav(index) {
-			this.$store.state.activeIndex = index
+		doActiveNav(index,id,name) {
+		  this.$store.state.activeIndex = index
+		  this.$store.state.parentsId = id
+		  this.$store.state.parentsname = name
 			sessionStorage.setItem('activeIndex', index)
+			sessionStorage.setItem('parentsname', name)
+			if(id > 0){
+				this.$store.dispatch('get_childrenMenu', id)
+			}
+			sessionStorage.setItem('parentsId', id)
 		}
 	}
 }
