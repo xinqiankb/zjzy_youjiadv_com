@@ -78,7 +78,6 @@ export default {
 			this.getDataList()
 		},
 		to(id) {
-			console.log(id)
 			this.$router.push('/detail/' + id)
 		},
 		id() {
