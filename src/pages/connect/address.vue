@@ -1,9 +1,10 @@
 <template>
 	<div class="hb-address" id="hb-address">
+    <div><img src="../../assets/image/small.png" alt=""></div>
 	  <div class="minBox">	
-		<div class="leftNavigation">leftNavigation</div>
+		<slideBar></slideBar>
 		<div class="content">
-			<div class="titel"><p>当前位置：联系我们 > 电话地图</p></div>
+			<headertips></headertips>
 			<div class="contentBox">
 				<div class="contentBox-box">
 					<div class="textHearBox">
@@ -33,11 +34,11 @@
 	}
 	#hb-address {
 		width: 1200px;
-        margin-top: 1rem;
 	}
 	.minBox {
 		display: flex;
     justify-content: center;
+    margin-top: 2rem;
 	}
 	.leftNavigation {
            width: 10rem;
@@ -53,9 +54,11 @@
 		    font-size: 16px;
 		    width: 100%;
 		    height: 2.5rem;
+        display: flex;
+        align-items: center;
 	       }
 		  .contentBox {
-              height: 52.5rem;
+              height: 43rem;
 		      width: 100%;
               background: #F6F6F8;
 			  .contentBox-box {
@@ -79,6 +82,8 @@
 	
 </style>
 <script>
+import slideBar from '@/components/slideBar'
+import headertips from '@/components/headertips'
 // import map from '@/components/map.vue'
 export default{
 	// components: {
@@ -89,6 +94,10 @@ export default{
 		return {
 			
 		}
-	}
+	},
+  components: {
+    slideBar,
+    headertips
+  }
 }
 </script>
