@@ -1,26 +1,27 @@
 <template>
 	<div class="hb-list" id="hb-list">
-		<div class="banner"></div>
+		<div class="banner" :style="'background-image: url('  + imgUrl + bgImg + ')'"></div>
 		<div style="width:1200px;margin: 0 auto">
-			<slideBar></slideBar>
+			<slideBar></slideBar>	
 			<ul class="list">
-			  <headertips></headertips>
-				<li class="content" v-for="(item, index) in list" :key="index">
-					<div class="thumb"></div>
+				<headertips></headertips>
+				<div v-if="dataList.length === 0" class="tic">暂无更多数据</div>
+				<li v-else class="content" v-for="(item, index) in dataList" :key="index">
+					<div class="thumb" :style="'background-image: url('  + imgUrl + item.thumb + ')'"></div>
 					<div class="text">
 						<div class="top">
-							<span class="title">浙江省首届整形美容护理学术交流会在杭州顺利召开</span>
-							<span class="date">[2017-09-13]</span>
+							<span class="title">{{ item.title }}</span>
+							<span class="date">{{ item.create_at }}</span>
 						</div>
 						<div class="text-content">
-							<span> {{ item.msg.slice(0,122) + ' ...' }} </span>
-							<span class="open-all" @click="to">【阅读全文】</span>
+							<span>{{ item.remark.slice(0,122) + ' ...' }}</span>
+							<span class="open-all" @click="to(item.id)">【阅读全文】</span>
 						</div>
 					</div>
 				</li>
 				<li class="block">
-				<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="list.length">
-				</el-pagination>
+					<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="list.length">
+					</el-pagination>
 				</li>
 			</ul>
 		</div>
@@ -36,36 +37,58 @@ export default {
 		return {
 			list: [{
 				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}, {
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}, {
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}, {
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}, {
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}, {
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
 			}],
+			bgImg: '',
+			dataList: [],
 			currentPage: 1
 		}
 	},
-	mounted() { },
+	mounted() {
+		this.getDataList()
+	},
 	computed: {
 		limit() {
 			return this.$config.limit
+		},
+		imgUrl() {
+			return this.$config.config.imgUrl
 		}
 	},
 	methods: {
+		getDataList() {
+			const para = {
+				id: this.$route.params.id,
+				page: this.currentPage,
+				limit: this.limit
+			}
+			this.axios.get('/newslist', {
+				params: para
+			})
+			.then(res => {
+				console.log(res.data.data)
+				this.dataList = res.data.data
+				this.bgImg = res.data.catagory.bgimage
+			})
+			.catch(err => {
+				console.log(err)
+			})
+		},
 		handleCurrentChange(val) {
 			this.currentPage = val
-			console.log(this.currentPage)
+			this.getDataList()
 		},
-		to() {
-			this.$router.push('/detail/1')
+		to(id) {
+			console.log(id)
+			this.$router.push('/detail/' + id)
+		},
+		id() {
+			this.getDataList()
 		}
 	},
-	components: {slideBar, headertips}
+	components: { slideBar, headertips },
+	watch: {
+		'$route.params.id' : 'id'
+	}
 }
 </script>
 
@@ -75,11 +98,17 @@ export default {
 	.banner {
 		width: 100%;
 		height: 200px;
-		background-image: url('../../assets/image/list.jpg');
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
 		margin-bottom: 25px;
+	}
+	.tic {
+		width:900px;
+		display: inline-flex;
+		height: 400px;
+		align-items: center;
+		justify-content: center;
 	}
 	.list {
 		width: 900px;
@@ -95,7 +124,6 @@ export default {
 				width: 180px;
 				height: 180px;
 				float: left;
-				background-image: url('../../assets/image/thumb.jpg');
 				background-position: center;
 				background-size: cover;
 				background-repeat: no-repeat;
@@ -117,7 +145,7 @@ export default {
 				.text-content {
 					margin-top: 24px;
 					font-size: 13px;
-					line-height: 1.6rem;
+					line-height: 1.2rem;
 					height: 80px;
 					overflow: hidden;
 					.open-all {
@@ -130,7 +158,7 @@ export default {
 		.content:hover {
 			box-shadow: 0 0 20px #ccc;
 		}
-		.content:nth-of-type(1){
+		.content:nth-of-type(1) {
 			margin-top: 0;
 		}
 	}
