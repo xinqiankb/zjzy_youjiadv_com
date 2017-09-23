@@ -1,7 +1,7 @@
 <template>
 	<div class="hb-footer" id="hb-footer">
 		<div class="footer">
-			<div class="logo"></div>
+			<div class="logo" :style="'background-image:url(' +imgUrl + dataList.web_logo + ')'"></div>
 			<div class="fl">
 				<p>主办：{{ dataList.host }}</p>
 				<p>维护：{{ dataList.maintenance }}</p>
@@ -15,11 +15,11 @@
 			</div>
 			<div class="fr">
 				<div class="sina">
-					<div class="qrcode"></div>
+					<div class="qrcode" :style="'background-image:url(' +imgUrl + dataList.qrcode1 + ')'"></div>
 					<div>新浪微博</div>
 				</div>
 				<div class="wechat">
-					<div class="qrcode"></div>
+					<div class="qrcode" :style="'background-image:url(' +imgUrl + dataList.qrcode2 + ')'"></div>
 					<div>微信公众号</div>
 				</div>
 			</div>
@@ -35,9 +35,15 @@ export default {
 			dataList: []
 		}
 	},
+	computed: {
+		imgUrl() {
+			return this.$config.config.imgUrl
+		}
+	},
 	mounted() {
 		this.axios.get('footer')
 			.then((res) => {
+				console.log(res)
 				this.dataList = res.data.data
 			})
 			.catch((err) => {
@@ -72,7 +78,6 @@ export default {
 		.logo {
 			width: 80px;
 			height: 80px;
-			background-image: url('../assets/image/logo.png');
 			background-position: center;
 			background-size: cover;
 			background-repeat: no-repeat;
@@ -91,7 +96,6 @@ export default {
 					display: inline-block;
 					width: 15px;
 					height: 15px;
-					background-image: url('../assets/image/police.png');
 					background-position: center;
 					background-size: cover;
 					background-repeat: no-repeat;
@@ -117,7 +121,6 @@ export default {
 				.qrcode {
 					width: 65px;
 					height: 65px;
-					background-image: url('../assets/image/qrcode.png');
 					background-position: center;
 					background-size: cover;
 					background-repeat: no-repeat;
