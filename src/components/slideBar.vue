@@ -3,7 +3,9 @@
 		<div class="slidebox">
 		  <div class="fatherPath"><span>{{parentsName}}</span></div>
 			<ul>
-				<router-link v-for="(item,index) in childrenList" :key="index" :to="{path: item.path, params:{id: ''}}"><li  class="list-item" :style="menuActivited === index ? 'background-color: #0c53ab;color:#fff': ''" @click="childrenMenuChange(index,item.id,item.name)">{{item.name}}</li></router-link>
+				<router-link v-for="(item,index) in childrenList" :key="index" :to="{path: item.path, query:{id: item.id}}">
+					<li  class="list-item" :style="childrenIndex === item.id ? 'background-color: #0c53ab;color:#fff': ''" @click="childrenMenuChange(index,item.id,item.name)">{{item.name}}</li>
+				</router-link>
 			</ul>
 		</div>
 	</div>
@@ -20,7 +22,7 @@
   .slidebox{
   	width: 100%;
   	.fatherPath{
-  		
+
   		font-size: 16px;
   		text-align: center;
   		& span{
@@ -48,7 +50,7 @@
 </style>
 <script>
 import { mapState} from 'vuex'
-export default{
+export default {
 	name: 'hb-sliderbar',
 	data() {
 		return {
@@ -60,7 +62,9 @@ export default{
       // 侧边栏一级导航名称
       parentsName: state => state.parentsname,
       // 二级导航列表
-      childrenList: state => state.childrenList
+      childrenList: state => state.childrenList,
+      // 二级导航列表
+      childrenIndex: state => state.childrenIndex
     })
   },
   mounted() {
@@ -71,7 +75,8 @@ export default{
       let that = this
       this.$store.state.nowplacesecond = name
       sessionStorage.setItem('nowplacesecond', name)
-      that.menuActivited = index
+      that.$store.state.childrenIndex = id
+      sessionStorage.setItem('childrenIndex', id)
     }
   }
 }

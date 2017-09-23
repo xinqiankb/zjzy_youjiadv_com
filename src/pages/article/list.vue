@@ -2,7 +2,7 @@
 	<div class="hb-list" id="hb-list">
 		<div class="banner" :style="'background-image: url('  + imgUrl + bgImg + ')'"></div>
 		<div style="width:1200px;margin: 0 auto">
-			<slideBar></slideBar>	
+			<slideBar></slideBar>
 			<ul class="list">
 				<headertips></headertips>
 				<div v-if="dataList.length === 0" class="tic">暂无更多数据</div>
@@ -57,7 +57,7 @@ export default {
 	methods: {
 		getDataList() {
 			const para = {
-				id: this.$route.params.id,
+				id: this.$route.query.id,
 				page: this.currentPage,
 				limit: this.limit
 			}
@@ -86,7 +86,7 @@ export default {
 	},
 	components: { slideBar, headertips },
 	watch: {
-		'$route.params.id' : 'id'
+		'$route.query.id' : 'id'
 	}
 }
 </script>

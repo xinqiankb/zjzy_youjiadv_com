@@ -15,34 +15,34 @@
 		  			<span class="titleline"></span>{{PlasticInfo.name}}<span></span>
 		  		</div>
 		  		<div class="readmore">
-		  		  <router-link :to="{path: '/list/' + PlasticInfo.id, params: {id: ''}}">more></router-link>
+		  		  <router-link :to="{path: '/list/', query: {id: PlasticInfo.id, cid: PlasticInfo.cid, pid: PlasticInfo.pid}}">more></router-link>
 		  		</div>
 		  		<p class="blockdesc">{{PlasticInfo.remark}}</p>
 		  		<div class="newsblock">
 		  		  <div class="up">
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[0].id , params: {id: ''}}">
+			  			<router-link :to="{path: '/detail' , query: {id: NewsPlastic[0].id, pid: NewsPlastic[0].pid, cid: NewsPlastic[0].cid}}">
 			  				<article class="first" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[0].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[0].title}}</span></p>
 			  				</article>
-			  			</router-link>			  			
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[1].id , params: {id: ''}}">
+			  			</router-link>
+			  			<router-link :to="{path: '/detail', query: {id: NewsPlastic[1].id, pid: NewsPlastic[1].pid, cid: NewsPlastic[1].cid}}">
 			  				<article class="second" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[1].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[1].title}}</span></p>
 			  				</article>
-			  			</router-link>			  			
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[2].id , params: {id: ''}}">
+			  			</router-link>
+			  			<router-link :to="{path: '/detail' , query: {id: NewsPlastic[2].id, pid: NewsPlastic[2].pid, cid: NewsPlastic[2].cid}}">
 			  				<article class="third" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[2].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[2].title}}</span></p>
 			  				</article>
-			  			</router-link>		
+			  			</router-link>
 		  		  </div>
 		  		  <div class="down">
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[3].id , params: {id: ''}}">
+			  			<router-link :to="{path: '/detail' , query: {id: NewsPlastic[3].id, pid: NewsPlastic[3].pid, cid: NewsPlastic[3].cid}}">
 			  				<article class="fourth" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[3].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[3].title}}</span></p>
 			  				</article>
-			  			</router-link>			  			
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[4].id , params: {id: ''}}">
+			  			</router-link>
+			  			<router-link :to="{path: '/detail' , query: {id: NewsPlastic[4].id, pid: NewsPlastic[4].pid, cid: NewsPlastic[4].cid}}">
 			  				<article class="fifth" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[4].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[4].title}}</span></p>
 			  				</article>
@@ -55,24 +55,26 @@
 		  			<span class="titleline"></span>{{NewsInfo.name}}<span></span>
 		  		</div>
 		  		<p class="blockdesc">{{NewsInfo.remark}}</p>
-		  		<div class="recommandpic" :style="'background-Image:url(http://zx.youjiadv.com/' + recommandNews.thumb + ');background-repeat: no-repeat;background-postion: center center;background-size:100%;'">
-		  		  <div class="tips">
-		  		  	01
-		  		  </div>
-		  			<p class="articlename">
-		  				{{recommandNews.title}}
-		  			</p>
-		  		</div>
+					<router-link :to="{ path: '/detail/' , query: { id: NewsInfo.id,pid: NewsInfo.pid, cid: NewsInfo.cid}}">
+			  		<div class="recommandpic" :style="'background-Image:url(http://zx.youjiadv.com/' + recommandNews.thumb + ');background-repeat: no-repeat;background-postion: center center;background-size:100%;'">
+			  		  <div class="tips">
+			  		  	01
+			  		  </div>
+			  			<p class="articlename">
+			  				{{recommandNews.title}}
+			  			</p>
+			  		</div>
+					</router-link>
 		  		<div class="newslist">
-		  			<router-link v-for="(item,index) in NewsList" :key="index" :to="{path: '/detail/' + item.id}"><p ><span class="id">{{item.id}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p></router-link>
+		  			<router-link v-for="(item,index) in NewsList" :key="index" :to="{path: '/detail/', params:{id: item.id, cid: item.cid, pid: item.pid}}"><p ><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p></router-link>
 		  		</div>
 		  	</div>
 		  </div>
-    
+
 		  <div class="block-line">
 		  	<div class="service">
 		  		<div class="blocktitle">
-		  			<span class="titleline"></span>整形资讯<span></span>
+		  			<span class="titleline"></span>服务大厅<span></span>
 		  		</div>
 		  		<p class="blockdesc">
 		  		SERVICE HALL
@@ -82,33 +84,33 @@
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon3.png" alt="">
 			  				<p class="servicedesc">服务指南</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon1.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon5.png" alt="">
 			  				<p class="servicedesc">学术交流</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon8.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
-			  			</div>		  			
+			  			</div>
 		  		  </div>
 		  			<div class="line2">
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon4.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon7.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon6.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon2.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
@@ -126,33 +128,37 @@
 		  		{{ImportantInfo.remark}}
 		  		</p>
 		  		<div class="content">
-		  			<div class="left">
-		  				<div class="desc">
-		  					<div class="con">
-		  						<i class="tips">01</i>
-		  						<div class="title">{{ImportantList[0].title}}</div>
-		  						<p class="description">
-		  							{{ImportantList[0].remark}}
-		  						</p>
-		  					</div>
-		  				</div>
-		  				<div class="img" :style="'background:url(http://zx.youjiadv.com/' + ImportantList[0].thumb + ') no-repeat center center;background-size:contain'"></div>
-		  			</div>
+						<router-link :to="{ path: '/detail/', query: { id: ImportantList[0].id, cid: ImportantList[0].cid, pid: ImportantList[0].pid}}">
+			  			<div class="left">
+			  				<div class="desc">
+			  					<div class="con">
+			  						<i class="tips">01</i>
+			  						<div class="title">{{ImportantList[0].title}}</div>
+			  						<p class="description">
+			  							{{ImportantList[0].remark}}
+			  						</p>
+			  					</div>
+			  				</div>
+			  				<div class="img" :style="'background:url(http://zx.youjiadv.com/' + ImportantList[0].thumb + ') no-repeat center center;background-size:contain'"></div>
+			  			</div>
+						</router-link>
 
-		  			<div class="right">
-		  				<div class="img" :style="'background:url(http://zx.youjiadv.com/' + ImportantList[1].thumb + ') no-repeat center center;background-size:cover'"></div>
-		  				<div class="desc">
-		  					<div class="con">
-		  						<i class="tips">02</i>
-		  						<p class="description">
-		  							{{ImportantList[1].remark}}
-		  						</p>
-		  					</div>
-		  				</div>
-		  			</div>
+						<router-link :to="{ path: '/detail/' , query: { id: ImportantList[1].id},cid: ImportantList[1].cid, pid: ImportantList[1].pid}">
+			  			<div class="right">
+			  				<div class="img" :style="'background:url(http://zx.youjiadv.com/' + ImportantList[1].thumb + ') no-repeat center center;background-size:cover'"></div>
+			  				<div class="desc">
+			  					<div class="con">
+			  						<i class="tips">02</i>
+			  						<p class="description">
+			  							{{ImportantList[1].remark}}
+			  						</p>
+			  					</div>
+			  				</div>
+			  			</div>
+						</router-link>
 		  		</div>
 		  		<div class="readmore">
-		  		  <router-link :to="{path: '/list/' + ImportantInfo.id, params: {id: ''}}">more></router-link>
+		  		  <router-link :to="{path: '/list/', query: {id: ImportantInfo.id, cid: ImportantInfo.cid, pid: ImportantInfo.pid}}">more></router-link>
 		  		</div>
 		  	</div>
 
@@ -174,7 +180,7 @@
 		            </div>
 				  		</div>
 			  	  </div>
-	          
+
 	          <div class="center">
 				  		<div class="blocktitle">
 				  			<span class="titleline"></span>{{EducationInfo.name}}<span></span>
@@ -182,7 +188,7 @@
 				  		<p class="blockdesc">
 				  		{{EducationInfo.remark}}
 				  		</p>
-				  		<router-link :to="{path: '/detail/' + recommandEducation.id}">  
+				  		<router-link :to="{path: '/detail/', query: {id: recommandEducation.id, cid: recommandEducation.cid, pid: recommandEducation.pid}}">
 					  		<div class="recommandpic" :style="'background:url(http://zx.youjiadv.com/' + recommandEducation.thumb + ') no-repeat center center;background-size:cover'">
 					  		  <div class="tips">
 					  		  	01
@@ -193,23 +199,23 @@
 					  		</div>
 					  	</router-link>
 					  		<div class="newslist">
-					  		<router-link v-for="(item,index) in EducationList" :to="{path: '/detail/' + item.id, params: {id: ''}}" :key="index">
-					  			  <p><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p>		  			
+					  		<router-link v-for="(item,index) in EducationList" :to="{path: '/detail/', query: {id: item.id, cid: item.cid, pid: item.pid}}" :key="index">
+					  			  <p><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p>
 					  		</router-link>
-					  		</div>        	
+					  		</div>
 	          </div>
- 
+
             <div class="right">
 				  		<div class="blocktitle">
 				  			<span class="titleline"></span>{{RegularInfo.name}}<span></span>
 				  		</div>
 				  		<p class="blockdesc">
 				  		{{RegularInfo.remark}}
-				  		</p> 
+				  		</p>
 
 				  		<div class="regulalists">
                 <ul class="list">
-                	<router-link class="itemlist" v-for="(item,index) in RegularList" :to="{path: '/detail/' + item.id}" :key="index"><li>{{item.title}}</li></router-link>
+                	<router-link class="itemlist" v-for="(item,index) in RegularList" :to="{path: '/detail/', query:{'id': item.id, cid: item.cid, pid: item.pid}}" :key="index"><li>{{item.title}}</li></router-link>
                 </ul>
 				  		</div>
 				  	</div>
@@ -224,7 +230,7 @@
 					</div>
 					<p class="blockdesc">
 					  EXPERT COLUMN
-					</p> 
+					</p>
 			  	<div class="main">
 			  		<div class="page">
 			  			<button class="pagebtn pre" :style="regularlistIndex === 0 ? 'background-color:#e7e7e7;':'background-color:#0c53ab'"><</button>
@@ -234,8 +240,8 @@
 
 			  		<div class="list">
 				  		<div class="list-group" style="width:100%;overflow-x:hidden">
-				  			<div class="group-item" :style="'width:' + ((this.ExpertList.length * 224) + 40) + 'px'">
-				  			  <router-link v-for="(item,index) in ExpertList" :to="{path: '/detail/' + item.id}" :key="index">
+				  			<div class="group-item" :style="'width:' + ((this.ExpertList.length * 244) + 40) + 'px'">
+				  			  <router-link class="items" v-for="(item,index) in ExpertList" :to="{path: '/detail/', query:{id: item.id, cid: item.cid, pid: item.pid}}" :key="index">
 						  			<div class="expert-item">
 						  				<div class="img">
 						  					<img :src="'http://zx.youjiadv.com/' + item.thumb" alt="">
@@ -260,7 +266,7 @@
 				</div>
 				<p class="blockdesc">
 				  FRIENDSHIP LINK
-				</p>  
+				</p>
 		  	<div class="friendLink">
 			  	<div class="main">
 			  		<div class="page">
@@ -275,7 +281,7 @@
 				  			</div>
 				  		</div>
 			  		</div>
-			  	</div>		  		
+			  	</div>
 		  	</div>
 		  </div>
 		</div>
@@ -286,7 +292,7 @@
 @import './../../assets/css/_common.scss';
 	#hb-home{
 		font-size: 0;
-    
+
 		.container{
 				max-width:1200px;
 				width:1200px;
@@ -329,22 +335,22 @@
 		     	  .first{
 		     	  	width: 350px;
 		     	  	height: 230px;
-		     	  }     	  
+		     	  }
 		     	  .second{
 		     	  	width: 180px;
 		     	  	height: 230px;
 		     	  	// float: left
-		     	  }     	  
+		     	  }
 		     	  .third{
 		     	  	width: 180px;
 		     	  	height: 230px;
 		     	  	// float: left
-		     	  }		     	  
+		     	  }
 		     	  .fourth{
 		     	  	width: 180px;
 		     	  	height: 176px;
 		     	  	// float: left
-		     	  }		     	  
+		     	  }
 		     	  .fifth{
 		     	  	width: 530px;
 		     	  	height: 176px;
@@ -511,7 +517,7 @@
 		   	  }
 		   	}
 		  }
-     
+
 		  .memberlist{
 		  	.left{
 	        display: inline-block;
@@ -584,7 +590,7 @@
 
               & li:nth-of-type(1){
               	margin-top: 0;
-              }              
+              }
               & li:last-child{
               	margin-bottom: 0;
               }
@@ -620,6 +626,10 @@
 			  			float: right;
 			  			display: inline-block;
 			  		}
+						.items{
+							display: inline-block;
+							margin: 0 20px;
+						}
 			  		.expert-item{
 			  			display: inline-block;
 			  			margin: 0 20px;
@@ -642,7 +652,7 @@
 			  		}
 			  		.expert-item:first-child{
 			  			margin-left: 0;
-			  		}			  		
+			  		}
 			  		.expert-item:last-child{
 			  			margin-right: 0;
 			  		}
@@ -716,7 +726,7 @@
    		align-items: center;
    		font-size: 18px;
    		margin-bottom: 2px;
-   }   
+   }
    .blockdesc{
    		display: flex;
    		align-items: center;
@@ -804,7 +814,6 @@ export default{
 		getBanner() {
       this.axios.get('/carousel')
       .then(res => {
-      	console.log(res)
       	this.bannerlist = res.data.data
       }).catch(res => {
       	console.log(res)
@@ -815,11 +824,16 @@ export default{
 			let that = this
 			this.axios.get('/indexnews')
 			.then(res => {
+				let id = 0
+				for ( let i in res.data.data) {
+					id ++
+					res.data.data[i]['ids'] = '0' + id
+				}
+        that.recommandNews = res.data.data[0]
 				let tempdata = res.data.data
         that.NewsInfo = res.data.info
         tempdata.shift()
         that.NewsList = tempdata
-        that.recommandNews = res.data.data[0]
 			}).catch(res => {
         console.log(res)
 			})
@@ -835,7 +849,7 @@ export default{
         console.log(res)
 			})
 		},
-		// 重要通知 
+		// 重要通知
 		getImportantNotice() {
       let that = this
 			this.axios.get('/indexnotice')
@@ -855,7 +869,7 @@ export default{
 				that.MemberInfo = res.data.info
 			}).catch(res => {
         console.log(res)
-			})			
+			})
 		},
 		// 继续教育
 		getEducationList() {
@@ -873,7 +887,7 @@ export default{
         that.recommandEducation = res.data.data[0]
 			}).catch(res => {
         console.log(res)
-			})			
+			})
 		},
 		// 政策法规
 		getRegularList() {
@@ -884,7 +898,7 @@ export default{
 				that.RegularList = res.data.data
 			}).catch(res => {
         console.log(res)
-			})			
+			})
 		},
 		// 专家栏
 		getExpertList() {
@@ -896,7 +910,7 @@ export default{
 				that.Expertcount = res.data.count
 			}).catch(res => {
         console.log(res)
-			})			
+			})
 		},
 		// 友情链接
 		getFriendList() {
@@ -907,7 +921,7 @@ export default{
 				that.Friendcount = res.data.count
 			}).catch(res => {
         console.log(res)
-			})			
+			})
 		},
 	}
 }

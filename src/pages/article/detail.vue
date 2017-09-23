@@ -83,7 +83,7 @@ export default {
 	},
 	mounted() {
 		const para = {
-			id: this.$route.params.id
+			id: this.$route.query.id
 		}
 		console.log(para)
 		this.axios.get('/newsdetail', {
@@ -97,6 +97,14 @@ export default {
 				console.log(err)
 			})
 	},
-	components: { slideBar, headertips }
+	methods: {
+		changeSlideBar() {
+			console.log('xinqian')
+		}
+	},
+	components: { slideBar, headertips },
+	watch: {
+		'this.$route.query.cid': 'changeSlideBar'
+	}
 }
 </script>
