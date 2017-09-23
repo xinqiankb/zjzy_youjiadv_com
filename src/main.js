@@ -21,10 +21,14 @@ import store from '@/store'
 
 // element-ui
 import { 
-Pagination
+Pagination,
+Carousel,
+CarouselItem
 } from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 Vue.use(Pagination)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
 
 Vue.config.productionTip = false
 

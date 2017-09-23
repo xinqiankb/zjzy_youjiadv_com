@@ -1,50 +1,50 @@
 <template>
 	<div class="hb-home" id="hb-home">
 	<!-- 轮播 -->
-		<div class="swipe">
-			<div class="swipe-item">
-				<div class="img">
-					<img style="width:100%" src="./../../assets/image/home/images/001_02.jpg" alt="">
-				</div>
-			</div>
+		<div class="swipe" style="width: 100%;min-width: 1200px;height:auto;" scoped="scoped">
+		  <el-carousel class="swiperbox" style="">
+		    <el-carousel-item v-for="(item,index) in bannerlist" :key="index">
+		      <div class="img" :style="'background:url(http://zx.youjiadv.com/'+ item.img+') no-repeat center center;background-size: cover;height:100%'"></div>
+		    </el-carousel-item>
+		  </el-carousel>
 		</div>
 		<div class="container">
 		  <div class="block-line">
 		  	<div class="zy-news">
 		  		<div class="blocktitle">
-		  			<span class="titleline"></span>整形资讯<span></span>
+		  			<span class="titleline"></span>{{PlasticInfo.name}}<span></span>
 		  		</div>
 		  		<div class="readmore">
-		  		  <router-link :to="{path: '/list/ss', params: {id: ''}}">more></router-link>
+		  		  <router-link :to="{path: '/list/' + PlasticInfo.id, params: {id: ''}}">more></router-link>
 		  		</div>
-		  		<p class="blockdesc">整形资讯</p>
+		  		<p class="blockdesc">{{PlasticInfo.remark}}</p>
 		  		<div class="newsblock">
 		  		  <div class="up">
-			  			<router-link :to="{path: '/list/ss', params: {id: ''}}">
-			  				<article class="first" :style="'background:url(' + img + ') no-repeat center center;background-size:cover'">
-			  					<p class="articlename"><span>234</span></p>
+			  			<router-link :to="{path: '/detail/' + NewsPlastic[0].id , params: {id: ''}}">
+			  				<article class="first" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[0].thumb + ') no-repeat center center;background-size:cover'">
+			  					<p class="articlename"><span>{{NewsPlastic[0].title}}</span></p>
 			  				</article>
-			  			</router-link>
-			  			<router-link :to="{path: '/list/ss', params: {id: ''}}">
-			  				<article class="second" :style="'background:url(' + img1 + ') no-repeat center center;background-size:cover'">
-			  					<p class="articlename"><span>234</span></p>
+			  			</router-link>			  			
+			  			<router-link :to="{path: '/detail/' + NewsPlastic[1].id , params: {id: ''}}">
+			  				<article class="second" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[1].thumb + ') no-repeat center center;background-size:cover'">
+			  					<p class="articlename"><span>{{NewsPlastic[1].title}}</span></p>
 			  				</article>
-			  			</router-link>	  			
-			  			<router-link :to="{path: '/list/ss', params: {id: ''}}">
-			  				<article class="third" :style="'background:url(' + img2 + ') no-repeat center center;background-size:cover'">
-			  					<p class="articlename"><span>234</span></p>
+			  			</router-link>			  			
+			  			<router-link :to="{path: '/detail/' + NewsPlastic[2].id , params: {id: ''}}">
+			  				<article class="third" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[2].thumb + ') no-repeat center center;background-size:cover'">
+			  					<p class="articlename"><span>{{NewsPlastic[2].title}}</span></p>
 			  				</article>
-			  			</router-link>		  			
+			  			</router-link>		
 		  		  </div>
 		  		  <div class="down">
-			  			<router-link :to="{path: '/list/ss', params: {id: ''}}">
-			  				<article class="fourth" :style="'background:url(' + img3 + ') no-repeat center center;background-size:cover'">
-			  					<p class="articlename"><span>234</span></p>
+			  			<router-link :to="{path: '/detail/' + NewsPlastic[3].id , params: {id: ''}}">
+			  				<article class="fourth" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[3].thumb + ') no-repeat center center;background-size:cover'">
+			  					<p class="articlename"><span>{{NewsPlastic[3].title}}</span></p>
 			  				</article>
-			  			</router-link>		  			
-			  			<router-link :to="{path: '/list/ss', params: {id: ''}}">
-			  				<article class="fifth" :style="'background:url(' + img4 + ') no-repeat center center;background-size:cover'">
-			  					<p class="articlename"><span>234</span></p>
+			  			</router-link>			  			
+			  			<router-link :to="{path: '/detail/' + NewsPlastic[4].id , params: {id: ''}}">
+			  				<article class="fifth" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[4].thumb + ') no-repeat center center;background-size:cover'">
+			  					<p class="articlename"><span>{{NewsPlastic[4].title}}</span></p>
 			  				</article>
 			  			</router-link>
 		  		  </div>
@@ -52,19 +52,19 @@
 		  	</div>
 		  	<div class="hot-news">
 		  		<div class="blocktitle">
-		  			<span class="titleline"></span>新闻发布<span></span>
+		  			<span class="titleline"></span>{{NewsInfo.name}}<span></span>
 		  		</div>
-		  		<p class="blockdesc">新闻发布</p>
-		  		<div class="recommandpic" :style="'background:url(' + img4 + ') no-repeat center center;background-size:cover'">
+		  		<p class="blockdesc">{{NewsInfo.remark}}</p>
+		  		<div class="recommandpic" :style="'background-Image:url(http://zx.youjiadv.com/' + recommandNews.thumb + ');background-repeat: no-repeat;background-postion: center center;background-size:100%;'">
 		  		  <div class="tips">
 		  		  	01
 		  		  </div>
 		  			<p class="articlename">
-		  				sddasdasd
+		  				{{recommandNews.title}}
 		  			</p>
 		  		</div>
 		  		<div class="newslist">
-		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>
+		  			<router-link v-for="(item,index) in NewsList" :key="index" :to="{path: '/detail/' + item.id}"><p ><span class="id">{{item.id}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p></router-link>
 		  		</div>
 		  	</div>
 		  </div>
@@ -120,39 +120,39 @@
 		  	<!-- 通知 -->
 		  	<div class="impnotice">
 		  		<div class="blocktitle">
-		  			<span class="titleline"></span>整形资讯<span></span>
+		  			<span class="titleline"></span>{{ImportantInfo.name}}<span></span>
 		  		</div>
 		  		<p class="blockdesc">
-		  		IMPORTANT NOTICE
+		  		{{ImportantInfo.remark}}
 		  		</p>
 		  		<div class="content">
 		  			<div class="left">
 		  				<div class="desc">
 		  					<div class="con">
 		  						<i class="tips">01</i>
-		  						<div class="title">2017年微创医学美容大会征文通知</div>
+		  						<div class="title">{{ImportantList[0].title}}</div>
 		  						<p class="description">
-		  							测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+		  							{{ImportantList[0].remark}}
 		  						</p>
 		  					</div>
 		  				</div>
-		  				<div class="img" :style="'background:url(' + img1 + ') no-repeat center center;background-size:cover'"></div>
+		  				<div class="img" :style="'background:url(http://zx.youjiadv.com/' + ImportantList[0].thumb + ') no-repeat center center;background-size:contain'"></div>
 		  			</div>
 
 		  			<div class="right">
-		  				<div class="img" :style="'background:url(' + img3 + ') no-repeat center center;background-size:cover'"></div>
+		  				<div class="img" :style="'background:url(http://zx.youjiadv.com/' + ImportantList[1].thumb + ') no-repeat center center;background-size:cover'"></div>
 		  				<div class="desc">
 		  					<div class="con">
 		  						<i class="tips">02</i>
 		  						<p class="description">
-		  							测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+		  							{{ImportantList[1].remark}}
 		  						</p>
 		  					</div>
 		  				</div>
 		  			</div>
 		  		</div>
 		  		<div class="readmore">
-		  		  <router-link :to="{path: '/list/ss', params: {id: ''}}">more></router-link>
+		  		  <router-link :to="{path: '/list/' + ImportantInfo.id, params: {id: ''}}">more></router-link>
 		  		</div>
 		  	</div>
 
@@ -169,62 +169,47 @@
 				  		MEMBER STYLE
 				  		</p>
 				  		<div class="main">
-		            <div class="list">
-		            	<img src="./../../assets/image/home/images/001_19.jpg" alt="">
-		            </div>            
-		            <div class="list">
-		            	<img src="./../../assets/image/home/images/001_19.jpg" alt="">
-		            </div>            
-		            <div class="list">
-		            	<img src="./../../assets/image/home/images/001_19.jpg" alt="">
-		            </div>            
-		            <div class="list">
-		            	<img src="./../../assets/image/home/images/001_19.jpg" alt="">
-		            </div>		            
-		            <div class="list">
-		            	<img src="./../../assets/image/home/images/001_19.jpg" alt="">
+		            <div class="list" v-for="(item,index) in MemberList" :key="index">
+		            	<img :src="'http://zx.youjiadv.com/'+item.img" alt="">
 		            </div>
 				  		</div>
 			  	  </div>
 	          
 	          <div class="center">
 				  		<div class="blocktitle">
-				  			<span class="titleline"></span>继续教育<span></span>
+				  			<span class="titleline"></span>{{EducationInfo.name}}<span></span>
 				  		</div>
 				  		<p class="blockdesc">
-				  		CONTINUING EDUCATION
-				  		</p>  
-					  		<div class="recommandpic" :style="'background:url(' + img4 + ') no-repeat center center;background-size:cover'">
+				  		{{EducationInfo.remark}}
+				  		</p>
+				  		<router-link :to="{path: '/detail/' + recommandEducation.id}">  
+					  		<div class="recommandpic" :style="'background:url(http://zx.youjiadv.com/' + recommandEducation.thumb + ') no-repeat center center;background-size:cover'">
 					  		  <div class="tips">
 					  		  	01
 					  		  </div>
 					  			<p class="articlename">
-					  				sddasdasd
+					  				{{recommandEducation.remark}}
 					  			</p>
 					  		</div>
+					  	</router-link>
 					  		<div class="newslist">
-					  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>		  			<p><span class="id">02</span><span class="title">ceshiceshdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgiceshi</span><span class="createtime">2017-09-18 14:00</span></p>
+					  		<router-link v-for="(item,index) in EducationList" :to="{path: '/detail/' + item.id, params: {id: ''}}" :key="index">
+					  			  <p><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p>		  			
+					  		</router-link>
 					  		</div>        	
 	          </div>
  
             <div class="right">
 				  		<div class="blocktitle">
-				  			<span class="titleline"></span>法律法规<span></span>
+				  			<span class="titleline"></span>{{RegularInfo.name}}<span></span>
 				  		</div>
 				  		<p class="blockdesc">
-				  		LAWS AND REGULATIONS
+				  		{{RegularInfo.remark}}
 				  		</p> 
 
 				  		<div class="regulalists">
                 <ul class="list">
-                	<li>关于印发干细胞剂量质量控制及临床前研究的报告xxxxxxx</li>
-                	<li>关于印发干细胞剂量质量控制及临床前研究的报告xxxxxxx</li>
-                	<li>关于印发干细胞剂量质量控制及临床前研究的报告xxxxxxx</li>
-                	<li>关于印发干细胞剂量质量控制及临床前研究的报告xxxxxxx</li>
-                	<li>关于印发干细胞剂量质量控制及临床前研究的报告xxxxxxx</li>
-                	<li>关于印发干细胞剂量质量控制及临床前研究的报告xxxxxxx</li>
-                	<li>关于印发干细胞剂量质量控制及临床前研究的报告xxxxxxx</li>
-                	<li>关于印发干细胞剂量质量控制及临床前研究的报告xxxxxxx</li>
+                	<router-link class="itemlist" v-for="(item,index) in RegularList" :to="{path: '/detail/' + item.id}" :key="index"><li>{{item.title}}</li></router-link>
                 </ul>
 				  		</div>
 				  	</div>
@@ -235,7 +220,7 @@
 		  <div class="block-line">
 			  <div class="expertList">
 					<div class="blocktitle">
-					  <span class="titleline"></span>专家栏<span></span>
+					  <span class="titleline"></span>{{ExpertInfo.name}}<span></span>
 					</div>
 					<p class="blockdesc">
 					  EXPERT COLUMN
@@ -249,64 +234,18 @@
 
 			  		<div class="list">
 				  		<div class="list-group" style="width:100%;overflow-x:hidden">
-				  			<div class="group-item" style="width:1708px">
-					  			<div class="expert-item">
-					  				<div class="img">
-					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
-					  				</div>
-					  				<div class="info">
-					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
-					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
-					  				</div>
-					  			</div>					  			<div class="expert-item">
-					  				<div class="img">
-					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
-					  				</div>
-					  				<div class="info">
-					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
-					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
-					  				</div>
-					  			</div>					  			<div class="expert-item">
-					  				<div class="img">
-					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
-					  				</div>
-					  				<div class="info">
-					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
-					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
-					  				</div>
-					  			</div>			  			<div class="expert-item">
-					  				<div class="img">
-					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
-					  				</div>
-					  				<div class="info">
-					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
-					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
-					  				</div>
-					  			</div>			  			<div class="expert-item">
-					  				<div class="img">
-					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
-					  				</div>
-					  				<div class="info">
-					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
-					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
-					  				</div>
-					  			</div>			  			<div class="expert-item">
-					  				<div class="img">
-					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
-					  				</div>
-					  				<div class="info">
-					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
-					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
-					  				</div>
-					  			</div>			  			<div class="expert-item">
-					  				<div class="img">
-					  					<img src="./../../assets/image/home/images/001_27.jpg" alt="">
-					  				</div>
-					  				<div class="info">
-					  					<div class="name"><span>ceshi</span><span class="knowmore">详情</span></div>
-					  					<div class="ranks"><span>职称:</span>整形主任医师</div>
-					  				</div>
-				  			</div>
+				  			<div class="group-item" :style="'width:' + ((this.ExpertList.length * 224) + 40) + 'px'">
+				  			  <router-link v-for="(item,index) in ExpertList" :to="{path: '/detail/' + item.id}" :key="index">
+						  			<div class="expert-item">
+						  				<div class="img">
+						  					<img :src="'http://zx.youjiadv.com/' + item.thumb" alt="">
+						  				</div>
+						  				<div class="info">
+						  					<div class="name"><span>{{item.title}}</span><span class="knowmore">详情</span></div>
+						  					<div class="ranks"><span>职称:</span>{{item.remark}}</div>
+						  				</div>
+						  			</div>
+				  			  </router-link>
 				  		</div>
 			  			</div>
 			  		</div>
@@ -331,17 +270,8 @@
 
 			  		<div class="list">
 			  		  <div class="list-group" style="width:100%;overflow-x:hidden">
-			  		    <div class="group-item" style="width: 1955.8px">
-					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
-					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
-					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
-					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
-					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
-					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
-					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
-					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
-					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
-					  			<div class="item-list"><img src="./../../assets/image/home/images/001_30.jpg" alt=""></div>
+			  		    <div class="group-item" :style="'width:' + ((Friendcount * 208.8) + 20) + 'px'">
+					  			  <div v-for="(item,index) in FriendList" class="item-list"><img :src="'http://zx.youjiadv.com/' + item.img" alt=""></div>
 				  			</div>
 				  		</div>
 			  		</div>
@@ -362,6 +292,25 @@
 				width:1200px;
 				overflow-x: auto;
 				margin: 0 auto;
+		    .swiper{
+		      width: 100%;
+		      height: 30rem;
+		      .swiperbox{
+		        width: 100%;
+		        height: 100%;
+		        .el-carousel{
+		          z-index: 2;
+		        }
+		        .el-carousel__container{
+		          height: 100%;
+		          width: 100%
+		        }
+		        .el-carousel__indicators--outside{
+		          position: absolute !important;
+		          bottom: 50px;
+		        }
+		      }
+		    }
 				.block-line{
 				  padding-top: 30px;
 					padding-bottom: 39px;
@@ -619,7 +568,7 @@
 		  			width: 100%;
 		  			.list{
               display: block;
-              & li{
+              & .itemlist{
               	display: block;
               	height: 41.5px;
               	line-height: 41.5px;
@@ -801,7 +750,165 @@ export default{
 			img4: img4,
       regularlistIndex: 0, // 专家栏当前页数
       friendlistIndex: 0, // 友情链接当前页数
+      // 整形资讯
+      NewsPlastic: [],
+      recommandPlastic: {},
+      PlasticInfo: '',
+      // 新闻咨询
+      NewsInfo: '',
+      recommandNews: {},
+      NewsList: [],
+      // 重要通知
+      ImportantInfo: '',
+      ImportantList: [],
+      recommandimpo: {},
+      // 重要通知
+      MemberInfo: '',
+      MemberList: [],
+      recommandMember: {},
+      // 继续教育
+      EducationInfo: '',
+      EducationList: [],
+      recommandEducation: {},
+      // 继续教育
+      RegularInfo: '',
+      RegularList: [],
+      recommandRegular: {},
+      // 专家栏
+      ExpertInfo: '',
+      ExpertList: [],
+      recommandExpert: {},
+      Expertcount: 0,
+      // 友情链接
+      FriendInfo: '',
+      FriendList: [],
+      recommandFriend: {},
+      Friendcount: 0,
+      // bannerlist
+      bannerlist: []
 		}
+	},
+	mounted() {
+    this.getBanner()
+    this.getIndexNews()
+    this.getIndexPlastic()
+    this.getImportantNotice()
+    this.getMemberList()
+    this.getEducationList()
+    this.getRegularList()
+    this.getExpertList()
+    this.getFriendList()
+	},
+	methods: {
+		// 获取轮播图
+		getBanner() {
+      this.axios.get('/carousel')
+      .then(res => {
+      	console.log(res)
+      	this.bannerlist = res.data.data
+      }).catch(res => {
+      	console.log(res)
+      })
+		},
+		// 新闻发布列表
+		getIndexNews() {
+			let that = this
+			this.axios.get('/indexnews')
+			.then(res => {
+				let tempdata = res.data.data
+        that.NewsInfo = res.data.info
+        tempdata.shift()
+        that.NewsList = tempdata
+        that.recommandNews = res.data.data[0]
+			}).catch(res => {
+        console.log(res)
+			})
+		},
+		// 整形资讯
+		getIndexPlastic() {
+      let that = this
+			this.axios.get('/indexplastic')
+			.then(res => {
+				that.PlasticInfo = res.data.info
+				that.NewsPlastic = res.data.data
+			}).catch(res => {
+        console.log(res)
+			})
+		},
+		// 重要通知 
+		getImportantNotice() {
+      let that = this
+			this.axios.get('/indexnotice')
+			.then(res => {
+	      that.ImportantInfo = res.data.info
+	      that.ImportantList = res.data.data
+			}).catch(res => {
+        console.log(res)
+			})
+		},
+		// 会员风采
+		getMemberList() {
+      let that = this
+			this.axios.get('/member')
+			.then(res => {
+				that.MemberList = res.data.data
+				that.MemberInfo = res.data.info
+			}).catch(res => {
+        console.log(res)
+			})			
+		},
+		// 继续教育
+		getEducationList() {
+      let that = this
+      let ids = 1
+			this.axios.get('/indexedation')
+			.then(res => {
+				let tempdata = res.data.data
+				for (let i in tempdata) {
+					tempdata[i]['ids'] = '0' + (parseInt(i) + 1)
+				}
+        that.EducationInfo = res.data.info
+        tempdata.shift()
+        that.EducationList = tempdata
+        that.recommandEducation = res.data.data[0]
+			}).catch(res => {
+        console.log(res)
+			})			
+		},
+		// 政策法规
+		getRegularList() {
+      let that = this
+			this.axios.get('/indexlaw')
+			.then(res => {
+				that.RegularInfo = res.data.info
+				that.RegularList = res.data.data
+			}).catch(res => {
+        console.log(res)
+			})			
+		},
+		// 专家栏
+		getExpertList() {
+      let that = this
+			this.axios.get('/indexspecialist')
+			.then(res => {
+				that.ExpertInfo = res.data.info
+				that.ExpertList = res.data.data
+				that.Expertcount = res.data.count
+			}).catch(res => {
+        console.log(res)
+			})			
+		},
+		// 友情链接
+		getFriendList() {
+      let that = this
+			this.axios.get('/link')
+			.then(res => {
+				that.FriendList = res.data.data
+				that.Friendcount = res.data.count
+			}).catch(res => {
+        console.log(res)
+			})			
+		},
 	}
 }
 </script>

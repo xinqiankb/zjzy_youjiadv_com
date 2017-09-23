@@ -7,7 +7,7 @@
 				</div>
 				<div class="right">
 					<i class="icon icon-phone"></i>
-					<span>0574-7331964</span>
+					<span>联系电话:{{webinfo.phone}}</span>
 				</div>
 		  </div>
 		</div>
@@ -85,7 +85,8 @@ export default{
 		return {
 			nowtime: '',
 			weekday: '',
-			tempweeknd: ['日','一','二','三','四','五','六']
+			tempweeknd: ['日','一','二','三','四','五','六'],
+			webinfo: {}
 			// menu: [
    //      {
    //      	name: '首页',
@@ -123,6 +124,7 @@ export default{
     that.weekday = that.tempweeknd[weekend]
     this.getNowTime()
     this.$store.dispatch('get_menulist')
+    this.getBaseInfo()
 	},
   computed: {
     ...mapState({
@@ -163,12 +165,26 @@ export default{
 		  this.$store.state.activeIndex = index
 		  this.$store.state.parentsId = id
 		  this.$store.state.parentsname = name
+		  this.$store.state.nowplacefirst = name
+		  this.$store.state.nowplacesecond = ''
 			sessionStorage.setItem('activeIndex', index)
 			sessionStorage.setItem('parentsname', name)
+			sessionStorage.setItem('nowplacefirst', name)
+			sessionStorage.setItem('nowplacesecond', '')
 			if(id > 0){
 				this.$store.dispatch('get_childrenMenu', id)
 			}
 			sessionStorage.setItem('parentsId', id)
+		},
+		getBaseInfo() {
+			// 获取基本信息
+	      let that = this
+				this.axios.get('/footer')
+				.then(res => {
+					that.webinfo = res.data.data
+				}).catch(res => {
+	        console.log(res)
+				})			
 		}
 	}
 }
