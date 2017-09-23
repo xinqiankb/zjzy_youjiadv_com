@@ -20,29 +20,29 @@
 		  		<p class="blockdesc">{{PlasticInfo.remark}}</p>
 		  		<div class="newsblock">
 		  		  <div class="up">
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[0].id , params: {id: ''}}">
+			  			<router-link :to="{path: '/detail/' , query: {id: NewsPlastic[0].id}}">
 			  				<article class="first" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[0].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[0].title}}</span></p>
 			  				</article>
-			  			</router-link>			  			
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[1].id , params: {id: ''}}">
+			  			</router-link>
+			  			<router-link :to="{path: '/detail/' , query: {id: NewsPlastic[1].id}}">
 			  				<article class="second" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[1].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[1].title}}</span></p>
 			  				</article>
-			  			</router-link>			  			
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[2].id , params: {id: ''}}">
+			  			</router-link>
+			  			<router-link :to="{path: '/detail/' , query: {id: NewsPlastic[2].id}}">
 			  				<article class="third" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[2].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[2].title}}</span></p>
 			  				</article>
-			  			</router-link>		
+			  			</router-link>
 		  		  </div>
 		  		  <div class="down">
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[3].id , params: {id: ''}}">
+			  			<router-link :to="{path: '/detail/' , query: {id: NewsPlastic[3].id}}">
 			  				<article class="fourth" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[3].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[3].title}}</span></p>
 			  				</article>
-			  			</router-link>			  			
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[4].id , params: {id: ''}}">
+			  			</router-link>
+			  			<router-link :to="{path: '/detail/' , query: {id: NewsPlastic[4].id}}">
 			  				<article class="fifth" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[4].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[4].title}}</span></p>
 			  				</article>
@@ -68,7 +68,7 @@
 		  		</div>
 		  	</div>
 		  </div>
-    
+
 		  <div class="block-line">
 		  	<div class="service">
 		  		<div class="blocktitle">
@@ -82,33 +82,33 @@
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon3.png" alt="">
 			  				<p class="servicedesc">服务指南</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon1.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon5.png" alt="">
 			  				<p class="servicedesc">学术交流</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon8.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
-			  			</div>		  			
+			  			</div>
 		  		  </div>
 		  			<div class="line2">
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon4.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon7.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon6.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
-			  			</div>		  			
+			  			</div>
 			  			<div class="serviceEntry">
 			  				<img src="./../../assets/image/home/images/icon2.png" alt="">
 			  				<p class="servicedesc">产品查询</p>
@@ -174,7 +174,7 @@
 		            </div>
 				  		</div>
 			  	  </div>
-	          
+
 	          <div class="center">
 				  		<div class="blocktitle">
 				  			<span class="titleline"></span>{{EducationInfo.name}}<span></span>
@@ -182,7 +182,7 @@
 				  		<p class="blockdesc">
 				  		{{EducationInfo.remark}}
 				  		</p>
-				  		<router-link :to="{path: '/detail/' + recommandEducation.id}">  
+				  		<router-link :to="{path: '/detail/' + recommandEducation.id}">
 					  		<div class="recommandpic" :style="'background:url(http://zx.youjiadv.com/' + recommandEducation.thumb + ') no-repeat center center;background-size:cover'">
 					  		  <div class="tips">
 					  		  	01
@@ -194,18 +194,18 @@
 					  	</router-link>
 					  		<div class="newslist">
 					  		<router-link v-for="(item,index) in EducationList" :to="{path: '/detail/' + item.id, params: {id: ''}}" :key="index">
-					  			  <p><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p>		  			
+					  			  <p><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p>
 					  		</router-link>
-					  		</div>        	
+					  		</div>
 	          </div>
- 
+
             <div class="right">
 				  		<div class="blocktitle">
 				  			<span class="titleline"></span>{{RegularInfo.name}}<span></span>
 				  		</div>
 				  		<p class="blockdesc">
 				  		{{RegularInfo.remark}}
-				  		</p> 
+				  		</p>
 
 				  		<div class="regulalists">
                 <ul class="list">
@@ -224,7 +224,7 @@
 					</div>
 					<p class="blockdesc">
 					  EXPERT COLUMN
-					</p> 
+					</p>
 			  	<div class="main">
 			  		<div class="page">
 			  			<button class="pagebtn pre" :style="regularlistIndex === 0 ? 'background-color:#e7e7e7;':'background-color:#0c53ab'"><</button>
@@ -234,8 +234,8 @@
 
 			  		<div class="list">
 				  		<div class="list-group" style="width:100%;overflow-x:hidden">
-				  			<div class="group-item" :style="'width:' + ((this.ExpertList.length * 224) + 40) + 'px'">
-				  			  <router-link v-for="(item,index) in ExpertList" :to="{path: '/detail/' + item.id}" :key="index">
+				  			<div class="group-item" :style="'width:' + ((this.ExpertList.length * 244) + 40) + 'px'">
+				  			  <router-link class="items" v-for="(item,index) in ExpertList" :to="{path: '/detail/' + item.id}" :key="index">
 						  			<div class="expert-item">
 						  				<div class="img">
 						  					<img :src="'http://zx.youjiadv.com/' + item.thumb" alt="">
@@ -260,7 +260,7 @@
 				</div>
 				<p class="blockdesc">
 				  FRIENDSHIP LINK
-				</p>  
+				</p>
 		  	<div class="friendLink">
 			  	<div class="main">
 			  		<div class="page">
@@ -275,7 +275,7 @@
 				  			</div>
 				  		</div>
 			  		</div>
-			  	</div>		  		
+			  	</div>
 		  	</div>
 		  </div>
 		</div>
@@ -286,7 +286,7 @@
 @import './../../assets/css/_common.scss';
 	#hb-home{
 		font-size: 0;
-    
+
 		.container{
 				max-width:1200px;
 				width:1200px;
@@ -329,22 +329,22 @@
 		     	  .first{
 		     	  	width: 350px;
 		     	  	height: 230px;
-		     	  }     	  
+		     	  }
 		     	  .second{
 		     	  	width: 180px;
 		     	  	height: 230px;
 		     	  	// float: left
-		     	  }     	  
+		     	  }
 		     	  .third{
 		     	  	width: 180px;
 		     	  	height: 230px;
 		     	  	// float: left
-		     	  }		     	  
+		     	  }
 		     	  .fourth{
 		     	  	width: 180px;
 		     	  	height: 176px;
 		     	  	// float: left
-		     	  }		     	  
+		     	  }
 		     	  .fifth{
 		     	  	width: 530px;
 		     	  	height: 176px;
@@ -511,7 +511,7 @@
 		   	  }
 		   	}
 		  }
-     
+
 		  .memberlist{
 		  	.left{
 	        display: inline-block;
@@ -584,7 +584,7 @@
 
               & li:nth-of-type(1){
               	margin-top: 0;
-              }              
+              }
               & li:last-child{
               	margin-bottom: 0;
               }
@@ -620,6 +620,10 @@
 			  			float: right;
 			  			display: inline-block;
 			  		}
+						.items{
+							display: inline-block;
+							margin: 0 20px;
+						}
 			  		.expert-item{
 			  			display: inline-block;
 			  			margin: 0 20px;
@@ -642,7 +646,7 @@
 			  		}
 			  		.expert-item:first-child{
 			  			margin-left: 0;
-			  		}			  		
+			  		}
 			  		.expert-item:last-child{
 			  			margin-right: 0;
 			  		}
@@ -716,7 +720,7 @@
    		align-items: center;
    		font-size: 18px;
    		margin-bottom: 2px;
-   }   
+   }
    .blockdesc{
    		display: flex;
    		align-items: center;
@@ -835,7 +839,7 @@ export default{
         console.log(res)
 			})
 		},
-		// 重要通知 
+		// 重要通知
 		getImportantNotice() {
       let that = this
 			this.axios.get('/indexnotice')
@@ -855,7 +859,7 @@ export default{
 				that.MemberInfo = res.data.info
 			}).catch(res => {
         console.log(res)
-			})			
+			})
 		},
 		// 继续教育
 		getEducationList() {
@@ -873,7 +877,7 @@ export default{
         that.recommandEducation = res.data.data[0]
 			}).catch(res => {
         console.log(res)
-			})			
+			})
 		},
 		// 政策法规
 		getRegularList() {
@@ -884,7 +888,7 @@ export default{
 				that.RegularList = res.data.data
 			}).catch(res => {
         console.log(res)
-			})			
+			})
 		},
 		// 专家栏
 		getExpertList() {
@@ -896,7 +900,7 @@ export default{
 				that.Expertcount = res.data.count
 			}).catch(res => {
         console.log(res)
-			})			
+			})
 		},
 		// 友情链接
 		getFriendList() {
@@ -907,7 +911,7 @@ export default{
 				that.Friendcount = res.data.count
 			}).catch(res => {
         console.log(res)
-			})			
+			})
 		},
 	}
 }
