@@ -10,29 +10,29 @@
 				<div class="contentBox-box">
 				    <div class="inputBoxHear">
 						<label class="textTiele">姓名：</label>
-						<input v-model="name" class="inputCont" type="text">
+						<input v-model="newUserInfo.linkman" class="inputCont" type="text">
 						<span>*</span>
 						<span class="prompt" :bind="namePrompt">{{namePrompt}}</span>
 					</div>
 					<div class="inputBox">
 						<label class="textTiele">所在地区：</label>
-						<input v-model="address" class="inputCont" type="text">
+						<input v-model="newUserInfo.address" class="inputCont" type="text">
             <span class="prompt" :bind="addressPrompt">{{addressPrompt}}</span>
 					</div>
 					<div class="inputBox">
 						<label class="textTiele">联系电话：</label>
-						<input v-model="phone" class="inputCont" type="text">
+						<input v-model="newUserInfo.linkway" class="inputCont" type="text">
             <span>*</span>
             <span class="prompt" :bing="phonePrompt">{{phonePrompt}}</span>
 					</div>
 					<div class="inputBox">
 						<label class="textTiele">Email：</label>
-						<input v-model="email" class="inputCont" type="text">
+						<input v-model="newUserInfo.email" class="inputCont" type="text">
             <span class="prompt" :bind="emailPrompt">{{emailPrompt}}</span>
 					</div>
 					<div class="inputBox">
             <label class="textTielBig">留言：</label>
-						<textarea v-model="textare" class="inputContBig" cols="30" rows="10"></textarea>
+						<textarea v-model="newUserInfo.content" class="inputContBig" cols="30" rows="10"></textarea>
                <span class="spanH">*</span>
                <p class="pH">（注：标*号为必填栏目）</p>
 					</div>
@@ -78,8 +78,7 @@
 		width: 1200px;
 	}
 	.minBox {
-		display: flex;
-    justify-content: center;
+		display: -webkit-box;
     margin-top: 2rem;
 	}
 	.leftNavigation {
@@ -209,14 +208,16 @@ export default{
 	data() {
 		return {
 			namePrompt: '',
-			name: '',
-      phone: '',
       phonePrompt: '',
-      address: '',
       addressPrompt: '',
-      email: '',
       emailPrompt: '',
-      textare: ''
+      newUserInfo: {
+        address: '',
+        linkway: '',
+        linkman: '',
+        email: '',
+        content: ''
+      }
 		}
 	},
   components: {
@@ -225,38 +226,53 @@ export default{
   },
 	methods: {
 		nameFun () {
-      console.log(this.name)
+      console.log(this.newUserInfo.linkman)
 		   let res=  /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/
-		   if(!res.test(this.name) || this.name.length > 7) {
-			   console.log(this.name)
+		   if(!res.test(this.newUserInfo.linkman) || this.newUserInfo.linkman.length > 7) {
+			   console.log(this.newUserInfo.linkman)
 			   this.namePrompt = "请输入2-6个汉字"
 		   } else {
 			   this.namePrompt = "姓名正确！"
 		   }
        let phoneVal = /^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/
-       if(!phoneVal.test(this.phone)) {
+       if(!phoneVal.test(this.newUserInfo.linkway)) {
          this.phonePrompt = "请输入正确手机号"
        } else {
          this.phonePrompt = "手机号正确！"
        }
        let addressVal =  /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/
-       if(!addressVal.test(this.address) || this.address.length > 20) {
+       if(!addressVal.test(this.newUserInfo.address) || this.newUserInfo.address.length > 20) {
          this.addressPrompt = "地址不能超过20个字"
        } else {
          this.addressPrompt = "地址正确！"
        }
        let emailVal = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
-       if(!emailVal.test(this.email)) {
+       if(!emailVal.test(this.newUserInfo.email)) {
          this.emailPrompt = "邮箱格式不正确！"
        } else {
          this.emailPrompt = "邮箱正确！"
        }
 
        let exp = /草|操|sb|SB/g
-       if(exp.test(this.textare)) {
-         alert("儿子 骂谁呢！ 操你妈 给老子滚！")
+       if(exp.test(this.newUserInfo.content)) {
+         alert("对不起 你输入的留言里含有敏感词汇！")
        }
-		}
+       if (!res.test(this.newUserInfo.linkman) || this.newUserInfo.linkman.length > 7 || !phoneVal.test(this.newUserInfo.linkway) || !addressVal.test(this.newUserInfo.address) || this.newUserInfo.address.length > 20 || !emailVal.test(this.newUserInfo.email) || exp.test(this.newUserInfo.content)) {
+       } else {
+         console.log(this.newUserInfo)
+         var qs = require('querystring')
+         let info = this.newUserInfo
+      this.axios.post('addmessage',qs.stringify(info), {
+        emulateJSON:true
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        });
+     }
+    }
 	}	
 }
 </script>
