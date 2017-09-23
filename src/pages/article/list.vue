@@ -20,7 +20,7 @@
 					</div>
 				</li>
 				<li class="block">
-					<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="list.length">
+					<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="dataList.length">
 					</el-pagination>
 				</li>
 			</ul>
@@ -35,9 +35,6 @@ export default {
 	name: 'list',
 	data() {
 		return {
-			list: [{
-				msg: '浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开浙江省首届整形美容护理学术交流会在杭州顺利召开'
-			}],
 			bgImg: '',
 			dataList: [],
 			currentPage: 1
