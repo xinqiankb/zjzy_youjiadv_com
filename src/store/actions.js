@@ -57,5 +57,38 @@ export default {
           console.log(res)
         })
       }
+	},
+
+	getPlaceName: ({commit}, params) => {
+		let ids = params
+		if (ids) {
+			axios.get('/newslist', {params:{
+				'id': ids
+			}})
+			.then(res => {
+				let data = res.data.catagory
+				commit('GET_FIRSTNAME',data.name)
+				sessionStorage.setItem('nowplacesecond', data.name)
+				sessionStorage.setItem('parentsname', data.name)
+				console.log(res)
+			}).catch(res => {
+				console.log(res)
+			})
+		}
+	},
+	getSlideBarName: ({commit}, params) => {
+		let ids = params
+		if (ids) {
+			axios.get('/newslist', {params:{
+				'id': ids
+			}})
+			.then(res => {
+				let data = res.data.catagory
+				commit('GET_SLIDEBARNAME',data.name)
+				sessionStorage.setItem('nowplacefirst', data.name)
+			}).catch(res => {
+				console.log(res)
+			})
+		}
 	}
 }

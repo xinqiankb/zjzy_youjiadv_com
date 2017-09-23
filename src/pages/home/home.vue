@@ -15,7 +15,7 @@
 		  			<span class="titleline"></span>{{PlasticInfo.name}}<span></span>
 		  		</div>
 		  		<div class="readmore">
-		  		  <router-link :to="{path: '/list/' + PlasticInfo.id, query: {id: PlasticInfo.id}}">more></router-link>
+		  		  <router-link :to="{path: '/list/', query: {id: PlasticInfo.id, cid: PlasticInfo.cid, pid: PlasticInfo.pid}}">more></router-link>
 		  		</div>
 		  		<p class="blockdesc">{{PlasticInfo.remark}}</p>
 		  		<div class="newsblock">
@@ -55,7 +55,7 @@
 		  			<span class="titleline"></span>{{NewsInfo.name}}<span></span>
 		  		</div>
 		  		<p class="blockdesc">{{NewsInfo.remark}}</p>
-					<router-link :to="{ path: '/detail/' + NewsInfo.id , params: { id: ''}}">
+					<router-link :to="{ path: '/detail/' , query: { id: NewsInfo.id,pid: NewsInfo.pid, cid: NewsInfo.cid}}">
 			  		<div class="recommandpic" :style="'background-Image:url(http://zx.youjiadv.com/' + recommandNews.thumb + ');background-repeat: no-repeat;background-postion: center center;background-size:100%;'">
 			  		  <div class="tips">
 			  		  	01
@@ -66,7 +66,7 @@
 			  		</div>
 					</router-link>
 		  		<div class="newslist">
-		  			<router-link v-for="(item,index) in NewsList" :key="index" :to="{path: '/detail/' + item.id}"><p ><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p></router-link>
+		  			<router-link v-for="(item,index) in NewsList" :key="index" :to="{path: '/detail/', params:{id: item.id, cid: item.cid, pid: item.pid}}"><p ><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p></router-link>
 		  		</div>
 		  	</div>
 		  </div>
@@ -74,7 +74,7 @@
 		  <div class="block-line">
 		  	<div class="service">
 		  		<div class="blocktitle">
-		  			<span class="titleline"></span>整形资讯<span></span>
+		  			<span class="titleline"></span>服务大厅<span></span>
 		  		</div>
 		  		<p class="blockdesc">
 		  		SERVICE HALL
@@ -128,7 +128,7 @@
 		  		{{ImportantInfo.remark}}
 		  		</p>
 		  		<div class="content">
-						<router-link :to="{ path: '/detail/' + ImportantList[0].id, params: { id: ''}}">
+						<router-link :to="{ path: '/detail/', query: { id: ImportantList[0].id, cid: ImportantList[0].cid, pid: ImportantList[0].pid}}">
 			  			<div class="left">
 			  				<div class="desc">
 			  					<div class="con">
@@ -143,7 +143,7 @@
 			  			</div>
 						</router-link>
 
-						<router-link :to="{ path: '/detail/' + ImportantList[1].id , params: { id: ''}}">
+						<router-link :to="{ path: '/detail/' , query: { id: ImportantList[1].id},cid: ImportantList[1].cid, pid: ImportantList[1].pid}">
 			  			<div class="right">
 			  				<div class="img" :style="'background:url(http://zx.youjiadv.com/' + ImportantList[1].thumb + ') no-repeat center center;background-size:cover'"></div>
 			  				<div class="desc">
@@ -158,7 +158,7 @@
 						</router-link>
 		  		</div>
 		  		<div class="readmore">
-		  		  <router-link :to="{path: '/list/' + ImportantInfo.id, params: {id: ''}}">more></router-link>
+		  		  <router-link :to="{path: '/list/', query: {id: ImportantInfo.id, cid: ImportantInfo.cid, pid: ImportantInfo.pid}}">more></router-link>
 		  		</div>
 		  	</div>
 
@@ -188,7 +188,7 @@
 				  		<p class="blockdesc">
 				  		{{EducationInfo.remark}}
 				  		</p>
-				  		<router-link :to="{path: '/detail/' + recommandEducation.id}">
+				  		<router-link :to="{path: '/detail/', query: {id: recommandEducation.id, cid: recommandEducation.cid, pid: recommandEducation.pid}}">
 					  		<div class="recommandpic" :style="'background:url(http://zx.youjiadv.com/' + recommandEducation.thumb + ') no-repeat center center;background-size:cover'">
 					  		  <div class="tips">
 					  		  	01
@@ -199,7 +199,7 @@
 					  		</div>
 					  	</router-link>
 					  		<div class="newslist">
-					  		<router-link v-for="(item,index) in EducationList" :to="{path: '/detail/' + item.id, params: {id: ''}}" :key="index">
+					  		<router-link v-for="(item,index) in EducationList" :to="{path: '/detail/', query: {id: item.id, cid: item.cid, pid: item.pid}}" :key="index">
 					  			  <p><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p>
 					  		</router-link>
 					  		</div>
@@ -215,7 +215,7 @@
 
 				  		<div class="regulalists">
                 <ul class="list">
-                	<router-link class="itemlist" v-for="(item,index) in RegularList" :to="{path: '/detail/' + item.id}" :key="index"><li>{{item.title}}</li></router-link>
+                	<router-link class="itemlist" v-for="(item,index) in RegularList" :to="{path: '/detail/', query:{'id': item.id, cid: item.cid, pid: item.pid}}" :key="index"><li>{{item.title}}</li></router-link>
                 </ul>
 				  		</div>
 				  	</div>
@@ -241,7 +241,7 @@
 			  		<div class="list">
 				  		<div class="list-group" style="width:100%;overflow-x:hidden">
 				  			<div class="group-item" :style="'width:' + ((this.ExpertList.length * 244) + 40) + 'px'">
-				  			  <router-link class="items" v-for="(item,index) in ExpertList" :to="{path: '/detail/' + item.id}" :key="index">
+				  			  <router-link class="items" v-for="(item,index) in ExpertList" :to="{path: '/detail/', query:{id: item.id, cid: item.cid, pid: item.pid}}" :key="index">
 						  			<div class="expert-item">
 						  				<div class="img">
 						  					<img :src="'http://zx.youjiadv.com/' + item.thumb" alt="">

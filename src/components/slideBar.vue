@@ -77,13 +77,7 @@ export default {
       sessionStorage.setItem('nowplacesecond', name)
       that.$store.state.childrenIndex = id
       sessionStorage.setItem('childrenIndex', id)
-    },
-		changeSlideBar() {
-			console.log(1111)
-		}
-  },
-	watch: {
-		'$route.query.id': 'changeSlideBar'
-	}
+    }
+  }
 }
 </script>
