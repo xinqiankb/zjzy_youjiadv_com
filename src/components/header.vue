@@ -18,7 +18,11 @@
 		  <!-- 导航 -->
 		<div class="nav">
 		  <div class="box">
-		  	<router-link  class="navlist" :to="{path: '/',params: {id: ''}}" :style="activeIndex === 0?'background-color:#1b4195;color: #fff':''" @click.native="doActiveNav(0,0)">首页</router-link>		  	<router-link v-for="(item,index) in menu" :to="{path: item.path, params:{id:''}}" class="navlist" :style="activeIndex === (index + 1)?'background-color:#1b4195;color: #fff':''" :key="index" @click.native="doActiveNav(index+1,item.id,item.name)">{{item.name}}</router-link>
+		  	<router-link  class="navlist" :to="{path: '/',query: {id: ''}}" :style="activeIndex === 0?'background-color:#1b4195;color: #fff':''" @click.native="doActiveNav(0,0)">首页</router-link>
+
+				<router-link v-for="(item,index) in menu" :to="{path: item.path, query:{id: item.id}}" class="navlist" :style="activeIndex === (index + 1)?'background-color:#1b4195;color: #fff':''" :key="index" @click.native="doActiveNav(index+1,item.id,item.name)">
+					{{item.name}}
+				</router-link>
 		  </div>
 		</div>
 	</div>
@@ -48,7 +52,7 @@
 	    	.right{
 	        display: inline-block;
 	        width: 49%;
-	        text-align: right;	
+	        text-align: right;
 	    	}
     	}
     }
@@ -79,7 +83,7 @@
 </style>
 <script>
 import { mapState } from 'vuex'
-export default{
+export default {
 	name:'hb-header',
 	data() {
 		return {
@@ -140,17 +144,17 @@ export default{
 			setInterval(function(){
 				let time = new Date();
 				let fmt = 'yyyy-MM-dd hh:mm:ss'
-			     var o = { 
-			        "M+" : time.getMonth()+1,                 //月份 
-			        "d+" : time.getDate(),                    //日 
-			        "h+" : time.getHours(),                   //小时 
-			        "m+" : time.getMinutes(),                 //分 
-			        "s+" : time.getSeconds(),                 //秒 
-			        "q+" : Math.floor((time.getMonth()+3)/3), //季度 
-			        "S"  : time.getMilliseconds()             //毫秒 
-			    }; 
+			     var o = {
+			        "M+" : time.getMonth()+1,                 //月份
+			        "d+" : time.getDate(),                    //日
+			        "h+" : time.getHours(),                   //小时
+			        "m+" : time.getMinutes(),                 //分
+			        "s+" : time.getSeconds(),                 //秒
+			        "q+" : Math.floor((time.getMonth()+3)/3), //季度
+			        "S"  : time.getMilliseconds()             //毫秒
+			    };
 			    if(/(y+)/.test(fmt)) {
-			            fmt=fmt.replace(RegExp.$1, (time.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+			            fmt=fmt.replace(RegExp.$1, (time.getFullYear()+"").substr(4 - RegExp.$1.length));
 			    }
 			    for(var k in o) {
 			      if(new RegExp("("+ k +")").test(fmt)){
@@ -184,7 +188,7 @@ export default{
 					that.webinfo = res.data.data
 				}).catch(res => {
 	        console.log(res)
-				})			
+				})
 		}
 	}
 }

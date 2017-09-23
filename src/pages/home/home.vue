@@ -20,29 +20,29 @@
 		  		<p class="blockdesc">{{PlasticInfo.remark}}</p>
 		  		<div class="newsblock">
 		  		  <div class="up">
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[0].id , params: {id: ''}}">
+			  			<router-link :to="{path: '/detail/' , query: {id: NewsPlastic[0].id}}">
 			  				<article class="first" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[0].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[0].title}}</span></p>
 			  				</article>
 			  			</router-link>
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[1].id , params: {id: ''}}">
+			  			<router-link :to="{path: '/detail/', query: {id: NewsPlastic[1].id}}">
 			  				<article class="second" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[1].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[1].title}}</span></p>
 			  				</article>
 			  			</router-link>
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[2].id , params: {id: ''}}">
+			  			<router-link :to="{path: '/detail/' , query: {id: NewsPlastic[2].id}}">
 			  				<article class="third" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[2].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[2].title}}</span></p>
 			  				</article>
 			  			</router-link>
 		  		  </div>
 		  		  <div class="down">
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[3].id , params: {id: ''}}">
+			  			<router-link :to="{path: '/detail/' , query: {id: NewsPlastic[3].id}}">
 			  				<article class="fourth" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[3].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[3].title}}</span></p>
 			  				</article>
 			  			</router-link>
-			  			<router-link :to="{path: '/detail/' + NewsPlastic[4].id , params: {id: ''}}">
+			  			<router-link :to="{path: '/detail/' , query: {id: NewsPlastic[4].id}}">
 			  				<article class="fifth" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[4].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[4].title}}</span></p>
 			  				</article>
@@ -240,8 +240,8 @@
 
 			  		<div class="list">
 				  		<div class="list-group" style="width:100%;overflow-x:hidden">
-				  			<div class="group-item" :style="'width:' + ((this.ExpertList.length * 224) + 40) + 'px'">
-				  			  <router-link v-for="(item,index) in ExpertList" :to="{path: '/detail/' + item.id}" :key="index">
+				  			<div class="group-item" :style="'width:' + ((this.ExpertList.length * 244) + 40) + 'px'">
+				  			  <router-link class="items" v-for="(item,index) in ExpertList" :to="{path: '/detail/' + item.id}" :key="index">
 						  			<div class="expert-item">
 						  				<div class="img">
 						  					<img :src="'http://zx.youjiadv.com/' + item.thumb" alt="">
@@ -626,6 +626,10 @@
 			  			float: right;
 			  			display: inline-block;
 			  		}
+						.items{
+							display: inline-block;
+							margin: 0 20px;
+						}
 			  		.expert-item{
 			  			display: inline-block;
 			  			margin: 0 20px;

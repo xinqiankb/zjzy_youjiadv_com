@@ -3,7 +3,9 @@
 		<div class="slidebox">
 		  <div class="fatherPath"><span>{{parentsName}}</span></div>
 			<ul>
-				<router-link v-for="(item,index) in childrenList" :key="index" :to="{path: item.path, params:{id: ''}}"><li  class="list-item" :style="menuActivited === index ? 'background-color: #0c53ab;color:#fff': ''" @click="childrenMenuChange(index,item.id,item.name)">{{item.name}}</li></router-link>
+				<router-link v-for="(item,index) in childrenList" :key="index" :to="{path: item.path, query:{id: item.id}}">
+					<li  class="list-item" :style="menuActivited === index ? 'background-color: #0c53ab;color:#fff': ''" @click="childrenMenuChange(index,item.id,item.name)">{{item.name}}</li>
+				</router-link>
 			</ul>
 		</div>
 	</div>
@@ -20,7 +22,7 @@
   .slidebox{
   	width: 100%;
   	.fatherPath{
-  		
+
   		font-size: 16px;
   		text-align: center;
   		& span{

@@ -83,7 +83,7 @@ export default {
 	},
 	mounted() {
 		const para = {
-			id: this.$route.params.id
+			id: this.$route.query.id
 		}
 		console.log(para)
 		this.axios.get('/newsdetail', {
