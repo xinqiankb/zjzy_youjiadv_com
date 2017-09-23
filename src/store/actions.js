@@ -46,6 +46,9 @@ export default {
               case '3': path = '/list/';break;
               case '4': path = '/message/';break;
             }
+						if (data[i]['id'] === '106') {
+							path = '/address/'
+						}
             data[i]['path'] = path
           }
           let childrenList = data

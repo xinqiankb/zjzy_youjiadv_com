@@ -1,7 +1,7 @@
 <template>
 	<div class="hb-home" id="hb-home">
 	<!-- 轮播 -->
-		<div class="swipe" style="width: 100%;min-width: 1200px;height:auto;" scoped="scoped">
+		<div class="swipe" style="width: 100%;min-width: 1200px;height:450px;" scoped="scoped">
 		  <el-carousel class="swiperbox" style="">
 		    <el-carousel-item v-for="(item,index) in bannerlist" :key="index">
 		      <div class="img" :style="'background:url(http://zx.youjiadv.com/'+ item.img+') no-repeat center center;background-size: cover;height:100%'"></div>
@@ -81,41 +81,21 @@
 		  		</p>
 		  		<div class="servicebox">
 		  		  <div class="line1">
-			  			<div class="serviceEntry">
-			  				<img src="./../../assets/image/home/images/icon3.png" alt="">
-			  				<p class="servicedesc">服务指南</p>
-			  			</div>
-			  			<div class="serviceEntry">
-			  				<img src="./../../assets/image/home/images/icon1.png" alt="">
-			  				<p class="servicedesc">产品查询</p>
-			  			</div>
-			  			<div class="serviceEntry">
-			  				<img src="./../../assets/image/home/images/icon5.png" alt="">
-			  				<p class="servicedesc">学术交流</p>
-			  			</div>
-			  			<div class="serviceEntry">
-			  				<img src="./../../assets/image/home/images/icon8.png" alt="">
-			  				<p class="servicedesc">产品查询</p>
-			  			</div>
+							<a href="#" v-show="index < 4" v-for="(item,index) in ServeiceList">
+								<div class="serviceEntry">
+				  				<img :src="'http://zx.youjiadv.com/' + item.img" alt="">
+				  				<p class="servicedesc">{{item.name}}</p>
+				  			</div>
+							</a>
 		  		  </div>
-		  			<div class="line2">
-			  			<div class="serviceEntry">
-			  				<img src="./../../assets/image/home/images/icon4.png" alt="">
-			  				<p class="servicedesc">产品查询</p>
-			  			</div>
-			  			<div class="serviceEntry">
-			  				<img src="./../../assets/image/home/images/icon7.png" alt="">
-			  				<p class="servicedesc">产品查询</p>
-			  			</div>
-			  			<div class="serviceEntry">
-			  				<img src="./../../assets/image/home/images/icon6.png" alt="">
-			  				<p class="servicedesc">产品查询</p>
-			  			</div>
-			  			<div class="serviceEntry">
-			  				<img src="./../../assets/image/home/images/icon2.png" alt="">
-			  				<p class="servicedesc">产品查询</p>
-			  			</div>
-		  			</div>
+		  		  <div class="line2">
+							<a href="#" v-show=" index >=4 && index < 8" v-for="(item,index) in ServeiceList">
+								<div class="serviceEntry">
+				  				<img :src="'http://zx.youjiadv.com/' + item.img" alt="">
+				  				<p class="servicedesc">{{item.name}}</p>
+				  			</div>
+							</a>
+		  		  </div>
 		  		</div>
 		  	</div>
 
@@ -233,14 +213,14 @@
 					</p>
 			  	<div class="main">
 			  		<div class="page">
-			  			<button class="pagebtn pre" :style="regularlistIndex === 0 ? 'background-color:#e7e7e7;':'background-color:#0c53ab'"><</button>
-			  			<button class="pagebtn next">></button>
-			  			<button class="pagebtn more">···</button>
+			  			<button class="pagebtn pre" :style="ExpertTranslateIndex === 0 ? 'background-color:#e7e7e7;':'background-color:#0c53ab'" @click='doTransformPre()'><</button>
+			  			<button class="pagebtn next" @click = 'doTransformNext()'>></button>
+							<router-link class="pagebtn more" style="display:inline-block" :to="{ path: '/list/', query: { id: ExpertInfo.id, cid: ExpertInfo.cid, pid: ExpertInfo.pid}}">···</router-link>
 			  		</div>
 
 			  		<div class="list">
 				  		<div class="list-group" style="width:100%;overflow-x:hidden">
-				  			<div class="group-item" :style="'width:' + ((this.ExpertList.length * 244) + 40) + 'px'">
+				  			<div class="group-item" :style="'transform-origin:50% 50%;width:' + ((this.ExpertList.length * 244) + 40) + 'px;transform: translate(' + ExpertTranslate + 'px);transition: all 0.5s ease-in-out'">
 				  			  <router-link class="items" v-for="(item,index) in ExpertList" :to="{path: '/detail/', query:{id: item.id, cid: item.cid, pid: item.pid}}" :key="index">
 						  			<div class="expert-item">
 						  				<div class="img">
@@ -270,13 +250,13 @@
 		  	<div class="friendLink">
 			  	<div class="main">
 			  		<div class="page">
-			  			<button class="pagebtn pre" :style="friendlistIndex === 0 ? 'background-color:#e7e7e7;':'background-color:#0c53ab'"><</button>
-			  			<button class="pagebtn next">></button>
+			  			<button class="pagebtn pre" :style="FriendTranslateIndex === 0 ? 'background-color:#e7e7e7;':'background-color:#0c53ab'" @click="doFriendTransformPre()"><</button>
+			  			<button class="pagebtn next" @click="doFriendTransformNext()">></button>
 			  		</div>
 
 			  		<div class="list">
 			  		  <div class="list-group" style="width:100%;overflow-x:hidden">
-			  		    <div class="group-item" :style="'width:' + ((Friendcount * 208.8) + 20) + 'px'">
+			  		    <div class="group-item" :style="'transform-origin:50% 50%;width:' + ((Friendcount * 200.8) + 20) + 'px;transform: translate(' + FriendTranslate + 'px);transition: all 0.5s ease-in-out'">
 					  			  <div v-for="(item,index) in FriendList" class="item-list"><img :src="'http://zx.youjiadv.com/' + item.img" alt=""></div>
 				  			</div>
 				  		</div>
@@ -289,6 +269,15 @@
 </template>
 
 <style lang="scss">
+	.el-carousel{
+		width: 100%;
+		height: 450px;
+		.el-carousel__container{
+			height: 100%;
+		}
+	}
+</style>
+<style lang="scss">
 @import './../../assets/css/_common.scss';
 	#hb-home{
 		font-size: 0;
@@ -300,22 +289,21 @@
 				margin: 0 auto;
 		    .swiper{
 		      width: 100%;
-		      height: 30rem;
-		      .swiperbox{
+		      height: 450px;
 		        width: 100%;
-		        height: 100%;
+		        height: 450px;
 		        .el-carousel{
 		          z-index: 2;
+							height: 450px;
 		        }
 		        .el-carousel__container{
-		          height: 100%;
+		          height: 450px;
 		          width: 100%
 		        }
 		        .el-carousel__indicators--outside{
 		          position: absolute !important;
 		          bottom: 50px;
 		        }
-		      }
 		    }
 				.block-line{
 				  padding-top: 30px;
@@ -683,11 +671,8 @@
 		        display: inline-block;
 		        width: 180.98px;
 		        margin: 0 8px;
-		        .img{
+		        & img{
 		        	width: 100%;
-		        	& img{
-		        		width: 100%;
-		        	}
 		        }
 		      }
 		      .item-list:first-child{
@@ -789,13 +774,22 @@ export default{
       ExpertList: [],
       recommandExpert: {},
       Expertcount: 0,
+      // 专家栏
+      ServeiceInfo: '',
+      ServeiceList: [],
       // 友情链接
       FriendInfo: '',
       FriendList: [],
       recommandFriend: {},
       Friendcount: 0,
       // bannerlist
-      bannerlist: []
+      bannerlist: [],
+			// 专家栏平移距离
+			ExpertTranslate: 0,
+			ExpertTranslateIndex: 0,
+			// 友情链接平移距离
+			FriendTranslate: 0,
+			FriendTranslateIndex: 0
 		}
 	},
 	mounted() {
@@ -808,6 +802,7 @@ export default{
     this.getRegularList()
     this.getExpertList()
     this.getFriendList()
+    this.getServeiceList()
 	},
 	methods: {
 		// 获取轮播图
@@ -912,6 +907,18 @@ export default{
         console.log(res)
 			})
 		},
+		// 专家栏
+		getServeiceList() {
+      let that = this
+			this.axios.get('/indexservice')
+			.then(res => {
+				console.log(res)
+				that.ServeiceInfo = res.data.info
+				that.ServeiceList = res.data.data
+			}).catch(res => {
+        console.log(res)
+			})
+		},
 		// 友情链接
 		getFriendList() {
       let that = this
@@ -923,6 +930,48 @@ export default{
         console.log(res)
 			})
 		},
+		// 专家栏平移(下一张)
+		doTransformNext() {
+			let that = this
+			let length = that.ExpertList.length
+				if (length - 5 > that.ExpertTranslateIndex) {
+					that.ExpertTranslate -= 244
+					that.ExpertTranslateIndex ++
+				} else {
+					that.ExpertTranslateIndex = length - 5
+				}
+		},
+		// 专家栏平移(上一张)
+		doTransformPre() {
+			let that = this
+			that.ExpertTranslateIndex --
+			if (that.ExpertTranslateIndex <= -1) {
+        that.ExpertTranslateIndex = 0
+			} else {
+				that.ExpertTranslate += 244
+			}
+		},
+		// 友情链接平移(下一张)
+		doFriendTransformNext() {
+			let that = this
+			let length = that.FriendList.length
+				if (length - 6 > that.FriendTranslateIndex) {
+					that.FriendTranslate -= 202
+					that.FriendTranslateIndex ++
+				} else {
+					that.FriendTranslateIndex = length - 6
+				}
+		},
+		// 友情链接平移(上一张)
+		doFriendTransformPre() {
+			let that = this
+			that.FriendTranslateIndex --
+			if (that.FriendTranslateIndex <= -1) {
+        that.FriendTranslateIndex = 0
+			} else {
+				that.FriendTranslate += 202
+			}
+		}
 	}
 }
 </script>
