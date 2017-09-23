@@ -48,6 +48,7 @@
      width: 100%;
      height: 20rem;
      overflow: hidden;
+		 margin-top: 2rem;
   }
 	.minBox {
 		display: -webkit-box;
@@ -115,22 +116,20 @@ export default{
   mounted() {
     // 百度地图API功能
             // 创建Map实例
-            var map = new BMap.Map("mapP",{enableMapClick:true});
-            var point = new BMap.Point(121.555572,29.815439);
-            map.centerAndZoom(point,12);
+            var map = new BMap.Map("mapP");
+						var point = new BMap.Point(121.555572,29.815439);
+						map.centerAndZoom(point,12);
+						var marker = new BMap.Marker(point);
+						map.addOverlay(marker);
+						
 
-            var geolocation = new BMap.Geolocation();
-            geolocation.getCurrentPosition(function(r) {
-              if(this.getStatus() == BMAP_STATUS_SUCCESS) {
-                var mk = new BMap.Marker(r.point);
-                map.addOverlay(mk);
-                map.panTo(r.point);
-                // alert('您的位置：' + r.point.lng+','+r.point.lat);
-              } else {
-                 alert('failed' + this.getStatus())
-              }
-            }, {enableHighAccuracy: true})
-          
-  }
+						function myFun(result) {
+							var cityName = result.name;
+							map.setCenter(cityName);
+						}
+				 var myCity = new BMap.localCity();
+				 myCity.get(myFun); 
+				 
+  },
 }
   </script>

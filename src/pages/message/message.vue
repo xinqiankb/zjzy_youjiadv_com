@@ -1,6 +1,6 @@
 <template>
 	<div class="hb-address" id="hb-address">
-    <div><img src="../../assets/image/small.png" alt=""></div>
+    <div class="backImg"></div>
 	  <div class="minBox">	
 		<slideBar></slideBar>
 		<div class="content">
@@ -52,6 +52,14 @@
     *{
 		margin: 0;
 		padding: 0;
+	}
+	.backImg {
+		width: 100%;
+		height: 200px;
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		margin-bottom: 25px;
 	}
   .wH {
     width: 90px;
@@ -260,9 +268,8 @@ export default{
        if (!res.test(this.newUserInfo.linkman) || this.newUserInfo.linkman.length > 7 || !phoneVal.test(this.newUserInfo.linkway) || !addressVal.test(this.newUserInfo.address) || this.newUserInfo.address.length > 20 || !emailVal.test(this.newUserInfo.email) || exp.test(this.newUserInfo.content)) {
        } else {
          console.log(this.newUserInfo)
-         var qs = require('querystring')
          let info = this.newUserInfo
-      this.axios.post('addmessage',qs.stringify(info), {
+      this.axios.post('addmessage',info, {
         emulateJSON:true
       })
         .then(function (response) {
