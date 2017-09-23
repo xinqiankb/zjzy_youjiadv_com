@@ -41,7 +41,7 @@
 	margin-bottom: 25px;
 }
 	#hb-address {
-		width: 1200px;
+
 	}
   .anchorBL {
     display: none !important;
