@@ -9,4 +9,5 @@ export default {
 	// 当前位置
 	nowplacefirst: sessionStorage.getItem('nowplacefirst'),
 	nowplacesecond: sessionStorage.getItem('nowplacesecond'),
+	childrenIndex: sessionStorage.getItem('childrenIndex'),
 }

@@ -97,6 +97,14 @@ export default {
 				console.log(err)
 			})
 	},
-	components: { slideBar, headertips }
+	methods: {
+		changeSlideBar() {
+			console.log('xinqian')
+		}
+	},
+	components: { slideBar, headertips },
+	watch: {
+		'this.$route.query.cid': 'changeSlideBar'
+	}
 }
 </script>
