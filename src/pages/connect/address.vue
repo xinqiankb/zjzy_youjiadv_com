@@ -1,9 +1,10 @@
 <template>
 	<div class="hb-address" id="hb-address">
+    <div><img src="../../assets/image/small.png" alt=""></div>
 	  <div class="minBox">	
-		<div class="leftNavigation">leftNavigation</div>
+		<slideBar></slideBar>
 		<div class="content">
-			<div class="titel"><p>当前位置：联系我们 > 电话地图</p></div>
+			<headertips></headertips>
 			<div class="contentBox">
 				<div class="contentBox-box">
 					<div class="textHearBox">
@@ -18,7 +19,7 @@
 						<span></span>
 						<p>地址：浙江省宁波市鄞州区南部商务区奥克斯大厦</p>
 					</div>
-					<!-- <map></map> -->
+			      <div id="mapP" class="mapB"></div>
 				</div>	
 			</div>
 		</div>
@@ -33,11 +34,24 @@
 	}
 	#hb-address {
 		width: 1200px;
-        margin-top: 1rem;
 	}
+  .anchorBL {
+    display: none !important;
+  }
+  .BMap_cpyCtrl {
+    display: none !important;
+  }
+  .Bmap_nopront {
+    display: none !important;
+  }
+  .mapB {
+     width: 100%;
+     height: 20rem;
+     overflow: hidden;
+  }
 	.minBox {
-		display: flex;
-    justify-content: center;
+		display: -webkit-box;
+    margin-top: 2rem;
 	}
 	.leftNavigation {
            width: 10rem;
@@ -53,9 +67,11 @@
 		    font-size: 16px;
 		    width: 100%;
 		    height: 2.5rem;
+        display: flex;
+        align-items: center;
 	       }
 		  .contentBox {
-              height: 52.5rem;
+              height: 43rem;
 		      width: 100%;
               background: #F6F6F8;
 			  .contentBox-box {
@@ -79,6 +95,8 @@
 	
 </style>
 <script>
+import slideBar from '@/components/slideBar'
+import headertips from '@/components/headertips'
 // import map from '@/components/map.vue'
 export default{
 	// components: {
@@ -89,6 +107,30 @@ export default{
 		return {
 			
 		}
-	}
+	},
+  components: {
+    slideBar,
+    headertips
+  },
+  mounted() {
+    // 百度地图API功能
+            // 创建Map实例
+            var map = new BMap.Map("mapP",{enableMapClick:true});
+            var point = new BMap.Point(121.555572,29.815439);
+            map.centerAndZoom(point,12);
+
+            var geolocation = new BMap.Geolocation();
+            geolocation.getCurrentPosition(function(r) {
+              if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+                var mk = new BMap.Marker(r.point);
+                map.addOverlay(mk);
+                map.panTo(r.point);
+                // alert('您的位置：' + r.point.lng+','+r.point.lat);
+              } else {
+                 alert('failed' + this.getStatus())
+              }
+            }, {enableHighAccuracy: true})
+          
+  }
 }
-</script>
+  </script>
