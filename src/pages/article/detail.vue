@@ -25,7 +25,6 @@
 	.banner {
 		width: 100%;
 		height: 200px;
-		background-image: url('../../assets/image/detail.jpg');
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
