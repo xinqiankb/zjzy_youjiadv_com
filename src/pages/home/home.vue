@@ -917,7 +917,6 @@ export default{
       let that = this
 			this.axios.get('/indexservice')
 			.then(res => {
-				console.log(res)
 				that.ServeiceInfo = res.data.info
 				that.ServeiceList = res.data.data
 			}).catch(res => {

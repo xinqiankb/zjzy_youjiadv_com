@@ -62,7 +62,6 @@ export default {
 				params: para
 			})
 			.then(res => {
-				console.log(res.data.data)
 				this.dataList = res.data.data
 				this.bgImg = res.data.catagory.bgimage
 			})

@@ -89,6 +89,7 @@ export default {
 		})
 			.then(res => {
 				this.dataList = res.data.data
+				console.log(res)
 			})
 			.catch(err => {
 				console.log(err)

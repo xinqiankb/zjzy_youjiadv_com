@@ -192,7 +192,6 @@ export default {
 		},
 		changeSlideBar() {
 			let pid = this.$route.query.pid
-			console.log(pid + 'xinqian')
 			this.$store.state.activeIndex = pid
 			this.$store.dispatch('get_childrenMenu', pid)
 			sessionStorage.setItem('activeIndex', pid)

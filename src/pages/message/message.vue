@@ -258,7 +258,6 @@ export default {
 				}
 			})
 				.then(res => {
-					console.log(res)
 					this.backSrc = res.data.catagory.bgimage
 				})
 				.catch(err => {
@@ -269,10 +268,8 @@ export default {
 			this.getDataList()
 		},
 		nameFun() {
-			console.log(this.newUserInfo.linkman)
 			let res = /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/
 			if (!res.test(this.newUserInfo.linkman) || this.newUserInfo.linkman.length > 7) {
-				console.log(this.newUserInfo.linkman)
 				this.namePrompt = "请输入2-6个汉字"
 			} else {
 				this.namePrompt = "姓名正确！"
@@ -302,14 +299,11 @@ export default {
 			}
 			if (!res.test(this.newUserInfo.linkman) || this.newUserInfo.linkman.length > 7 || !phoneVal.test(this.newUserInfo.linkway) || !addressVal.test(this.newUserInfo.address) || this.newUserInfo.address.length > 20 || !emailVal.test(this.newUserInfo.email) || exp.test(this.newUserInfo.content)) {
 			} else {
-				console.log(this.newUserInfo)
 				this.axios.get('addmessage', {
 					params: this.newUserInfo
 				})
 					.then(res => {
-						console.log(res)
 						this.backSrc = res.data.catagory.bgimage
-						console.log(this.backSrc)
 						if (res.data.code == 1) {
 							alert('發表成功')
 						} else {

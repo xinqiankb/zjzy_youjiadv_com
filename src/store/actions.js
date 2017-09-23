@@ -52,7 +52,6 @@ export default {
             data[i]['path'] = path
           }
           let childrenList = data
-					console.log(data)
           let childrenListString = JSON.stringify(childrenList)
           sessionStorage.setItem('childrenList',childrenListString)
           commit('GET_CHILDRENDATA',childrenList)
@@ -73,7 +72,6 @@ export default {
 				commit('GET_FIRSTNAME',data.name)
 				sessionStorage.setItem('nowplacesecond', data.name)
 				sessionStorage.setItem('parentsname', data.name)
-				console.log(res)
 			}).catch(res => {
 				console.log(res)
 			})

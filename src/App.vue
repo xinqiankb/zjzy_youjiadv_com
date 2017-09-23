@@ -6,7 +6,7 @@
           <router-view style="padding-bottom:220px;overflow-x: auto;margin: 0 auto;"></router-view>
         </transition>
       <HbFooter></HbFooter>
-    </div>    
+    </div>
 
     <div v-show="this.$route.name === '404'">
       <Notfound></Notfound>
@@ -27,7 +27,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$route)
   }
 }
 </script>

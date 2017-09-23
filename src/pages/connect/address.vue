@@ -1,7 +1,7 @@
 <template>
 	<div class="hb-address" id="hb-address">
     <div class="backG" :style="'background-image: url(' + imgUrl + backSrc + ')'"></div>
-	  <div class="minBox" style="width: 1200px;margin: 0 auto;">	
+	  <div class="minBox" style="width: 1200px;margin: 0 auto;">
 		<slideBar></slideBar>
 		<div class="content">
 			<headertips></headertips>
@@ -20,10 +20,10 @@
 						<p>地址：浙江省宁波市鄞州区南部商务区奥克斯大厦</p>
 					</div>
 			      <div id="mapP" class="mapB"></div>
-				</div>	
+				</div>
 			</div>
 		</div>
-	   </div>	
+	   </div>
 	</div>
 </template>
 
@@ -101,7 +101,7 @@
 
 		   }
 	}
-	
+
 </style>
 <script>
 import slideBar from '@/components/slideBar'
@@ -134,14 +134,14 @@ export default{
 						map.centerAndZoom(point,12);
 						var marker = new BMap.Marker(point);
 						map.addOverlay(marker);
-						
+
 
 						function myFun(result) {
 							var cityName = result.name;
 							map.setCenter(cityName);
 						}
 				 var myCity = new BMap.localCity();
-				 myCity.get(myFun); 
+				 myCity.get(myFun);
 				 this.getBackImg()
 	},
 	watch: {
@@ -155,7 +155,6 @@ export default{
 				}
 			})
 				.then(res => {
-					console.log(res)
 					this.backSrc = res.data.catagory.bgimage
 				})
 				.catch(err => {
