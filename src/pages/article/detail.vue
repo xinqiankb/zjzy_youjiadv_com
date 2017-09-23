@@ -1,11 +1,11 @@
 <template>
 	<div class="hb-detaile" id="hb-detaile">
-		<div class="banner" :style="'background-image: url('  + imgUrl + dataList.thumb + ')'"></div>
+		<div class="banner" :style="'background-image: url('  + imgUrl + dataListInfo.bgimage + ')'"></div>
 		<div style="width:1200px;margin: 0 auto">
 			<slideBar></slideBar>
 			<div class="detail">
 				<headertips></headertips>
-				<div class="banner"></div>
+				<div class="banner" :style="'background-image: url('  + imgUrl + dataList.thumb + ')'"></div>
 				<div class="release">
 					<span class="publisher">发布人：{{ dataList.source }}</span>
 					<span>发布时间：{{ dataList.create_at }}</span>
@@ -72,7 +72,8 @@ export default {
 	name: 'detaile',
 	data() {
 		return {
-			dataList: []
+			dataList: [],
+			dataListInfo: {}
 		}
 	},
 	computed: {
@@ -88,8 +89,19 @@ export default {
 			params: para
 		})
 			.then(res => {
+
 				this.dataList = res.data.data
-				console.log(res)
+			})
+			.catch(err => {
+				console.log(err)
+			})
+
+    let cid = this.$route.query.cid
+		this.axios.get('/newslist', {
+			params: {id: cid}
+		})
+			.then(res => {
+				this.dataListInfo = res.data.catagory
 			})
 			.catch(err => {
 				console.log(err)

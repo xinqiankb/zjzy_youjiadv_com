@@ -15,7 +15,7 @@
 						</div>
 						<div class="text-content">
 							<span>{{ item.remark.slice(0,122) + ' ...' }}</span>
-							<span class="open-all" @click="to(item.id)">【阅读全文】</span>
+							<span class="open-all" @click="to(item.id,item.pid,item.cid)">【阅读全文】</span>
 						</div>
 					</div>
 				</li>
@@ -73,8 +73,8 @@ export default {
 			this.currentPage = val
 			this.getDataList()
 		},
-		to(id) {
-			this.$router.push('/detail/?id=' + id)
+		to(id,pid,cid) {
+			this.$router.push({path: '/detail', query:{id: id, pid: pid, cid: cid}})
 		},
 		id() {
 			this.getDataList()
