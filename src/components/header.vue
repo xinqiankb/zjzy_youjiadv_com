@@ -18,7 +18,7 @@
 		  <!-- 导航 -->
 		<div class="nav">
 		  <div class="box">
-		  	<router-link  class="navlist" :to="{path: '/'}" :style="activeIndex === 0?'background-color:#1b4195;color: #fff':''" @click.native="doActiveNav(0,0)">首页</router-link>
+		  	<router-link  class="navlist" :to="{path: '/'}" :style="(activeIndex === 0 || Number(activeIndex) === 0 )?'background-color:#1b4195;color: #fff':''" @click.native="doActiveNav(0,0,0)">首页</router-link>
 
 				<router-link v-for="(item,index) in menu" :to="{path: item.path, query:{id: item.id}}" class="navlist" :style="activeIndex === item.id?'background-color:#1b4195;color: #fff':''" :key="index" @click.native="doActiveNav(index+1,item.id,item.name)">
 					{{item.name}}
@@ -192,14 +192,22 @@ export default {
 		},
 		changeSlideBar() {
 			let pid = this.$route.query.pid
-			let cid = this.$route.query.cid
+			console.log(pid + 'xinqian')
 			this.$store.state.activeIndex = pid
 			this.$store.dispatch('get_childrenMenu', pid)
 			sessionStorage.setItem('activeIndex', pid)
+			this.$store.dispatch('getPlaceName', pid)
+		},
+		changeSlideBars() {
+			let cid = this.$route.query.cid
+			this.$store.state.childrenIndex = cid
+			sessionStorage.setItem('childrenIndex', cid)
+			this.$store.dispatch('getSlideBarName', cid)
 		}
 	},
 	watch: {
-		'$route.query.id': 'changeSlideBar'
+		'$route.query.id': 'changeSlideBar',
+		'$route.query.cid': 'changeSlideBars',
 	}
 }
 </script>
