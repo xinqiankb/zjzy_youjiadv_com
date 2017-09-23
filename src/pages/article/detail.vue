@@ -25,7 +25,6 @@
 	.banner {
 		width: 100%;
 		height: 200px;
-		background-image: url('../../assets/image/detail.jpg');
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -85,12 +84,10 @@ export default {
 		const para = {
 			id: this.$route.query.id
 		}
-		console.log(para)
 		this.axios.get('/newsdetail', {
 			params: para
 		})
 			.then(res => {
-				console.log(res.data.data)
 				this.dataList = res.data.data
 			})
 			.catch(err => {
@@ -99,7 +96,6 @@ export default {
 	},
 	methods: {
 		changeSlideBar() {
-			console.log('xinqian')
 		}
 	},
 	components: { slideBar, headertips },
