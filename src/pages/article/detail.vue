@@ -85,12 +85,10 @@ export default {
 		const para = {
 			id: this.$route.query.id
 		}
-		console.log(para)
 		this.axios.get('/newsdetail', {
 			params: para
 		})
 			.then(res => {
-				console.log(res.data.data)
 				this.dataList = res.data.data
 			})
 			.catch(err => {
@@ -99,7 +97,6 @@ export default {
 	},
 	methods: {
 		changeSlideBar() {
-			console.log('xinqian')
 		}
 	},
 	components: { slideBar, headertips },
