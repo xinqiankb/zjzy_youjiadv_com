@@ -1,7 +1,7 @@
 <template>
 	<div class="hb-address" id="hb-address">
-    <div><img src="../../assets/image/small.png" alt=""></div>
-	  <div class="minBox">	
+    <div class="backG" :style="'background-image: url(' + imgUrl + backSrc + ')'"></div>
+	  <div class="minBox" style="width: 1200px;margin: 0 auto;">	
 		<slideBar></slideBar>
 		<div class="content">
 			<headertips></headertips>
@@ -32,8 +32,16 @@
 		margin: 0;
 		padding: 0;
 	}
+	.backG {
+	width: 100%;
+	height: 200px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-bottom: 25px;
+}
 	#hb-address {
-		width: 1200px;
+
 	}
   .anchorBL {
     display: none !important;
@@ -48,6 +56,7 @@
      width: 100%;
      height: 20rem;
      overflow: hidden;
+		 margin-top: 2rem;
   }
 	.minBox {
 		display: -webkit-box;
@@ -105,32 +114,57 @@ export default{
 	name:'address',
 	data() {
 		return {
-			
+			backSrc: ''
 		}
 	},
   components: {
     slideBar,
     headertips
-  },
+	},
+	computed: {
+    imgUrl() {
+			return this.$config.config.imgUrl
+		}
+	},
   mounted() {
     // 百度地图API功能
             // 创建Map实例
-            var map = new BMap.Map("mapP",{enableMapClick:true});
-            var point = new BMap.Point(121.555572,29.815439);
-            map.centerAndZoom(point,12);
+            var map = new BMap.Map("mapP");
+						var point = new BMap.Point(121.555572,29.815439);
+						map.centerAndZoom(point,12);
+						var marker = new BMap.Marker(point);
+						map.addOverlay(marker);
+						
 
-            var geolocation = new BMap.Geolocation();
-            geolocation.getCurrentPosition(function(r) {
-              if(this.getStatus() == BMAP_STATUS_SUCCESS) {
-                var mk = new BMap.Marker(r.point);
-                map.addOverlay(mk);
-                map.panTo(r.point);
-                // alert('您的位置：' + r.point.lng+','+r.point.lat);
-              } else {
-                 alert('failed' + this.getStatus())
-              }
-            }, {enableHighAccuracy: true})
-          
-  }
+						function myFun(result) {
+							var cityName = result.name;
+							map.setCenter(cityName);
+						}
+				 var myCity = new BMap.localCity();
+				 myCity.get(myFun); 
+				 this.getBackImg()
+	},
+	watch: {
+		'$route.query.id': 'id'
+	},
+	methods: {
+		getBackImg (){
+			this.axios.get('/newslist', {
+				params: {
+					id: 106
+				}
+			})
+				.then(res => {
+					console.log(res)
+					this.backSrc = res.data.catagory.bgimage
+				})
+				.catch(err => {
+					console.log(err)
+				})
+		},
+		id () {
+        this.getBackImg()
+		}
+	}
 }
   </script>
