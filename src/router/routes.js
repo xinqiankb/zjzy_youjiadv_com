@@ -16,31 +16,31 @@ const routes = {
     {
     	path: '*',
     	name: '404',
-    	component: NotFound 
+    	component: NotFound
     }, {
     	path: '/',
     	name: 'home',
-    	component: Home 
+    	component: Home
     }, {
-    	path: '/list/:id',
+    	path: '/list',
     	name: 'list',
-    	component: List 
+    	component: List
     }, {
-    	path: '/detail/:id',
+    	path: '/detail',
     	name: 'hello',
-    	component: Detail 
+    	component: Detail
     }, {
     	path: '/about',
     	name: 'about',
-    	component: About 
+    	component: About
     }, {
     	path: '/address',
     	name: 'address',
-    	component: Address 
+    	component: Address
     }, {
     	path: '/message',
     	name: 'message',
-    	component: Message 
+    	component: Message
     }
   ]
 }

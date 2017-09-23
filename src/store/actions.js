@@ -11,10 +11,10 @@ export default {
     	for (let i in data) {
     		let type = data[i]['list_type']
     		switch(type){
-    			case '0': path = '/detail/' + data[i]['id'];break;
-    			case '1': path = '/list/' + data[i]['id'];break;
-          case '2': path = '/list/' + data[i]['id'];break;
-    			case '3': path = '/list/' + data[i]['id'];break;
+    			case '0': path = '/detail/';break;
+    			case '1': path = '/list/';break;
+          case '2': path = '/list/';break;
+    			case '3': path = '/list/';break;
     			case '4': path = '/message/';break;
     		}
     		data[i]['path'] = path
@@ -40,15 +40,16 @@ export default {
           for (let i in data) {
             let type = data[i]['list_type']
             switch(type){
-              case '0': path = '/detail/' + data[i]['id'];break;
-              case '1': path = '/list/' + data[i]['id'];break;
-              case '2': path = '/list/' + data[i]['id'];break;
-              case '3': path = '/list/' + data[i]['id'];break;
+              case '0': path = '/detail/';break;
+              case '1': path = '/list/';break;
+              case '2': path = '/list/';break;
+              case '3': path = '/list/';break;
               case '4': path = '/message/';break;
             }
             data[i]['path'] = path
           }
           let childrenList = data
+					console.log(data)
           let childrenListString = JSON.stringify(childrenList)
           sessionStorage.setItem('childrenList',childrenListString)
           commit('GET_CHILDRENDATA',childrenList)
