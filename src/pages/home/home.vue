@@ -4,7 +4,7 @@
 		<div class="swipe" style="width: 100%;min-width: 1200px;height:450px;" scoped="scoped">
 		  <el-carousel class="swiperbox" style="">
 		    <el-carousel-item v-for="(item,index) in bannerlist" :key="index">
-		      <div class="img" :style="'background:url(http://zx.youjiadv.com/'+ item.img+') no-repeat center center;background-size: cover;height:100%'"></div>
+		      <div class="img" :style="'background:url(' + imgurl+ item.img+') no-repeat center center;background-size: cover;height:100%'"></div>
 		    </el-carousel-item>
 		  </el-carousel>
 		</div>
@@ -21,29 +21,29 @@
 		  		<div class="newsblock">
 		  		  <div class="up">
 			  			<router-link :to="{path: '/detail' , query: {id: NewsPlastic[0].id, pid: NewsPlastic[0].pid, cid: NewsPlastic[0].cid}}">
-			  				<article class="first" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[0].thumb + ') no-repeat center center;background-size:cover'">
+			  				<article class="first" :style="'background:url(' + imgurl + NewsPlastic[0].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[0].title}}</span></p>
 			  				</article>
 			  			</router-link>
 			  			<router-link :to="{path: '/detail', query: {id: NewsPlastic[1].id, pid: NewsPlastic[1].pid, cid: NewsPlastic[1].cid}}">
-			  				<article class="second" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[1].thumb + ') no-repeat center center;background-size:cover'">
+			  				<article class="second" :style="'background:url(' + imgurl + NewsPlastic[1].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[1].title}}</span></p>
 			  				</article>
 			  			</router-link>
 			  			<router-link :to="{path: '/detail' , query: {id: NewsPlastic[2].id, pid: NewsPlastic[2].pid, cid: NewsPlastic[2].cid}}">
-			  				<article class="third" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[2].thumb + ') no-repeat center center;background-size:cover'">
+			  				<article class="third" :style="'background:url(' + imgurl + NewsPlastic[2].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[2].title}}</span></p>
 			  				</article>
 			  			</router-link>
 		  		  </div>
 		  		  <div class="down">
 			  			<router-link :to="{path: '/detail' , query: {id: NewsPlastic[3].id, pid: NewsPlastic[3].pid, cid: NewsPlastic[3].cid}}">
-			  				<article class="fourth" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[3].thumb + ') no-repeat center center;background-size:cover'">
+			  				<article class="fourth" :style="'background:url(' + imgurl + NewsPlastic[3].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[3].title}}</span></p>
 			  				</article>
 			  			</router-link>
 			  			<router-link :to="{path: '/detail' , query: {id: NewsPlastic[4].id, pid: NewsPlastic[4].pid, cid: NewsPlastic[4].cid}}">
-			  				<article class="fifth" :style="'background:url(http://zx.youjiadv.com/' + NewsPlastic[4].thumb + ') no-repeat center center;background-size:cover'">
+			  				<article class="fifth" :style="'background:url(' + imgurl + NewsPlastic[4].thumb + ') no-repeat center center;background-size:cover'">
 			  					<p class="articlename"><span>{{NewsPlastic[4].title}}</span></p>
 			  				</article>
 			  			</router-link>
@@ -56,7 +56,7 @@
 		  		</div>
 		  		<p class="blockdesc">{{NewsInfo.remark}}</p>
 					<router-link :to="{ path: '/detail/' , query: { id: NewsInfo.id,pid: NewsInfo.pid, cid: NewsInfo.cid}}">
-			  		<div class="recommandpic" :style="'background-Image:url(http://zx.youjiadv.com/' + recommandNews.thumb + ');background-repeat: no-repeat;background-postion: center center;background-size:100%;'">
+			  		<div class="recommandpic" :style="'background-Image:url(' + imgurl + recommandNews.thumb + ');background-repeat: no-repeat;background-postion: center center;background-size:100%;'">
 			  		  <div class="tips">
 			  		  	01
 			  		  </div>
@@ -83,7 +83,7 @@
 		  		  <div class="line1">
 							<a href="#" v-show="index < 4" v-for="(item,index) in ServeiceList">
 								<div class="serviceEntry">
-				  				<img :src="'http://zx.youjiadv.com/' + item.img" alt="">
+				  				<img :src="imgurl + item.img" alt="">
 				  				<p class="servicedesc">{{item.name}}</p>
 				  			</div>
 							</a>
@@ -91,7 +91,7 @@
 		  		  <div class="line2">
 							<a href="#" v-show=" index >=4 && index < 8" v-for="(item,index) in ServeiceList">
 								<div class="serviceEntry">
-				  				<img :src="'http://zx.youjiadv.com/' + item.img" alt="">
+				  				<img :src="imgurl + item.img" alt="">
 				  				<p class="servicedesc">{{item.name}}</p>
 				  			</div>
 							</a>
@@ -119,13 +119,13 @@
 			  						</p>
 			  					</div>
 			  				</div>
-			  				<div class="img" :style="'background:url(http://zx.youjiadv.com/' + ImportantList[0].thumb + ') no-repeat center center;background-size:contain'"></div>
+			  				<div class="img" :style="'background:url(' + imgurl + ImportantList[0].thumb + ') no-repeat center center;background-size:contain'"></div>
 			  			</div>
 						</router-link>
 
 						<router-link :to="{ path: '/detail/' , query: { id: ImportantList[1].id},cid: ImportantList[1].cid, pid: ImportantList[1].pid}">
 			  			<div class="right">
-			  				<div class="img" :style="'background:url(http://zx.youjiadv.com/' + ImportantList[1].thumb + ') no-repeat center center;background-size:cover'"></div>
+			  				<div class="img" :style="'background:url(' + imgurl + ImportantList[1].thumb + ') no-repeat center center;background-size:cover'"></div>
 			  				<div class="desc">
 			  					<div class="con">
 			  						<i class="tips">02</i>
@@ -156,7 +156,7 @@
 				  		</p>
 				  		<div class="main">
 		            <div class="list" v-for="(item,index) in MemberList" :key="index">
-		            	<img :src="'http://zx.youjiadv.com/'+item.img" alt="">
+		            	<img :src="imgurl+item.img" alt="">
 		            </div>
 				  		</div>
 			  	  </div>
@@ -169,7 +169,7 @@
 				  		{{EducationInfo.remark}}
 				  		</p>
 				  		<router-link :to="{path: '/detail/', query: {id: recommandEducation.id, cid: recommandEducation.cid, pid: recommandEducation.pid}}">
-					  		<div class="recommandpic" :style="'background:url(http://zx.youjiadv.com/' + recommandEducation.thumb + ') no-repeat center center;background-size:cover'">
+					  		<div class="recommandpic" :style="'background:url(' + imgurl + recommandEducation.thumb + ') no-repeat center center;background-size:cover'">
 					  		  <div class="tips">
 					  		  	01
 					  		  </div>
@@ -224,7 +224,7 @@
 				  			  <router-link class="items" v-for="(item,index) in ExpertList" :to="{path: '/detail/', query:{id: item.id, cid: item.cid, pid: item.pid}}" :key="index">
 						  			<div class="expert-item">
 						  				<div class="img">
-						  					<img :src="'http://zx.youjiadv.com/' + item.thumb" alt="">
+						  					<img :src="imgurl + item.thumb" alt="">
 						  				</div>
 						  				<div class="info">
 						  					<div class="name"><span>{{item.title}}</span><span class="knowmore">详情</span></div>
@@ -257,7 +257,7 @@
 			  		<div class="list">
 			  		  <div class="list-group" style="width:100%;overflow-x:hidden">
 			  		    <div class="group-item" :style="'transform-origin:50% 50%;width:' + ((Friendcount * 200.8) + 20) + 'px;transform: translate(' + FriendTranslate + 'px);transition: all 0.5s ease-in-out'">
-					  			  <div v-for="(item,index) in FriendList" class="item-list"><img :src="'http://zx.youjiadv.com/' + item.img" alt=""></div>
+					  			  <div v-for="(item,index) in FriendList" class="item-list"><img :src="imgurl + item.img" alt=""></div>
 				  			</div>
 				  		</div>
 			  		</div>
@@ -790,6 +790,11 @@ export default{
 			// 友情链接平移距离
 			FriendTranslate: 0,
 			FriendTranslateIndex: 0
+		}
+	},
+	computed: {
+		imgurl() {
+			return this.$config.config.imgUrl
 		}
 	},
 	mounted() {
