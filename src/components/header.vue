@@ -20,7 +20,7 @@
 		  <div class="box">
 		  	<router-link  class="navlist" :to="{path: '/'}" :style="(activeIndex === 0 || Number(activeIndex) === 0 )?'background-color:#1b4195;color: #fff':''" @click.native="doActiveNav(0,0,0)">首页</router-link>
 
-				<router-link v-for="(item,index) in menu" :to="{path: item.path, query:{id: item.id}}" class="navlist" :style="activeIndex === item.id?'background-color:#1b4195;color: #fff':''" :key="index" @click.native="doActiveNav(index+1,item.id,item.name)">
+				<router-link v-for="(item,index) in menu" :to="{path: item.path, query:{id: item.id}}" class="navlist" :style="activeIndex === item.id?'background-color:#1b4195;color: #fff':''" :key="index" @click.native="doActiveNav(index+1,item.id,item.name,item.pid)">
 					{{item.name}}
 				</router-link>
 		  </div>
@@ -165,13 +165,15 @@ export default {
 			}, 1000)
 		},
 		// 激活导航
-		doActiveNav(index,id,name) {
+		doActiveNav(index,id,name,pid) {
 		  this.$store.state.activeIndex = id
 		  this.$store.state.parentsId = id
 		  this.$store.state.parentsname = name
 		  this.$store.state.nowplacefirst = name
+		  this.$store.state.childrenIndex = pid
 		  this.$store.state.nowplacesecond = ''
 			sessionStorage.setItem('activeIndex', id)
+			sessionStorage.setItem('activeIndex', pid)
 			sessionStorage.setItem('parentsname', name)
 			sessionStorage.setItem('nowplacefirst', name)
 			sessionStorage.setItem('nowplacesecond', '')
@@ -202,11 +204,16 @@ export default {
 			this.$store.state.childrenIndex = cid
 			sessionStorage.setItem('childrenIndex', cid)
 			this.$store.dispatch('getSlideBarName', cid)
-		}
+		},
+		toTop() {
+      document.body.scrollTop = 0
+      document.documentElement.scrollTop = 0
+    }
 	},
 	watch: {
 		'$route.query.id': 'changeSlideBar',
 		'$route.query.cid': 'changeSlideBars',
+		'$route': 'toTop',
 	}
 }
 </script>

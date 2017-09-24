@@ -107,7 +107,7 @@
 import slideBar from '@/components/slideBar'
 import headertips from '@/components/headertips'
 // import map from '@/components/map.vue'
-export default{
+export default {
 	// components: {
 	// 	map
 	// },
@@ -129,6 +129,7 @@ export default{
   mounted() {
     // 百度地图API功能
             // 创建Map实例
+						this.getBackImg()
             var map = new BMap.Map("mapP");
 						var point = new BMap.Point(121.555572,29.815439);
 						map.centerAndZoom(point,12);
@@ -142,10 +143,6 @@ export default{
 						}
 				 var myCity = new BMap.localCity();
 				 myCity.get(myFun);
-				 this.getBackImg()
-	},
-	watch: {
-		'$route.query.id': 'id'
 	},
 	methods: {
 		getBackImg (){
@@ -153,16 +150,12 @@ export default{
 				params: {
 					id: 106
 				}
-			})
-				.then(res => {
+			}).then(res => {
+					console.log(res)
 					this.backSrc = res.data.catagory.bgimage
-				})
-				.catch(err => {
-					console.log(err)
-				})
-		},
-		id () {
-        this.getBackImg()
+			}).catch(err => {
+				console.log(err)
+			})
 		}
 	}
 }

@@ -3,7 +3,7 @@
 		<div class="slidebox">
 		  <div class="fatherPath"><span>{{parentsName}}</span></div>
 			<ul>
-				<router-link v-for="(item,index) in childrenList" :key="index" :to="{path: item.path, query:{id: item.id}}">
+				<router-link v-for="(item,index) in childrenList" :key="index" :to="{path: item.path, query:{id: item.id,pid: item.pid, cid: item.cid}}">
 					<li  class="list-item" :style="childrenIndex === item.id ? 'background-color: #0c53ab;color:#fff': ''" @click="childrenMenuChange(index,item.id,item.name)">{{item.name}}</li>
 				</router-link>
 			</ul>

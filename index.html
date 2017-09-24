@@ -6,7 +6,7 @@
     <meta id="description" name="description" content="" >
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=piXQ5CgHFqEefqCVbhhBFfe6HjF7l4zW "></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <title>zjzy_youjiadv_com</title>
+    <title id="title"></title>
   </head>
   <style type="text/css">
     *{margin: 0;padding: 0;font-family: "Microsoft YaHei"}
@@ -29,10 +29,10 @@
       type: 'GET',
       url: 'http://' + host +'/frontend/web/index.php?r=index%2Ffooter',
       success: function(res){
-        console.log(res)
         let data = res.data
         $('#description').attr('content', data.web_seo)
         $('#keywords').attr('content', data.web_seo)
+        $('#title').html(data.webname)
       },
       error: function(res) {
         console.log(res)

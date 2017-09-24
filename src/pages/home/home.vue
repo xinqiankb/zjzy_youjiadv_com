@@ -55,7 +55,7 @@
 		  			<span class="titleline"></span>{{NewsInfo.name}}<span></span>
 		  		</div>
 		  		<p class="blockdesc">{{NewsInfo.remark}}</p>
-					<router-link :to="{ path: '/detail/' , query: { id: NewsInfo.id,pid: NewsInfo.pid, cid: NewsInfo.cid}}">
+					<router-link :to="{ path: '/detail/' , query: { id: recommandNews.id,pid: recommandNews.pid, cid: recommandNews.cid}}">
 			  		<div class="recommandpic" :style="'background-Image:url(' + imgurl + recommandNews.thumb + ');background-repeat: no-repeat;background-postion: center center;background-size:100%;'">
 			  		  <div class="tips">
 			  		  	01
@@ -66,7 +66,7 @@
 			  		</div>
 					</router-link>
 		  		<div class="newslist">
-		  			<router-link v-for="(item,index) in NewsList" :key="index" :to="{path: '/detail/', params:{id: item.id, cid: item.cid, pid: item.pid}}"><p ><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p></router-link>
+		  			<router-link v-for="(item,index) in NewsList" :key="index" :to="{path: '/detail/', query:{id: item.id, cid: item.cid, pid: item.pid}}"><p ><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p></router-link>
 		  		</div>
 		  	</div>
 		  </div>
@@ -123,7 +123,7 @@
 			  			</div>
 						</router-link>
 
-						<router-link :to="{ path: '/detail/' , query: { id: ImportantList[1].id},cid: ImportantList[1].cid, pid: ImportantList[1].pid}">
+						<router-link :to="{ path: '/detail/' , query: { id: ImportantList[1].id,cid: ImportantList[1].cid, pid: ImportantList[1].pid}}">
 			  			<div class="right">
 			  				<div class="img" :style="'background:url(' + imgurl + ImportantList[1].thumb + ') no-repeat center center;background-size:cover'"></div>
 			  				<div class="desc">
