@@ -6,8 +6,8 @@
 					<div class="nowtime">今天是{{nowtime}}&nbsp;&nbsp;|&nbsp;星期{{weekday}}</div>
 				</div>
 				<div class="right">
-					<i class="icon icon-phone"></i>
 					<span>联系电话:{{webinfo.phone}}</span>
+					<a href="https://m.idouka.cn/code.shtml" class="checkingEnter">防伪查询入口<span>></span></a>
 				</div>
 		  </div>
 		</div>
@@ -39,10 +39,12 @@
     	width: 100%;
     	min-width: 800px;
     	height: 2.5rem;
-    	line-height: 2.5rem;
+			display: inline-flex;
     	background-color: #f7f7f7;
+			align-items: center;
     	& > div{
     		max-width: 1200px;
+				width: 1200px;
     		margin: 0 auto;
 	    	.left{
 	        display: inline-block;
@@ -50,9 +52,35 @@
 	        text-align: left;
 	    	}
 	    	.right{
-	        display: inline-block;
+	        display: inline-flex;
 	        width: 49%;
 	        text-align: right;
+					justify-content: flex-end;
+					.checkingEnter{
+						display:inline-flex;
+						align-items: center;
+						justify-content: center;
+						margin: 0 10px;
+						padding: 0 10px;
+						font-size: 12px;
+						height: 25px;
+						border-radius:5px;
+						background-color: rgb(27, 65, 149);
+						color: #fff;
+						& > span{
+							display: inline-flex;
+							justify-content: center;
+							align-items: center;
+							width: 15px;
+							height: 15px;
+							border-radius: 50%;
+							color: #333;
+							font-weight: bold;
+							background-color: #fff;
+							text-align: center;
+							margin-left: 10px;
+						}
+					}
 	    	}
     	}
     }
