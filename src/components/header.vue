@@ -225,14 +225,23 @@ export default {
 		changeSlideBar() {
 			let pid = this.$route.query.pid
 			let id = this.$route.query.id
-			this.$store.state.activeIndex = pid
+			let tempid = 0
+			if (pid && id) {
+				tempid = pid
+			} else if (id) {
+				tempid = id
+			}
+			this.$store.state.activeIndex = tempid
 			this.$store.dispatch('get_childrenMenu', pid)
-			sessionStorage.setItem('activeIndex', pid)
+			sessionStorage.setItem('activeIndex', tempid)
 			this.$store.dispatch('getPlaceName', pid)
 		},
 		changeSlideBars() {
 			let cid = this.$route.query.cid
-			console.log(cid)
+			let id = this.$route.query.id
+			if (!cid) {
+				cid = id
+			}
 			this.$store.state.childrenIndex = cid
 			sessionStorage.setItem('childrenIndex', cid)
 			this.$store.dispatch('getSlideBarName', cid)
