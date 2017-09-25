@@ -6,7 +6,7 @@
 					<div class="nowtime">今天是{{nowtime}}&nbsp;&nbsp;|&nbsp;星期{{weekday}}</div>
 				</div>
 				<div class="right">
-					<span>联系电话:{{webinfo.phone}}</span>
+					<span style="text-decoration:none;color:#333">联系电话:{{webinfo.phone}}</span>
 					<a href="https://m.idouka.cn/code.shtml" class="checkingEnter">防伪查询入口<span>></span></a>
 				</div>
 		  </div>
@@ -20,7 +20,7 @@
 		  <div class="box">
 		  	<router-link  class="navlist" :to="{path: '/'}" :style="(activeIndex === 0 || Number(activeIndex) === 0 )?'background-color:#1b4195;color: #fff':''" @click.native="doActiveNav(0,0,0,0)">首页</router-link>
 
-				<router-link v-for="(item,index) in menu" :to="{path: item.path, query:{id: item.id}}" class="navlist" :style="activeIndex === item.id?'background-color:#1b4195;color: #fff':''" :key="index" @click.native="doActiveNav(index+1,item.id,item.name,item.pid)">
+				<router-link v-for="(item,index) in menu" :to="{path: item.path, query:{id: item.id}}" class="navlist" :style="(activeIndex === item.id || Number(activeIndex) === item.id)?'background-color:#1b4195;color: #fff':''" :key="index" @click.native="doActiveNav(index+1,item.id,item.name,item.pid)">
 					{{item.name}}
 				</router-link>
 		  </div>
@@ -157,11 +157,12 @@ export default {
     this.getNowTime()
     this.$store.dispatch('get_menulist')
     this.getBaseInfo()
+    console.log(sessionStorage.getItem('activeIndex'))
 	},
   computed: {
     ...mapState({
-    	// 导航激活状态
-    	activeIndex: state => state.activeIndex,
+    	// 导航激活状态i
+			activeIndex: state => state.activeIndex,
     	// 一级导航栏
     	menu: state => state.menuList
     })
@@ -194,17 +195,18 @@ export default {
 		},
 		// 激活导航
 		doActiveNav(index,id,name,pid) {
+			sessionStorage.setItem('activeIndex', id)
+			sessionStorage.setItem('parentsId', id)
+			sessionStorage.setItem('chilactiveIndex', pid)
+			sessionStorage.setItem('parentsname', name)
+			sessionStorage.setItem('nowplacefirst', name)
+			sessionStorage.setItem('nowplacesecond', '')
 		  this.$store.state.activeIndex = id
 		  this.$store.state.parentsId = id
 		  this.$store.state.parentsname = name
 		  this.$store.state.nowplacefirst = name
 		  this.$store.state.childrenIndex = pid
 		  this.$store.state.nowplacesecond = ''
-			sessionStorage.setItem('activeIndex', id)
-			sessionStorage.setItem('activeIndex', pid)
-			sessionStorage.setItem('parentsname', name)
-			sessionStorage.setItem('nowplacefirst', name)
-			sessionStorage.setItem('nowplacesecond', '')
 			if(id > 0){
 				this.$store.dispatch('get_childrenMenu', id)
 			}
@@ -222,9 +224,11 @@ export default {
 		},
 		changeSlideBar() {
 			let pid = this.$route.query.pid
-			this.$store.state.activeIndex = pid
+			let id = this.$route.query.id
+			id = id? id: 0
+			this.$store.state.activeIndex = id
 			this.$store.dispatch('get_childrenMenu', pid)
-			sessionStorage.setItem('activeIndex', pid)
+			sessionStorage.setItem('activeIndex', id)
 			this.$store.dispatch('getPlaceName', pid)
 		},
 		changeSlideBars() {
