@@ -155,9 +155,11 @@
 				  		MEMBER STYLE
 				  		</p>
 				  		<div class="main">
-		            <div class="list" v-for="(item,index) in MemberList" :key="index">
-		            	<img :src="imgurl+item.img" alt="">
+								<router-link v-for="(item,index) in MemberList" :key="index" :to="{path: '/detail/',query:{id: item.id, cid: item.cid, pid: item.pid}}">
+		            <div class="list" >
+		            	<img :src="imgurl+item.thumb" alt="">
 		            </div>
+							</router-link>
 				  		</div>
 			  	  </div>
 
@@ -257,7 +259,10 @@
 			  		<div class="list">
 			  		  <div class="list-group" style="width:100%;overflow-x:hidden">
 			  		    <div class="group-item" :style="'transform-origin:50% 50%;width:' + ((Friendcount * 200.8) + 20) + 'px;transform: translate(' + FriendTranslate + 'px);transition: all 0.5s ease-in-out'">
-					  			  <div v-for="(item,index) in FriendList" class="item-list"><img :src="imgurl + item.img" alt=""></div>
+									<a v-for="(item,index) in FriendList" :href="item.url">
+					  			    <div class="item-list"><img :src="imgurl + item.img" alt="">
+											</div>
+										</a>
 				  			</div>
 				  		</div>
 			  		</div>
@@ -514,8 +519,11 @@
 	        	width: 100%;
 	        	.list{
 	        		width: 100%;
+							height: 82px;
+							overflow: hidden;
 	        		img{
 	        			width: 100%;
+								vertical-align: middle;
 	        		}
 	        	}
 	        }
@@ -912,7 +920,7 @@ export default{
         console.log(res)
 			})
 		},
-		// 专家栏
+		// 服务大厅
 		getServeiceList() {
       let that = this
 			this.axios.get('/indexservice')

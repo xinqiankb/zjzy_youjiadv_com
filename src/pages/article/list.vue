@@ -6,21 +6,23 @@
 			<ul class="list">
 				<headertips></headertips>
 				<div v-if="dataList.length === 0" class="tic">暂无更多数据</div>
-				<li v-else class="content" v-for="(item, index) in dataList" :key="index">
+				<li v-else class="content" v-for="(item, index) in dataList" :key="index" @click="to(item.id,item.pid,item.cid)">
 					<div class="thumb" :style="'background-image: url('  + imgUrl + item.thumb + ')'"></div>
 					<div class="text">
 						<div class="top">
-							<span class="title">{{ item.title }}</span>
-							<span class="date">{{ item.create_at }}</span>
+							<p class="title">{{ item.title }}</p>
+							<p class="date">发布时间: {{ item.create_at }}</p>
 						</div>
 						<div class="text-content">
 							<span>{{ item.remark.slice(0,122) + ' ...' }}</span>
-							<span class="open-all" @click="to(item.id,item.pid,item.cid)">【阅读全文】</span>
+						</div>
+						<div class="showmoreBtn">
+							<span class="open-all" >【阅读全文】</span>
 						</div>
 					</div>
 				</li>
 				<li class="block">
-					<el-pagination @current-change="handleCurrentChange" :page-size="limit" layout="total, prev, pager, next" :total="dataList.length">
+					<el-pagination @current-change="handleCurrentChange" :current-page="currentPage" :page-size="limit" layout="total, prev, pager, next" :total="total">
 					</el-pagination>
 				</li>
 			</ul>
@@ -37,7 +39,8 @@ export default {
 		return {
 			bgImg: '',
 			dataList: [],
-			currentPage: 1
+			currentPage: 1,
+			total: 0
 		}
 	},
 	mounted() {
@@ -60,12 +63,13 @@ export default {
 			}
 			this.axios.get('/newslist', {
 				params: para
-			})
-			.then(res => {
+			}).then(res => {
 				this.dataList = res.data.data
 				this.bgImg = res.data.catagory.bgimage
-			})
-			.catch(err => {
+				this.total = res.data.count
+        document.body.scrollTop = 0
+
+			}).catch(err => {
 				console.log(err)
 			})
 		},
@@ -109,12 +113,14 @@ export default {
 		width: 900px;
 		display: inline-block;
 		.content {
+			position: relative;
 			list-style: none;
 			overflow: hidden;
-			padding-right: 30px;
+			padding-right: 0px;
 			background: #F7F7F9;
 			height: 180px;
 			margin-top: 25px;
+			cursor: pointer;
 			.thumb {
 				width: 180px;
 				height: 180px;
@@ -126,27 +132,43 @@ export default {
 			}
 			.text {
 				text-align: left;
+				display: inline-block;
+				width: calc(100% - 235px);
 				.top {
 					font-size: 14px;
-					margin-top: 42px;
+					margin-top: 20px;
 					.title {
+						display: inline-block;
+						width: 100%;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						white-space: nowrap;
 						color: #0F88EB;
 					}
 					.date {
 						display: inline-block;
-						float: right;
+						float: left;
+						margin-top: 5px;
 					}
 				}
 				.text-content {
-					margin-top: 24px;
+					margin-top: 5px;
 					font-size: 13px;
 					line-height: 1.2rem;
 					height: 80px;
 					overflow: hidden;
-					.open-all {
-						color: #F39595;
-						cursor: pointer;
-					}
+					text-indent: 26px;
+					float: left;
+				}
+				.showmoreBtn{
+					position: absolute;
+					bottom: 10px;
+					right: 20px;
+				}
+				.open-all {
+					font-size: 13px;
+					color: #F39595;
+					cursor: pointer;
 				}
 			}
 		}

@@ -5,11 +5,12 @@
 			<slideBar></slideBar>
 			<div class="detail">
 				<headertips></headertips>
-				<div class="banner" :style="'background-image: url('  + imgUrl + dataList.thumb + ')'"></div>
+				<div class="title">{{dataList.title}}</div>
 				<div class="release">
 					<span class="publisher">发布人：{{ dataList.source }}</span>
 					<span>发布时间：{{ dataList.create_at }}</span>
 				</div>
+				<div v-if="dataList.thumb !== 'backend/web'" class="banner" :style="'display:none;background-image: url('  + imgUrl + dataList.thumb + ')'"></div>
 				<div class="content">
 					<div v-html="dataList.content"></div>
 				</div>
@@ -34,6 +35,13 @@
 		width: 900px;
 		background: #F7F7F9;
 		display: inline-block;
+		.title{
+			width: 100%;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			font-size: 24px;
+		}
 		.banner {
 			width: 100%;
 			height: 300px;
@@ -87,23 +95,19 @@ export default {
 		}
 		this.axios.get('/newsdetail', {
 			params: para
-		})
-			.then(res => {
-
+		}).then(res => {
+			console.log(res)
 				this.dataList = res.data.data
-			})
-			.catch(err => {
+		}).catch(err => {
 				console.log(err)
 			})
 
     let cid = this.$route.query.cid
 		this.axios.get('/newslist', {
 			params: {id: cid}
-		})
-			.then(res => {
+		}).then(res => {
 				this.dataListInfo = res.data.catagory
-			})
-			.catch(err => {
+		}).catch(err => {
 				console.log(err)
 			})
 	},
