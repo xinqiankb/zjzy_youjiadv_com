@@ -58,7 +58,7 @@
 
 .backImg {
 	width: 100%;
-	height: 200px;
+	height: 300px;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
