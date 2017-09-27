@@ -13,7 +13,7 @@
 		</div>
 
 		<div class="titleimg">
-		  <img src="./../assets/image/topimg.jpg" alt="">
+		  <img :src="imgUrl + webinfo.index_thumb" alt="">
 		</div>
 		  <!-- 导航 -->
 		<div class="nav">
@@ -165,7 +165,10 @@ export default {
 			activeIndex: state => state.activeIndex,
     	// 一级导航栏
     	menu: state => state.menuList
-    })
+    }),
+		imgUrl() {
+			return this.$config.config.imgUrl
+		}
   },
 	methods: {
 		getNowTime() {
