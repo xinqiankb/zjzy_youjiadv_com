@@ -182,7 +182,7 @@
 					  	</router-link>
 					  		<div class="newslist">
 					  		<router-link v-for="(item,index) in EducationList" :to="{path: '/detail/', query: {id: item.id, cid: item.cid, pid: item.pid}}" :key="index">
-					  			  <p><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p>
+					  			  <p><span class="id" style="position:relative"><i class="tranangle-right"></i></span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p>
 					  		</router-link>
 					  		</div>
 	          </div>
@@ -290,7 +290,7 @@
 		.container{
 				max-width:1200px;
 				width:1200px;
-				overflow-x: auto;
+				overflow-x: hidden;
 				margin: 0 auto;
 		    .swiper{
 		      width: 100%;
@@ -572,8 +572,8 @@
               display: block;
               & .itemlist{
               	display: block;
-              	height: 41.5px;
-              	line-height: 41.5px;
+              	height: 44.3px;
+              	line-height: 44.3px;
               	font-size: 14px;
               	color: #fff;
               	padding: 0 10px;
@@ -582,8 +582,15 @@
               	white-space: nowrap;
               	background-color: #bad6ec;
               	margin-bottom: 11px;
+								width: 100%;
               }
-
+							li {
+								display: inline-block;
+								width: 95%;
+								text-overflow: ellipsis;
+								overflow: hidden;
+								white-space: nowrap;
+							}
               & li:nth-of-type(1){
               	margin-top: 0;
               }
@@ -734,6 +741,20 @@
    	background-color: #333;
    	margin-right: 5px;
    }
+	 .tranangle-right{
+		 width: 0;
+     height: 0;
+     border-left: 5px solid transparent;
+     border-right: 5px solid transparent;
+     border-bottom: 10px solid #333;
+		 position: absolute;
+     top: 50%;
+     left: 50%;
+     margin-top: -2.5px;
+     margin-left: -5px;
+		 transform-origin: 50% 50%;
+		 transform: rotate(90deg);
+	 }
 	}
 </style>
 <script>
