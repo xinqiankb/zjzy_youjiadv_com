@@ -257,7 +257,7 @@
 			  		</div>
 
 			  		<div class="list">
-			  		  <div class="list-group" style="width:100%;overflow-x:hidden">
+			  		  <div class="list-group" style="width:100%;overflow:hidden">
 			  		    <div class="group-item" :style="'transform-origin:50% 50%;width:' + ((Friendcount * 200.8) + 20) + 'px;transform: translate(' + FriendTranslate + 'px);transition: all 0.5s ease-in-out'">
 									<a v-for="(item,index) in FriendList" :href="item.url">
 					  			    <div class="item-list"><img :src="imgurl + item.img" alt="">

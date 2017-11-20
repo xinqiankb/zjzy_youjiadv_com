@@ -5,7 +5,6 @@ import config from '@/config'
 // 配置默认请求头
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 axios.defaults.baseURL = config.config.url
-console.log(config.config.url)
 
 // pOST传参序列化(添加请求拦截器)
 axios.interceptors.request.use((config) => {
