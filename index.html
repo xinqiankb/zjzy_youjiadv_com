@@ -19,6 +19,7 @@
   </style>
   <body>
     <div id="app"></div>
+    <div id="download"></div>
     <!-- built files will be auto injected -->
   </body>
 </html>
@@ -39,4 +40,31 @@
       }
     })
   })
+</script>
+<script type="text/javascript">
+    var tag = document.getElementById('download');
+    var content = '<p>为了您的浏览体验或当前浏览器不支持此系统</p><p>请更新浏览器版本或者点击以下链选择最新浏览器</p></br><div><p style="margin-bottom:10px"><a href="http://rj.baidu.com/soft/detail/14744.html?ald">谷歌浏览器（<span style="display:inline-block; border-bottom: 1px solid #000">点击下载!</span>）</a></p><p style="margin-bottom:10px"><a href="http://www.firefox.com.cn/download/">火狐浏览器（<span style="display:inline-block; border-bottom: 1px solid #000">点击下载!</span>）</a></p><p style="margin-bottom:10px"><a href="http://www.opera.com/zh-cn">opera浏览器（<span style="display:inline-block; border-bottom: 1px solid #000">点击下载!</span>）</a></p></div>';
+    var agent = navigator.userAgent.toLowerCase() ;
+
+    var regStr_ie = /msie [\d.]+;/gi ;
+    var regStr_ff = /firefox\/[\d.]+/gi
+    var regStr_chrome = /chrome\/[\d.]+/gi ;
+    var regStr_saf = /safari\/[\d.]+/gi ;
+    //IE
+    // if(agent.indexOf("msie") > 0){
+    //  var version = agent.match(regStr_ie).toString();
+    //  var result = version.split(' ');
+    //  if(parseInt(result[1]) <11){
+    //     tag.innerHTML = content
+    // }
+    // }
+    // //判断浏览器 
+    var v1 = agent.indexOf("firefox");
+    var v2 = agent.indexOf("chrome");
+    var v3 = agent.indexOf("safari");
+    var v4 = agent.indexOf("opera");
+    if(v1<0 && v2<0 && v3 < 0 && v4 < 0)
+    {
+      tag.innerHTML = content;   
+    }         
 </script>
