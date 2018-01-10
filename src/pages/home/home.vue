@@ -14,7 +14,7 @@
 		  		<div class="blocktitle">
 		  			<span class="titleline"></span>{{PlasticInfo.name}}<span></span>
 		  		</div>
-		  		<div class="readmore" v-if="PlasticInfo.length > 0">
+		  		<div class="readmore" v-if="PlasticInfo !== ''">
 		  		  <router-link :to="{path: '/list/', query: {id: PlasticInfo.id, cid: PlasticInfo.cid, pid: PlasticInfo.pid}}">more></router-link>
 		  		</div>
 		  		<p class="blockdesc">{{PlasticInfo.remark}}</p>
@@ -79,7 +79,7 @@
 		  		<p class="blockdesc">
 		  		SERVICE HALL
 		  		</p>
-		  		<div class="servicebox">
+		  		<div class="servicebox" v-if="ServeiceList.length > 0">
 		  		  <div class="line1">
 							<a href="#" v-show="index < 4" v-for="(item,index) in ServeiceList">
 								<div class="serviceEntry">
@@ -137,7 +137,7 @@
 			  			</div>
 						</router-link>
 		  		</div>
-		  		<div class="readmore">
+		  		<div class="readmore" v-if="ImportantInfo !== ''">
 		  		  <router-link :to="{path: '/list/', query: {id: ImportantInfo.id, cid: ImportantInfo.cid, pid: ImportantInfo.pid}}">more></router-link>
 		  		</div>
 		  	</div>
@@ -170,7 +170,7 @@
 				  		<p class="blockdesc">
 				  		{{EducationInfo.remark}}
 				  		</p>
-				  		<router-link :to="{path: '/detail/', query: {id: recommandEducation.id, cid: recommandEducation.cid, pid: recommandEducation.pid}}">
+				  		<router-link v-if="recommandEducation !== ''" :to="{path: '/detail/', query: {id: recommandEducation.id, cid: recommandEducation.cid, pid: recommandEducation.pid}}">
 					  		<div class="recommandpic" :style="'background:url(' + imgurl + recommandEducation.thumb + ') no-repeat center center;background-size:cover'">
 					  		  <div class="tips">
 					  		  	01
@@ -217,10 +217,10 @@
 			  		<div class="page">
 			  			<button class="pagebtn pre" :style="ExpertTranslateIndex === 0 ? 'background-color:#e7e7e7;':'background-color:#0c53ab'" @click='doTransformPre()'><</button>
 			  			<button class="pagebtn next" @click = 'doTransformNext()'>></button>
-							<router-link class="pagebtn more" style="display:inline-block" :to="{ path: '/list/', query: { id: ExpertInfo.id, cid: ExpertInfo.cid, pid: ExpertInfo.pid}}">···</router-link>
+							<router-link v-if="ExpertInfo !== ''" class="pagebtn more" style="display:inline-block" :to="{ path: '/list/', query: { id: ExpertInfo.id, cid: ExpertInfo.cid, pid: ExpertInfo.pid}}">···</router-link>
 			  		</div>
 
-			  		<div class="list">
+			  		<div class="list" v-if="ExpertList.length > 0">
 				  		<div class="list-group" style="width:100%;overflow-x:hidden">
 				  			<div class="group-item" :style="'transform-origin:50% 50%;width:' + ((this.ExpertList.length * 244) + 40) + 'px;transform: translate(' + ExpertTranslate + 'px);transition: all 0.5s ease-in-out'">
 				  			  <router-link class="items" v-for="(item,index) in ExpertList" :to="{path: '/detail/', query:{id: item.id, cid: item.cid, pid: item.pid}}" :key="index">
@@ -844,7 +844,7 @@ export default{
       this.axios.get('/carousel')
       .then(res => {
       	let data = res.data.data
-      	if (data) {
+      	if (data.length !== 0) {
       		this.bannerlist = data
       	}
       }).catch(res => {
@@ -858,7 +858,7 @@ export default{
 			.then(res => {
 				let id = 0
 				let data = res.data.data
-				if (data) {
+				if (data.length !== 0) {
 					for ( let i in res.data.data) {
 						id ++
 						res.data.data[i]['ids'] = '0' + id
@@ -883,10 +883,10 @@ export default{
 			.then(res => {
 				let data = res.data.data
 				let info = res.data.info
-				if (data) {
+				if (info) {
 					that.PlasticInfo = res.data.info
 				}
-				if (info) {
+				if (data.length !== 0) {
 					that.NewsPlastic = res.data.data
 				}
 			}).catch(res => {
@@ -900,10 +900,10 @@ export default{
 			.then(res => {
 				let data = res.data.data
 				let info = res.data.info
-				if (data) {
+				if (info) {
 					that.ImportantInfo = res.data.info
 				}
-	      		if (info) {
+	      		if (data.length !== 0) {
 	      			that.ImportantList = res.data.data
 	      		}
 			}).catch(res => {
@@ -917,7 +917,7 @@ export default{
 			.then(res => {
 				let data = res.data.data
 				let info = res.data.info
-				if (data) {
+				if (data.length !== 0) {
 					that.MemberList = res.data.data
 				}
 				if (info) {
@@ -934,14 +934,18 @@ export default{
 	  		this.axios.get('/indexedation')
 			.then(res => {
 				let tempdata = res.data.data
-				if (tempdata) {
+				let info = res.data.info
+				if (tempdata.length !== 0) {
 					for (let i in tempdata) {
 						tempdata[i]['ids'] = '0' + (parseInt(i) + 1)
 					}
-		        	that.EducationInfo = res.data.info
 		        	tempdata.shift()
 		        	that.EducationList = tempdata
 		        	that.recommandEducation = res.data.data[0]
+				}
+				if (info) {
+					that.EducationInfo = res.data.info
+					console.log(that.EducationInfo)
 				}
 				}).catch(res => {
 				})
@@ -953,10 +957,10 @@ export default{
 			.then(res => {
 				let data = res.data.data
 				let info = res.data.info
-				if (data) {
+				if (info) {
 					that.RegularInfo = res.data.info
 				}
-				if (info) {
+				if (data.length !== 0) {
 					that.RegularList = res.data.data
 				}
 			}).catch(res => {
@@ -970,7 +974,7 @@ export default{
 			.then(res => {
 				let data = res.data.data
 				let info = res.data.info
-				if (data) {
+				if (data.length !== 0) {
 					that.ExpertList = res.data.data
 				}
 				if (info) {
@@ -988,7 +992,7 @@ export default{
 			.then(res => {
 				let data = res.data.data
 				let info = res.data.info
-				if (data) {
+				if (data.length !== 0) {
 					that.ServeiceList = res.data.data
 				}
 				if (info) {
@@ -1004,7 +1008,7 @@ export default{
 			this.axios.get('/link')
 			.then(res => {
 				let data = res.data.data
-				if (data) {
+				if (data.length !== 0) {
 					that.FriendList = res.data.data
 				}			
 				that.Friendcount = res.data.count
