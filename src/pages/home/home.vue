@@ -14,11 +14,11 @@
 		  		<div class="blocktitle">
 		  			<span class="titleline"></span>{{PlasticInfo.name}}<span></span>
 		  		</div>
-		  		<div class="readmore">
+		  		<div class="readmore" v-if="PlasticInfo.length > 0">
 		  		  <router-link :to="{path: '/list/', query: {id: PlasticInfo.id, cid: PlasticInfo.cid, pid: PlasticInfo.pid}}">more></router-link>
 		  		</div>
 		  		<p class="blockdesc">{{PlasticInfo.remark}}</p>
-		  		<div class="newsblock">
+		  		<div class="newsblock" v-if="NewsPlastic.length > 0">
 		  		  <div class="up">
 			  			<router-link :to="{path: '/detail' , query: {id: NewsPlastic[0].id, pid: NewsPlastic[0].pid, cid: NewsPlastic[0].cid}}">
 			  				<article class="first" :style="'background:url(' + imgurl + NewsPlastic[0].thumb + ') no-repeat center center;background-size:cover'">
@@ -55,7 +55,7 @@
 		  			<span class="titleline"></span>{{NewsInfo.name}}<span></span>
 		  		</div>
 		  		<p class="blockdesc">{{NewsInfo.remark}}</p>
-					<router-link :to="{ path: '/detail/' , query: { id: recommandNews.id,pid: recommandNews.pid, cid: recommandNews.cid}}">
+					<router-link v-if="recommandNews !== ''" :to="{ path: '/detail/' , query: { id: recommandNews.id,pid: recommandNews.pid, cid: recommandNews.cid}}">
 			  		<div class="recommandpic" :style="'background-Image:url(' + imgurl + recommandNews.thumb + ');background-repeat: no-repeat;background-postion: center center;background-size:100%;'">
 			  		  <div class="tips">
 			  		  	01
@@ -65,7 +65,7 @@
 			  			</p>
 			  		</div>
 					</router-link>
-		  		<div class="newslist">
+		  		<div class="newslist" v-if="NewsList.length > 0">
 		  			<router-link v-for="(item,index) in NewsList" :key="index" :to="{path: '/detail/', query:{id: item.id, cid: item.cid, pid: item.pid}}"><p ><span class="id">{{item.ids}}</span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p></router-link>
 		  		</div>
 		  	</div>
@@ -107,7 +107,7 @@
 		  		<p class="blockdesc">
 		  		{{ImportantInfo.remark}}
 		  		</p>
-		  		<div class="content">
+		  		<div class="content" v-if="ImportantList.length > 0">
 						<router-link :to="{ path: '/detail/', query: { id: ImportantList[0].id, cid: ImportantList[0].cid, pid: ImportantList[0].pid}}">
 			  			<div class="left">
 			  				<div class="desc">
@@ -154,7 +154,7 @@
 				  		<p class="blockdesc">
 				  		MEMBER STYLE
 				  		</p>
-				  		<div class="main">
+				  		<div class="main" v-if="MemberList.length > 0">
 								<router-link v-for="(item,index) in MemberList" :key="index" :to="{path: '/detail/',query:{id: item.id, cid: item.cid, pid: item.pid}}">
 		            <div class="list" >
 		            	<img :src="imgurl+item.thumb" alt="">
@@ -180,7 +180,7 @@
 					  			</p>
 					  		</div>
 					  	</router-link>
-					  		<div class="newslist">
+					  		<div class="newslist" v-if="EducationList.length > 0">
 					  		<router-link v-for="(item,index) in EducationList" :to="{path: '/detail/', query: {id: item.id, cid: item.cid, pid: item.pid}}" :key="index">
 					  			  <p><span class="id" style="position:relative"><i class="tranangle-right"></i></span><span class="title">{{item.title}}</span><span class="createtime">{{item.create_at}}</span></p>
 					  		</router-link>
@@ -196,7 +196,7 @@
 				  		</p>
 
 				  		<div class="regulalists">
-                <ul class="list">
+                <ul class="list" v-if="RegularList.length > 0">
                 	<router-link class="itemlist" v-for="(item,index) in RegularList" :to="{path: '/detail/', query:{'id': item.id, cid: item.cid, pid: item.pid}}" :key="index"><li>{{item.title}}</li></router-link>
                 </ul>
 				  		</div>
@@ -843,7 +843,10 @@ export default{
 		getBanner() {
       this.axios.get('/carousel')
       .then(res => {
-      	this.bannerlist = res.data.data
+      	let data = res.data.data
+      	if (data) {
+      		this.bannerlist = data
+      	}
       }).catch(res => {
       	console.log(res)
       })
@@ -854,113 +857,159 @@ export default{
 			this.axios.get('/indexnews')
 			.then(res => {
 				let id = 0
-				for ( let i in res.data.data) {
-					id ++
-					res.data.data[i]['ids'] = '0' + id
+				let data = res.data.data
+				if (data) {
+					for ( let i in res.data.data) {
+						id ++
+						res.data.data[i]['ids'] = '0' + id
+					}
+	        		that.recommandNews = res.data.data[0]
 				}
-        that.recommandNews = res.data.data[0]
 				let tempdata = res.data.data
-        that.NewsInfo = res.data.info
-        tempdata.shift()
-        that.NewsList = tempdata
+				let info = res.data.info
+				if (info) {
+			        that.NewsInfo = info
+			        tempdata.shift()
+			        that.NewsList = tempdata
+				}
 			}).catch(res => {
-        console.log(res)
+        		console.log(res)
 			})
 		},
 		// 整形资讯
 		getIndexPlastic() {
-      let that = this
+      		let that = this
 			this.axios.get('/indexplastic')
 			.then(res => {
-				that.PlasticInfo = res.data.info
-				that.NewsPlastic = res.data.data
+				let data = res.data.data
+				let info = res.data.info
+				if (data) {
+					that.PlasticInfo = res.data.info
+				}
+				if (info) {
+					that.NewsPlastic = res.data.data
+				}
 			}).catch(res => {
-        console.log(res)
+        		console.log(res)
 			})
 		},
 		// 重要通知
 		getImportantNotice() {
-      let that = this
+      		let that = this
 			this.axios.get('/indexnotice')
 			.then(res => {
-	      that.ImportantInfo = res.data.info
-	      that.ImportantList = res.data.data
+				let data = res.data.data
+				let info = res.data.info
+				if (data) {
+					that.ImportantInfo = res.data.info
+				}
+	      		if (info) {
+	      			that.ImportantList = res.data.data
+	      		}
 			}).catch(res => {
-        console.log(res)
+       		 console.log(res)
 			})
 		},
 		// 会员风采
 		getMemberList() {
-      let that = this
+      		let that = this
 			this.axios.get('/member')
 			.then(res => {
-				that.MemberList = res.data.data
-				that.MemberInfo = res.data.info
+				let data = res.data.data
+				let info = res.data.info
+				if (data) {
+					that.MemberList = res.data.data
+				}
+				if (info) {
+					that.MemberInfo = res.data.info
+				}
 			}).catch(res => {
-        console.log(res)
+       		console.log(res)
 			})
 		},
 		// 继续教育
 		getEducationList() {
-      let that = this
-      let ids = 1
-			this.axios.get('/indexedation')
+      		let that = this
+      		let ids = 1
+	  		this.axios.get('/indexedation')
 			.then(res => {
 				let tempdata = res.data.data
-				for (let i in tempdata) {
-					tempdata[i]['ids'] = '0' + (parseInt(i) + 1)
+				if (tempdata) {
+					for (let i in tempdata) {
+						tempdata[i]['ids'] = '0' + (parseInt(i) + 1)
+					}
+		        	that.EducationInfo = res.data.info
+		        	tempdata.shift()
+		        	that.EducationList = tempdata
+		        	that.recommandEducation = res.data.data[0]
 				}
-        that.EducationInfo = res.data.info
-        tempdata.shift()
-        that.EducationList = tempdata
-        that.recommandEducation = res.data.data[0]
-			}).catch(res => {
-        console.log(res)
-			})
+				}).catch(res => {
+				})
 		},
 		// 政策法规
 		getRegularList() {
-      let that = this
+      		let that = this
 			this.axios.get('/indexlaw')
 			.then(res => {
-				that.RegularInfo = res.data.info
-				that.RegularList = res.data.data
+				let data = res.data.data
+				let info = res.data.info
+				if (data) {
+					that.RegularInfo = res.data.info
+				}
+				if (info) {
+					that.RegularList = res.data.data
+				}
 			}).catch(res => {
-        console.log(res)
+       			console.log(res)
 			})
 		},
 		// 专家栏
 		getExpertList() {
-      let that = this
+      		let that = this
 			this.axios.get('/indexspecialist')
 			.then(res => {
-				that.ExpertInfo = res.data.info
-				that.ExpertList = res.data.data
+				let data = res.data.data
+				let info = res.data.info
+				if (data) {
+					that.ExpertList = res.data.data
+				}
+				if (info) {
+					that.ExpertInfo = res.data.info
+				}
 				that.Expertcount = res.data.count
 			}).catch(res => {
-        console.log(res)
+        		console.log(res)
 			})
 		},
 		// 服务大厅
 		getServeiceList() {
-      let that = this
+      		let that = this
 			this.axios.get('/indexservice')
 			.then(res => {
-				that.ServeiceInfo = res.data.info
-				that.ServeiceList = res.data.data
+				let data = res.data.data
+				let info = res.data.info
+				if (data) {
+					that.ServeiceList = res.data.data
+				}
+				if (info) {
+					that.ServeiceInfo = res.data.info
+				}
 			}).catch(res => {
-        console.log(res)
+        		console.log(res)
 			})
 		},
 		// 友情链接
 		getFriendList() {
-      let that = this
+      		let that = this
 			this.axios.get('/link')
 			.then(res => {
-				that.FriendList = res.data.data
+				let data = res.data.data
+				if (data) {
+					that.FriendList = res.data.data
+				}			
 				that.Friendcount = res.data.count
 			}).catch(res => {
-        console.log(res)
+       		 	console.log(res)
 			})
 		},
 		// 专家栏平移(下一张)

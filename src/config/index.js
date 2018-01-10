@@ -1,7 +1,7 @@
 // 全局请求url
 const config = {
-	url: 'http://zx.youjiadv.com/frontend/web/index.php?r=index', // request url
-	imgUrl: '' // pic path autocomplete
+	url: 'http://www.zjapa.com/frontend/web/index.php?r=index', // request url
+	imgUrl: 'http://www.zjapa.com/' // pic path autocomplete
 }
 
 // pagechange config

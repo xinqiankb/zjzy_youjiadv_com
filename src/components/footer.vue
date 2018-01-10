@@ -41,7 +41,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.axios.get('footer')
+		this.axios.get('/footer')
 			.then((res) => {
 				this.dataList = res.data.data
 			})
